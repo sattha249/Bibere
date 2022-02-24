@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sell register
+{% endblock %}
+
+{% block main %}
+<form action="/register-seller" method="post">
+    <p><img src="\static\1-removebg-preview.png" width="200" height="200" class="d-inline-block align-top"></p>
+    <h1 style="color: #f5b82e">SELLER</h1>
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="password" placeholder="Password" type="password">
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="comfirm password" placeholder="Comfirm Password" type="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <p id="boxing"><a href="/login_buyer.html">Seller's login</a></p>
+</form>
+{% endblock %}
