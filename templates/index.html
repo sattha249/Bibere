@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+<form action="/" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus autocomplete = "off" class="form-control" name="name" placeholder="player name" type="text">
+        </div>
+        <div class="form-group">
+        <select class = "form-control" name = "level">
+                <option disabled selected hidden selected value = "">Select Level</option>
+                <option value ="easy">Easy</option>
+                <option value ="medium">Medium</option>
+                <option value ="hard">Hard</option>
+                <option value ="insane">Insane</option>
+            </select>
+            </div>
+        <button class="myButton" type="submit">Let's test!!</button>
+    </form>
+    <br>
+    <img src ="/static/strooptest.png" width = "500" height = auto >
+{% endblock %}
