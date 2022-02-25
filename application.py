@@ -21,7 +21,7 @@ cursor = mydb.cursor(buffered=True)
 hash_pass = hashlib.md5(str(passwd).encode('utf-8'))
 hash_pass = hash_pass.hexdigest()
 try :
-    cursor.execute("INSERT INTO user_data (Username,hashpass,client) VALUES  ('sat','{}',True)".format(hash_pass))
+    cursor.execute("INSERT INTO user_data (Username,hashpass,client) VALUES  ('satts','{}',False)".format(hash_pass))
     mydb.commit()
 except: 
     print("cannot connect")
@@ -52,11 +52,12 @@ def login():
         
         username = request.form.get("username")
         password = request.form.get("password")
-
+        hash_pass = hashlib.md5(str(password).encode('utf-8'))
+        hash_pass = hash_pass.hexdigest()
         try:
-            cursor.execute("SELECT username,hashpass FROM user_data WHERE username = '{}'".format(username))
+            cursor.execute("SELECT username,hashpass FROM user_data WHERE username = '{}' AND client = true".format(username))
             login_data = cursor.fetchall()
-            if username == login_data[0][0] and password == login_data[0][1]:
+            if username == login_data[0][0] and hash_pass == login_data[0][1]:
                 session["name"] = username 
         except:
             return "<h3>Wrong username or password<h3>"
@@ -67,14 +68,72 @@ def login():
     
 @app.route('/login_seller',methods =['get','post'])
 def login_seller():
-    return render_template("login_seller.html") 
+     if request.method == "POST":
+        if request.form.get("username") == "":
+           return ("invalid name")
+        elif request.form.get("password") == None:
+           return ("invalid level")
+        
+        username = request.form.get("username")
+        password = request.form.get("password")
+        hash_pass = hashlib.md5(str(password).encode('utf-8'))
+        hash_pass = hash_pass.hexdigest()
+        try:
+            cursor.execute("SELECT username,hashpass FROM user_data WHERE username = '{}' AND client = false".format(username))
+            login_data = cursor.fetchall()
+            if username == login_data[0][0] and hash_pass == login_data[0][1]:
+                return "<h3>Log in to seller mode</h3>"
+        except:
+            return "<h3>Wrong username or password<h3>"
+     return render_template("login_seller.html") 
+
+
 
 @app.route('/sell_register',methods =['get','post'])
 def sell_register():
+    if request.method == "POST":
+        if request.form.get("username") == "":
+           return ("invalid name")
+        elif request.form.get("password") == None:
+           return ("invalid level")
+        
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirm = request.form.get("confirm_password")
+        if confirm == password:
+            hash_pass = hashlib.md5(str(password).encode('utf-8'))
+            hash_pass = hash_pass.hexdigest()
+            
+            try:
+                cursor.execute("INSERT INTO user_data (username,hashpass,client) VALUES ('{0}','{1}',false)".format(username,hash_pass))
+                mydb.commit()
+                return "<h3>Register seller successfully<h3>" 
+            except:
+                return "<h3>Username already in use<h3>" 
     return render_template("sell_register.html") 
 
 @app.route('/buy_register',methods =['get','post'])
 def buy_register():
+    if request.method == "POST":
+        if request.form.get("username") == "":
+           return ("invalid name")
+        elif request.form.get("password") == None:
+           return ("invalid level")
+        
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirm = request.form.get("confirm_password")
+        if confirm == password:
+            hash_pass = hashlib.md5(str(password).encode('utf-8'))
+            hash_pass = hash_pass.hexdigest()
+            
+            try:
+                cursor.execute("INSERT INTO user_data (username,hashpass,client) VALUES ('{0}','{1}',true)".format(username,hash_pass))
+                mydb.commit()
+                return "<h3>Register buyer successfully<h3>" 
+            except:
+                return "<h3>Username already in use<h3>" 
+    
     return render_template("buy_register.html") 
 
 @app.route('/barNearYou',methods =['get','post'])
@@ -83,4 +142,4 @@ def barNearYou():
 
 
 if __name__ == "__main__" :
-    app.run(debug = False)
+    app.run(debug = True)
