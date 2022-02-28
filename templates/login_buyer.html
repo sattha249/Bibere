@@ -5,7 +5,26 @@ Log In Buyer
 {% endblock %}
 
 {% block main %}
-<form action="/login_buyer" method="post">
+<script>function validate(){
+    let u = document.forms["form"]["username"].value;
+    let p = document.forms["form"]["password"].value;
+    
+    if (u == ""){
+        alert("Username must be filled out");
+        document.form.username.focus();
+        return false;
+        
+    }
+    else if (p == ""){
+        alert ("Password must be filled out");
+        document.form.password.focus();
+        return false;
+        
+    }
+}
+</script>
+
+<form action="/login_buyer" method="post" name = "form" onsubmit="return validate()">
     <p><img src="\static\1-removebg-preview.png" width="200" height="200" class="d-inline-block align-top"></p>
     <h1 style="color: #f5b82e">BUYER</h1>
     <div class="form-group">

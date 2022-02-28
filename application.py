@@ -7,14 +7,14 @@ import hashlib
 
 user_name = "root"
 passwd = "Codercamp1"
-"""
-API_KEY = 'AIzaSyBi04p2oHcnfR-vOyjDxZIVvP05DCbD8t8'
+
+API_KEY = 'AIzaSyApBCOaynrtpHX8TwnDS6zvMdDBoKEshMk'
 map_client = googlemaps.Client(API_KEY)
 work_place_address= '1 Market st, San Francisco, CA'
 map_client.geocode(work_place_address)
-"""
+
 app = Flask(__name__)
-GoogleMaps(app, key="AIzaSyBi04p2oHcnfR-vOyjDxZIVvP05DCbD8t8")
+GoogleMaps(app, key="AIzaSyApBCOaynrtpHX8TwnDS6zvMdDBoKEshMk")
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 

@@ -13,33 +13,39 @@ Sell register
     let e = document.forms["form"]["email"].value;
     if (e == ""){
         alert ("Missing E-mail")
-        return false;
         document.form.email.focus();
+        return false;
+        
     }
     else if (u == ""){
         alert("Username must be filled out");
-        return false;
         document.form.username.focus();
+        return false;
+        
     }
     else if (p == ""){
         alert ("Password must be filled out");
-        return false;
         document.form.password.focus();
+        return false;
+       
     }
     else if (c == ""){
         alert("Confirm password must be filled");
-        return false;
         document.form.confirm_password.focus();
+        return false;
+        
     }
     if (p.length < 8){
         alert("Password must contain more than 8 charactors")
-        return false;
         document.form.password.focus();
+        return false;
+        
     }
     if (p != c){
         alert ("Password and confirm password is mismatch");
-        return false;
         document.form.password.focus();
+        return false;
+        
     }
     if (e.match(validRegex)) {
         return true;
