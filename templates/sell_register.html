@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Sell register
+{% endblock %}
+
+{% block main %}
+<script>function validate(){
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let u = document.forms["form"]["username"].value;
+    let p = document.forms["form"]["password"].value;
+    let c = document.forms["form"]["confirm_password"].value;
+    let e = document.forms["form"]["email"].value;
+    if (e == ""){
+        alert ("Missing E-mail")
+        document.form.email.focus();
+        return false;
+        
+    }
+    else if (u == ""){
+        alert("Username must be filled out");
+        document.form.username.focus();
+        return false;
+        
+    }
+    else if (p == ""){
+        alert ("Password must be filled out");
+        document.form.password.focus();
+        return false;
+       
+    }
+    else if (c == ""){
+        alert("Confirm password must be filled");
+        document.form.confirm_password.focus();
+        return false;
+        
+    }
+    if (p.length < 8){
+        alert("Password must contain more than 8 charactors")
+        document.form.password.focus();
+        return false;
+        
+    }
+    if (p != c){
+        alert ("Password and confirm password is mismatch");
+        document.form.password.focus();
+        return false;
+        
+    }
+    if (e.match(validRegex)) {
+        return true;
+    } 
+    else {
+
+    alert("Invalid email address!");
+
+    document.form.email.focus();
+
+    return false;
+
+    }
+
+}
+    
+</script>
+<form action="/sell_register" method="post" name ="form" onsubmit="return validate()">
+    <p><img src="\static\1-removebg-preview.png" width="200" height="200" class="d-inline-block align-top"></p>
+    <h1 style="color: #f5b82e">SELLER</h1>
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="email" placeholder="E-mail" type="text">
+    </div>
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="password" placeholder="Password" type="password">
+    </div>
+    <div class="form-group">
+        <input class="form-control" name="confirm_password" placeholder="Confirm Password" type="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <p id="boxing"><a href="/login_seller">Seller's login</a></p>  
+</form>
+{% endblock %}
