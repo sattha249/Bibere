@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buyer Profile
+{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-6"><img src="..." class="rounded mx-auto d-block" alt="Profile Picture"></div>
+    <div class="col-6"><h1>username</h1><h2>email</h2></div>
+</div>
+<div class="row">
+    <form action="/login_seller" method="post" name="form" onsubmit="return validate()">
+    <div class="col-6"><div class="form-group">
+        <label for="name">Name:</label>
+        <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Name" type="text">
+    </div></div>
+    
+    <div class="col-6"><div class="form-group">
+        <label for="surname">Surname:</label>
+        <input class="form-control" name="surname" placeholder="Surname" type="text">
+    </div></div>
+    <label for="surname">Date of birth</label>
+    <input type = "date">
+    <label for="surname">Occupation</label>
+    <input class="form-control" name="occupation" placeholder="Student" type="text">
+    <label for="surname">Favorite</label>
+    <input class="form-control" name="favorite" placeholder="Coffee or tea" type="text">
+    <label for="surname">Sickness</label>
+    <input class="form-control" name="sickness" placeholder="Diabeties" type="text">
+    <label for="surname">Description</label>
+    <textarea class="form-control" aria-label="With textarea"></textarea>
+    <input class="form-control" name="description" placeholder="Hi! I like to drink tea while reading..." type="text">
+    </form>
+</div>
+<button class="btn btn-primary" href="profile_display_buyer.html" role="button"  style="background-color: #000000">BACK</button>
+<button class="btn btn-primary" type="submit"  style="background-color: #000000">SAVE</button>
+
+
+{% endblock %}

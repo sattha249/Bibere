@@ -4,13 +4,15 @@ nav .navbar-brand
     font-size: xx-large;
 }
 body {
-    background-color: black;
+    background-color: #FFF9F3;
 }
  #boxing{
     padding: 10px;
     border-width: 10px 1px;
  }
 /* Colors for brand */
+
+
 nav .navbar-brand .blue
 {
     color: #537fbe;
