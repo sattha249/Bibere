@@ -1,20 +1,18 @@
 from flask import Flask, render_template , request , redirect , session
 from flask_session import Session
 import googlemaps
-from flask_googlemaps import GoogleMaps , Map
 import mysql.connector
 import hashlib
 
 user_name = "root"
 passwd = "Codercamp1"
-
-API_KEY = 'AIzaSyApBCOaynrtpHX8TwnDS6zvMdDBoKEshMk'
+"""
+API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
 map_client = googlemaps.Client(API_KEY)
 work_place_address= '1 Market st, San Francisco, CA'
 map_client.geocode(work_place_address)
-
+"""
 app = Flask(__name__)
-GoogleMaps(app, key="AIzaSyApBCOaynrtpHX8TwnDS6zvMdDBoKEshMk")
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
@@ -34,33 +32,24 @@ try :
     mydb.commit()
 except: 
     print("cannot connect")
-    """
-
-
-
+    
 #Code example to get hash from sql and check password
 cursor.execute("SELECT hashpass FROM user_data WHERE id = 2")
 c = cursor.fetchone()
-
+"""
 
 #flask
 
 @app.route('/',methods = ["get","post"])
 def index():
-    #session["name"] = None
     if not session.get("name"):
         return redirect("login_buyer")
-    return "<h3>Log-in successfully</h3>"
+    return redirect("profile")
     
 
 @app.route('/login_buyer',methods = ["get","post"])
 def login():
     if request.method == "POST":
-        if request.form.get("username") == "":
-           return ("invalid name")
-        elif request.form.get("password") == None:
-           return ("invalid level")
-        
         username = request.form.get("username")
         password = request.form.get("password")
         hash_pass = hashlib.md5(str(password).encode('utf-8'))
@@ -70,6 +59,7 @@ def login():
             login_data = cursor.fetchall()
             if username == login_data[0][0] and hash_pass == login_data[0][1]:
                 session["name"] = username 
+                
         except:
             return "<h3>Wrong username or password<h3>"
         return redirect("/")
@@ -80,11 +70,6 @@ def login():
 @app.route('/login_seller',methods =['get','post'])
 def login_seller():
      if request.method == "POST":
-        if request.form.get("username") == "":
-           return ("invalid name")
-        elif request.form.get("password") == None:
-           return ("invalid level")
-        
         username = request.form.get("username")
         password = request.form.get("password")
         hash_pass = hashlib.md5(str(password).encode('utf-8'))
@@ -93,9 +78,11 @@ def login_seller():
             cursor.execute("SELECT username,hashpass FROM user_data WHERE username = '{}' AND client = false".format(username))
             login_data = cursor.fetchall()
             if username == login_data[0][0] and hash_pass == login_data[0][1]:
-                return "<h3>Log in to seller mode</h3>"
+                session["name"] = username 
+                
         except:
             return "<h3>Wrong username or password<h3>"
+        return redirect("/")
      return render_template("login_seller.html") 
 
 
@@ -106,7 +93,6 @@ def sell_register():
         
         username = request.form.get("username")
         password = request.form.get("password")
-        confirm = request.form.get("confirm_password")
         email = request.form.get("email")
         if len(password) >= 8:
             hash_pass = hashlib.md5(str(password).encode('utf-8'))
@@ -136,7 +122,7 @@ def buy_register():
             try:
                 cursor.execute("INSERT INTO user_data (username,hashpass,client,e_mail) VALUES ('{0}','{1}',true,'{2}')".format(username,hash_pass,email))
                 mydb.commit()
-                return "<h3>Register buyer successfully<h3>" 
+                return redirect ("login_buyer")
             except:
                 return "<h3>Username already in use<h3>"
     
@@ -146,34 +132,27 @@ def buy_register():
 def barNearYou():
     return "Bar near you"
 
-@app.route('/map',methods =['get','post'])
-def profile_edit():
-    mymap = Map(
-        identifier="view-side",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[(37.4419, -122.1419)]
-    )
-    sndmap = Map(
-        identifier="sndmap",
-        lat=37.4419,
-        lng=-122.1419,
-        markers=[
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-             'lat': 37.4419,
-             'lng': -122.1419,
-             'infobox': "<b>Hello World</b>"
-          },
-          {
-             'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-             'lat': 37.4300,
-             'lng': -122.1400,
-             'infobox': "<b>Hello World from other place</b>"
-          }
-        ]
-    )
-    return render_template('example.html', mymap=mymap, sndmap=sndmap)
+@app.route('/profile',methods =['get','post'])
+def profile_buyer():
+    cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
+    s = cursor.fetchall()
+    mode = s[0][3]
+    print (mode)
+    if mode == True:
+        return render_template("profile_buyer.html")
+    return "test"
+    
+    
+@app.route('/logout')
+def logout():
+    session["name"] = None
+    return redirect("/")
+
+@app.route('/map')
+def map():
+    session["name"] = None
+    return render_template("map.html")
+
 
 if __name__ == "__main__" :
-    app.run(debug = True)
+    app.run(debug=True)
