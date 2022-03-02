@@ -1,17 +1,16 @@
-from flask import Flask, render_template , request , redirect , session
+from flask import Flask, render_template , request , redirect , session , url_for
 from flask_session import Session
 import googlemaps
+import geocoder
 import mysql.connector
 import hashlib
+import json
 
 user_name = "root"
 passwd = "Codercamp1"
-"""
+
 API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
-map_client = googlemaps.Client(API_KEY)
-work_place_address= '1 Market st, San Francisco, CA'
-map_client.geocode(work_place_address)
-"""
+
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -23,6 +22,7 @@ mydb = mysql.connector.connect(
     database="cuppa"
 )
 cursor = mydb.cursor(buffered=True)
+
 """
  #Code to add hash password
 hash_pass = hashlib.md5(str(passwd).encode('utf-8'))
@@ -37,6 +37,14 @@ except:
 cursor.execute("SELECT hashpass FROM user_data WHERE id = 2")
 c = cursor.fetchone()
 """
+def miles_to_meters(miles):
+    try:
+        return miles * 1_609.344
+    except:
+        return 0
+latitude = 0
+longtitude = 0
+
 
 #flask
 
@@ -128,9 +136,43 @@ def buy_register():
     
     return render_template("buy_register.html") 
 
-@app.route('/barNearYou',methods =['get','post'])
+@app.route('/cafenearyou',methods =['get','post'])
 def barNearYou():
-    return "Bar near you"
+    
+     #get my location
+    myloc = geocoder.ip('me')
+    lat = myloc.latlng[0]
+    lng = myloc.latlng[1]
+    print(myloc.latlng)
+        # my home
+    # lat = 13.753263121876094 
+    # lng = 100.74236460509789
+
+
+    locations = {'lat': lat , 'lng':lng}
+
+    #get nearby cafe
+    map_client = googlemaps.Client(API_KEY)
+    # my home
+    #location = (13.753263121876094, 100.74236460509789)
+    location = (lat, lng)
+    search_string = 'cafe'
+    distance = miles_to_meters(15)
+    business_list = []
+
+    response = map_client.places_nearby(
+        location = location,
+        keyword = search_string,
+        name = 'cafe',
+        radius=distance
+    )
+
+    business_list.extend(response.get('results'))
+    cafe = []
+    for i in business_list:
+        cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
+    
+    return render_template("cafenearyou.html",location = locations,cafe = cafe)
 
 @app.route('/profile',methods =['get','post'])
 def profile_buyer():
@@ -148,11 +190,43 @@ def logout():
     session["name"] = None
     return redirect("/")
 
-@app.route('/map')
+@app.route('/map',methods =['get','post'])
 def map():
-    session["name"] = None
-    return render_template("map.html")
+   
+     #get my location
+    myloc = geocoder.ip('me')
+    lat = myloc.latlng[0]
+    lng = myloc.latlng[1]
+    print(myloc.latlng)
+        # my home
+    # lat = 13.753263121876094 
+    # lng = 100.74236460509789
 
+
+    locations = {'lat': lat , 'lng':lng}
+
+    #get nearby cafe
+    map_client = googlemaps.Client(API_KEY)
+    # my home
+    #location = (13.753263121876094, 100.74236460509789)
+    location = (lat, lng)
+    search_string = 'cafe'
+    distance = miles_to_meters(15)
+    business_list = []
+
+    response = map_client.places_nearby(
+        location = location,
+        keyword = search_string,
+        name = 'cafe',
+        radius=distance
+    )
+
+    business_list.extend(response.get('results'))
+    cafe = []
+    for i in business_list:
+        cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
+    
+    return render_template("map.html",location = locations,cafe = cafe)
 
 if __name__ == "__main__" :
     app.run(debug=True)

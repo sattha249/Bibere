@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buyer Profile
+{% endblock %}
+
+{% block main %}
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="/static/map.js"></script>
+
+    <script>
+      let user = JSON.parse('{{location|tojson}}');
+      let cafe = JSON.parse('{{cafe|tojson}}');
+      var maps, infoWindow;
+
+
+      function initMap() {
+      const myLatLng = { lat: 13.847860, lng: 100.604274 },
+      maps = new google.maps.Map(document.getElementById("map"), {
+    
+      center: { lat: user.lat, lng: user.lng },
+      zoom: 15,
+   });
+       infoWindow = new google.maps.InfoWindow();
+
+       //set current position
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position);
+          const pos = {
+              // get from python คลาดเคลื่อน
+            // lat: user.lat,
+            // lng: user.lng,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+            
+          };
+
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("คุณอยู่ที่นี่");
+          infoWindow.open(maps);
+          maps.setCenter(pos);
+
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+
+       
+    
+      //create marker by loop from array
+      var marker,i,info;
+      for(i = 0 ; i < cafe.length ; i++){
+        marker = new google.maps.Marker({
+          position : new google.maps.LatLng(cafe[i][1],cafe[i][2]),
+          map: maps,
+          title: cafe[i][0]
+        });
+        info = new google.maps.InfoWindow();
+        google.maps.event.addListener(marker,'click',function(marker,i){
+          return function() {
+            info.setContent(location[i][0]);
+            info.open(maps,marker);
+          }
+        });
+      }
+    }
+
+    
+  
+      
+
+    </script>
+    <h3>"Cafe near me"</h3>
+    <div id="map"></div>
+
+
+    <form method="POST" action="" id="form" hidden>
+      <input type ="text" name="lat" id="lat"/>
+      <input type ="text" name="lng" id="lng"/>
+      <input type ="submit" name = "btnsubmit"/>
+    </form>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A&callback=initMap&v=weekly"
+      async
+    ></script>
+  
+{% endblock %}
