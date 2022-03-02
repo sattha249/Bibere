@@ -6,7 +6,7 @@ Buyer Profile
 
 {% block main %}
 
-<form action="/login_buyer" method="post" name="form" onsubmit="return validate()">
+<form action="/profile_buyer" method="post" name="form">
     <div class="row">
         <div class="col-6"><img src="src" class="rounded mx-auto d-block" alt="Profile Picture"></div>
         <div class="col-6"><h1>username</h1><h2>email</h2></div>
@@ -16,37 +16,41 @@ Buyer Profile
             <div class="col">
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Name" type="text">
+                    <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Name" type="text" value = {{f}}>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
                     <label for="surname">Surname:</label>
-                    <input class="form-control" name="surname" placeholder="Surname" type="text">
+                    <input class="form-control" name="surname" placeholder="Surname" type="text" value = {{l}}>
                 </div>
             </div>
         </div>
     </div>
     
 <label for="date">Date of birth</label>
-<input name="date" type = "date">
+<input name="date" type = "date" value="2022-03-02">
 </P>
 <label for="occupation">Occupation</label>
-<input class="form-control" name="occupation" placeholder="Student" type="text">
+<input class="form-control" name="occupation" placeholder="Student" type="text" value = {{oc}}>
 <label for="favorite">Favorite</label>
-<input class="form-control" name="favorite" placeholder="Coffee or tea" type="text">
+<input class="form-control" name="favorite" placeholder="Coffee or tea" type="text" value ={{fav}}>
 <label for="sickness">Sickness</label>
-<input class="form-control" name="sickness" placeholder="Diabeties" type="text">
+<input class="form-control" name="sickness" placeholder="Diabeties" type="text" value = {{s}}>
 <div class="input-group">
     <div class="input-group-prepend">
         <span class="input-group-text">Description</span>
     </div>
-    <textarea class="form-control" aria-label="With textarea"></textarea>
+    <textarea class="form-control" name ="desc" aria-label="With textarea" value = {{desc}}></textarea>
     </div>
+    <div style="padding-top: 20px;">
+        <button class="btn btn-primary" href="profile_display_buyer.html" role="button"  style="background-color: #000000">BACK</button>
+        <button class="btn btn-primary" type="submit"  style="background-color: #000000">SAVE</button>
+    </div>
+    
 </form>
 
-<button class="btn btn-primary" href="profile_display_buyer.html" role="button"  style="background-color: #000000">BACK</button>
-<button class="btn btn-primary" type="submit"  style="background-color: #000000">SAVE</button>
+
 
 
 {% endblock %}
