@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buyer Profile
+{% endblock %}
+
+{% block main %}
+
+<form action="/edit_profile_seller" method="get" name="form">
+    <div class="row">
+        <div class="head-myprofile col-5"><h1 style="font-size:3vw; margin-bottom: 20px;">my profile</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+
+                <div style="display: inline-block; text-align: center">
+                    <div ><img src="\static\Logo.png" class="strock rounded-circle mx-auto d-block image-profile" alt="Profile Picturestyle=" style="text-align: center"></div>
+                    <div ><h2 style="font-size:2vw; text-align: center; margin-top: 20px;">{{f}} {{l}}</h2></div>
+                        <div style="display: inline-block; text-align: left">
+                            <div ><h4>Bangkok</h4></div>
+                            <div ><h4>Status: <span class="active">Active</span></h4></div>
+                        </div>
+                </div>
+                
+                <div style="padding-top: 20px; font-family:'Timmana', sans-serif;">
+                    <div><h5 href="">My Favorite</h5></div>
+                    <div><h5 href="">My Orders</h5></div>
+                    <div><h5 href="">Discusion</h5></div>
+                    <div><h5 href="">Messenger</h5></div>
+                    <div><h5 href="">Articles</h5></div>
+                    <div><h5 href="">Products</h5></div>
+                    <div><h5 href="">Cafes</h5></div>
+                    <div><h5 href="">Grabs</h5></div>
+                </div>
+            </div>
+
+            <div class="col-9" style="margin-top: 30px;">
+                <div class="frame-line">
+                    <div style="text-align: left;">
+                        <div><h2 class="head-name" style="font-size:3vw;">{{f}} {{l}}</h2></div>
+                            <div class="mb-content">
+                                <div><p class="mb-details">Email address: </p> <p class="mb-details">{{m}}</p> </div>
+                                <div><p class="mb-details">Country: </p> <p class="mb-details">Thailand</p> </div>
+                                <div><p class="mb-details">Sickness: {{s}}</p>  </div>
+                                <div><p class="mb-details">Occupation: {{oc}}</p> </div>
+                                <div><p class="mb-details">Favorite: <span class="tag"> {{fav}} </span></p> </div>
+                            </div>
+                            <div style="margin-top: 160px; text-align: center;">
+                                <button class="btn btn-primary" action="/edit_profile_seller" role="button"  style="background-color: #000000; font-size:1.5vw">Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+{% endblock %}

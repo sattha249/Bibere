@@ -1,0 +1,104 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buyer Profile
+{% endblock %}
+
+{% block main %}
+
+<form action="/upload" method="post" name="form1">
+    <div class="row">
+    <div class="col-6">
+        <h4>Profile image</h4>
+        <img src="/static/Logo.png" id="inp" class="rounded-circle" alt="Profile picture" width="250" height="250">
+        <div class="form-group">
+        <input type="file" name="file">
+        <input type="submit" value="submit" class = "btn btn-info">
+        </div>
+    </div>
+    </div></form>
+
+
+<form action="/edit_profile_buyer" method="post" name="form">
+    
+        <div class="col-6">
+            <h1>username</h1>
+            <h2>email</h2>
+        
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                        <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Name" type="text" value = {{f}}>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="surname">Surname:</label>
+                    <input class="form-control" name="surname" placeholder="Surname" type="text" value = {{l}}>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="date">Date of birth</label>
+                <input name="date" type = "date" value={{d}}>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="occupation">Occupation</label>
+                <input class="form-control" name="occupation" placeholder="Student" type="text" value = {{oc}}>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="favorite">Favorite</label>
+                <input class="form-control" name="favorite" placeholder="Coffee or tea" type="text" value ={{fav}}>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="sickness">Sickness</label>
+                <input class="form-control" name="sickness" placeholder="Diabeties" type="text" value = {{s}}>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-6"><label for="date">Date of birth</label>
+            <input name="date" type = "date" value={{d}}></div>
+        <div class="col-6"><label for="occupation">Occupation</label><input class="form-control" name="occupation" placeholder="Student" type="text" value = {{oc}}></div>
+    </div> -->
+    <!-- <div class="row">
+        <div class="col-6"><label for="favorite">Favorite</label>
+            <input class="form-control" name="favorite" placeholder="Coffee or tea" type="text" value ={{fav}}></div>
+        <div class="col-6"><label for="sickness">Sickness</label>
+            <input class="form-control" name="sickness" placeholder="Diabeties" type="text" value = {{s}}></div>
+    </div> -->
+    
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text">Description</span>
+    </div>
+    <textarea class="form-control" name ="desc" aria-label="With textarea" value = {{desc}}></textarea>
+    </div>
+    <div style="padding-top: 20px;">
+        <button class="btn btn-primary" type="submit" name="action" value="back" style="background-color: #000000">BACK</button>
+        <button class="btn btn-primary" type="submit" name="action" value="update"  style="background-color: #000000">SAVE</button>
+    </div>
+    
+</form>
+
+
+
+
+{% endblock %}
