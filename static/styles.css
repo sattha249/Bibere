@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Timmana&display=swap');
+
 nav .navbar-brand
 {
     /* size for brand */
@@ -11,6 +13,7 @@ body {
     border-width: 10px 1px;
  }
 /* Colors for brand */
+
 
 .padding-md { padding: 1em; }
 
@@ -30,6 +33,10 @@ nav .navbar-brand .green
 {
     color: #2e944b;
 }
+
+.custom-toggler.navbar-toggler {
+    border-color: #486648;
+  }
 
 main .form-control
 {
@@ -85,3 +92,62 @@ main img
       .custom-map-control-button:hover {
         background: #ebebeb;
       }
+
+h5 {
+    font-size:22px;
+}
+
+h4 {
+    font-size:18px;
+}
+
+.mb-details {
+    font-size:18px;
+    margin-bottom: 15px;
+}
+
+.frame-line {
+    position: relative;
+    height: 65vh;
+    border-radius: 44px;
+    border: 3px solid #577157;
+  }
+  
+  .head-name {
+    position: absolute;
+    top: -32px;
+    left: 65px;
+    font-size: 48px;
+    background-color: #FFF9F3;
+    padding: 0 15px;
+  }
+
+  .mb-content {
+      margin-top: 50px;
+      margin-left: 50px;
+  }
+
+  .active {
+      color: #2e944b;
+  }
+
+  .strock {
+      border: 2.5px solid #486648;
+      border-radius: 50%;
+  }
+
+  .head-myprofile {
+      text-transform: uppercase;
+      letter-spacing: 10px;
+  }
+  
+  .image-profile {
+      max-width: 150px;
+      width: 100%;
+  }
+
+  .tag {
+      background-color: #C7D7C7;
+      padding: 4px 12px;
+      border-radius: 25px;
+  }
