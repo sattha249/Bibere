@@ -1,0 +1,64 @@
+{% extends "layout.html" %} {% block title %} Seller orders {% endblock %} {%
+block main %}
+
+<form action="/edit_profile_seller" method="get" name="form">
+  <div class="row">
+    <div class="head-myprofile">
+      <h1 style="font-size: 3vw; margin-bottom: 20px">my information</h1>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div style="display: inline-block; text-align: center">
+            <div>
+              <img
+                src="\static\Logo.png"
+                class="strock rounded-circle mx-auto d-block image-profile"
+                alt="Profile Picture"
+                style="text-align: center"
+              />
+            </div>
+            <div>
+              <h2 style="font-size: 2vw; text-align: center; margin-top: 20px">
+                Name cafe
+              </h2>
+            </div>
+            <div style="display: inline-block; text-align: left">
+              <div><h4>Bangkok</h4></div>
+              <div>
+                <h4>Status: <span class="active">Active</span></h4>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+            <div><h5 href="">My Information</h5></div>
+            <div><h5 href="">My Orders</h5></div>
+            <div><h5 href="">My products</h5></div>
+            <div><h5 href="">Grabs</h5></div>
+          </div>
+        </div>
+
+        <div class="col-9" style="margin-top: 30px">
+          <div class="frame-line">
+            <div>
+              <h2 class="head-name" style="font-size: 48px">Name cafe</h2>
+            </div>
+            <div style="text-align: left">
+              <div class="mb-content">
+                <div>
+                  <p class="mb-orders">
+                    No. Custumer Product date Payment Total
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

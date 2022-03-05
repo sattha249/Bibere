@@ -5,8 +5,10 @@ import geocoder
 import mysql.connector
 import hashlib
 import os
+from os.path import join,dirname,realpath
 from werkzeug.utils import secure_filename
 import urllib.request
+
 
 user_name = "root"
 passwd = "Codercamp1"
@@ -15,7 +17,8 @@ API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
 
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = "filesystem"
-app.config['UPLOAD_FOLDER'] = 'static/profile'
+app.config['UPLOAD_FOLDER'] = join(dirname(realpath(__file__)), 'static/profile/')
+path = join(dirname(realpath(__file__)), 'static/profile/')
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 Session(app)
@@ -43,27 +46,36 @@ except:
 cursor.execute("SELECT hashpass FROM user_data WHERE id = 2")
 c = cursor.fetchone()
 """
+
+
+ 
+
+
+
 def miles_to_meters(miles):
     try:
         return miles * 1_609.344
     except:
         return 0
-latitude = 0
-longtitude = 0
+
 
 def get_age(y):
-    x = y.split("-")
-    y = int(x[0])
-    return (2022-y)
+    a = str(y)
+    b = a.split('-')
+    print (2022 - int(b[0]))
+    return (2022 - int(b[0]))
 
-def fetch_information():
-    cursor.execute("SELECT id,firstname,lastname,IFNULL(dob,0000-00-00),occupation,favorite,sickness,descriptions,e_mail FROM user_inf WHERE id = {}".format(session["id"]))
-    data = cursor.fetchall()
-    print(data)
-    return data 
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit(',',1)[1].lower() in ALLOWED_EXTENSIONS
+
+def fetch_information():
+    cursor.execute("SELECT id,firstname,lastname,dob,occupation,favorite,sickness,descriptions,e_mail,profile FROM user_inf WHERE id = {}".format(session["id"]))
+    data = cursor.fetchall()
+    data.append(get_age(data[0][3]))
+    print(data)
+    return data 
+
 
 def register(username,hash_pass,mode,email):
     cursor.execute("INSERT INTO user_data (username,hashpass,client) VALUES ('{0}','{1}',{2})".format(username,hash_pass,mode))
@@ -80,10 +92,12 @@ def login(username,hash_pass,mode):
         session["name"] = username 
         session["id"] = login_data[0][2]
 
-#flask
 
+#flask
 @app.route('/',methods = ["get","post"])
 def index():
+    # session["name"] = None
+    # session["id"] = None
     if not session.get("name"):
         return redirect("login_buyer")
     return redirect("profile")
@@ -164,7 +178,6 @@ def buy_register():
                 return redirect ("login_buyer")
             except:
                 return "<h3>Username already in use<h3>"
-    
     return render_template("buy_register.html") 
 
 @app.route('/cafenearyou',methods =['get','post'])
@@ -209,9 +222,12 @@ def barNearYou():
 @app.route('/profile',methods =['get','post'])
 def profile():
     if session["name"]:
-        cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
-        s = cursor.fetchall()
-        mode = s[0][3]
+        try:
+            cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
+            s = cursor.fetchall()
+            mode = s[0][3]
+        except:
+            return redirect("login_buyer")
         if mode == True:
             return redirect("profile_display_buyer")
         return redirect("profile_display_seller")
@@ -236,20 +252,22 @@ def edit_profile_buyer():
             mydb.commit()
         return redirect("profile")    
     data = fetch_information()
-    return render_template("edit_profile_buyer.html",f = data[0][1],l = data[0][2],d = data[0][3],
-    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8])
+    return render_template("edit_profile_buyer.html",id= data[0][0],f = data[0][1],l = data[0][2],d = data[0][3],
+    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],picture = data[0][9],user = session['name'],age = data[1])
     
 
 
 @app.route('/profile_display_buyer',methods = ['get','post'])
 def profile_display_buyer():
-    data = fetch_information()
-    print(data)
-    return render_template("profile_display_buyer.html",f = data[0][1],l = data[0][2],d = data[0][3],
-    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8])
+    try:
+        data = fetch_information()
+        print(data)
+        return render_template("profile_display_buyer.html",f = data[0][1],l = data[0][2],d = data[0][3],
+        oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],picture = data[0][9],age = data[1])
+    except:
+        return redirect('login_buyer')
     
     
-
 
 @app.route('/logout')
 def logout():
@@ -259,75 +277,84 @@ def logout():
 
 
 
-@app.route('/map',methods =['get','post'])
-def map():
-   
-     #get my location
-    myloc = geocoder.ip('me')
-    lat = myloc.latlng[0]
-    lng = myloc.latlng[1]
-    print(myloc.latlng)
-        # my home
-    # lat = 13.753263121876094 
-    # lng = 100.74236460509789
-
-    locations = {'lat': lat , 'lng':lng}
-
-    #get nearby cafe
-    map_client = googlemaps.Client(API_KEY)
-    # my home
-    #location = (13.753263121876094, 100.74236460509789)
-    location = (lat, lng)
-    search_string = 'cafe'
-    distance = miles_to_meters(15)
-    business_list = []
-
-    response = map_client.places_nearby(
-        location = location,
-        keyword = search_string,
-        name = 'cafe',
-        radius=distance
-    )
-    business_list.extend(response.get('results'))
-    cafe = []
-    for i in business_list:
-        cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
-    return render_template("map.html",location = locations,cafe = cafe)
-
 
 @app.route('/upload',methods =['Get','POST'])
 def upload():
-    try:
-        print("post")
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
+    if request.method == 'POST':
         file = request.files['file']
-        if file.filename =='':
-            flash ('No image selected  for uploading')
-            return "no image"
-        if file and allowed_file(file.filename):
+        if file:
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
-            print ('upload_image filename : ' + filename)
-            flash('success')
-            return "success"
-        else:
-            flash('Allowed image types are != png,jpg,jpeg,gif')
+            file.save(os.path.join(path,filename))
+            picture = filename
+            print (picture)
+            cursor.execute("UPDATE user_inf SET profile  = '{0}' WHERE id = {1}".format(picture,session['id']))
+            mydb.commit()
             return redirect(request.url)
-    except:
-        print("get")
-        return redirect("profile")
+    return redirect("edit_profile_buyer")
 
 
-# route ที่ยังไม่ได้ใช้
+
 @app.route('/edit_profile_seller',methods =['get','post'])
 def edit_profile_seller():
-    return render_template("edit_profile_seller.html")
+    if request.method =='POST':
+        if request.form['action'] =='update':
+            name = request.form.get('seller-name')
+            address = request.form.get('seller-address')
+            desc = request.form.get('desc')
+            print(name,address,desc)
+            cursor.execute("""UPDATE user_inf SET firstname = '{0}',favorite ='{1}',descriptions ='{2}'
+            WHERE id = {3} """.format(name,address,desc,session["id"]))
+            mydb.commit()
+        return redirect("profile")    
+    data = fetch_information()
+    return render_template("edit_profile_seller.html",name= data[0][1],address = data[0][5],desc = data[0][7],mail = data[0][8],picture = data[0][9],user = session['name'])
 
 @app.route('/profile_display_seller',methods = ['get','post'])
 def profile_display_seller():
-    return render_template('profile_display_seller.html')
+    try:
+        data = fetch_information()
+        print(data)
+        return render_template("profile_display_seller.html",name= data[0][1],address = data[0][5],desc = data[0][7],mail = data[0][8],picture = data[0][9],user = session['name'])
+    except:
+        return redirect('login_seller')
+    
+# route ที่ยังไม่ได้ใช้
+@app.route('/profile_display_buyer_order',methods = ['get','post'])
+def profile_display_buyer_order():
+    data = fetch_information()
+    return render_template("profile_display_buyer_order.html",f = data[0][1],l = data[0][2],d = data[0][3],
+    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],age = data[1])
+
+@app.route('/profile_display_seller_order',methods = ['get','post'])
+def profile_display_seller_order():
+    data = fetch_information()
+    return render_template("profile_display_seller_order.html",f = data[0][1],l = data[0][2],d = data[0][3],
+    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],age = data[1])
+
+@app.route('/profile_display_buyer_cafeHis',methods = ['get','post'])
+def profile_display_buyer_cafeHis():
+    return render_template("profile_display_buyer_cafeHis.html")
+
+@app.route('/profile_display_buyer_favorite_details',methods = ['get','post'])
+def profile_display_buyer_favorite_details():
+    return render_template("profile_display_buyer_favorite_details.html")
+
+@app.route('/profile_display_buyer_favorite',methods = ['get','post'])
+def profile_display_buyer_favorite():
+    return render_template("profile_display_buyer_favorite.html")
+
+
+@app.route('/profile_display_buyer_teaHis',methods = ['get','post'])
+def profile_display_buyer_teaHis():
+    return render_template("profile_display_buyer_teaHis.html")
+
+@app.route('/profile_display_seller_product',methods = ['get','post'])
+def profile_display_seller_product():
+    return render_template("profile_display_seller_product.html")
+
+@app.route('/profile_display_seller_product_details',methods = ['get','post'])
+def profile_display_seller_product_details():
+    return render_template("profile_display_seller_product_details.html")
 
 
 

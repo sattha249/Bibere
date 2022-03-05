@@ -1,153 +1,220 @@
-@import url('https://fonts.googleapis.com/css2?family=Timmana&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Timmana&display=swap");
 
-nav .navbar-brand
-{
-    /* size for brand */
-    font-size: xx-large;
+nav .navbar-brand {
+  /* size for brand */
+  font-size: xx-large;
 }
 body {
-    background-color: #FFF9F3;
+  background-color: #fff9f3;
 }
- #boxing{
-    padding: 10px;
-    border-width: 10px 1px;
- }
+#boxing {
+  padding: 10px;
+  border-width: 10px 1px;
+}
 /* Colors for brand */
 
+.padding-md {
+  padding: 1em;
+}
 
-.padding-md { padding: 1em; }
-
-nav .navbar-brand .blue
-{
-    color: #537fbe;
+nav .navbar-brand .blue {
+  color: #537fbe;
 }
-nav .navbar-brand .red
-{
-    color: #ea433b;
+nav .navbar-brand .red {
+  color: #ea433b;
 }
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
+nav .navbar-brand .yellow {
+  color: #f5b82e;
 }
-nav .navbar-brand .green
-{
-    color: #2e944b;
+nav .navbar-brand .green {
+  color: #2e944b;
 }
 
 .custom-toggler.navbar-toggler {
-    border-color: #486648;
-  }
-
-main .form-control
-{
-    /* Center form controls */
-    display: inline-block;
-
-    /* Override Bootstrap's 100% width for form controls */
-    width: auto;
+  border-color: #486648;
 }
 
-main
-{
-    /* Scroll horizontally as needed */
-    overflow-x: auto;
+main .form-control {
+  /* Center form controls */
+  display: inline-block;
 
-    /* Center contents */
-    text-align: center;
+  /* Override Bootstrap's 100% width for form controls */
+  /* width: 100%; */
 }
 
-main img
-{
-    /* Constrain images on small screens */
-    max-width: 100%;
+
+main {
+  /* Scroll horizontally as needed */
+  overflow-x: auto;
+
+  /* Center contents */
+  text-align: center;
+}
+
+main img {
+  /* Constrain images on small screens */
+  max-width: 100%;
 }
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-       #map {
-        height: 600px;
-        width: 1000px;
-      }
-      
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      
-      .custom-map-control-button {
-        background-color: #fff;
-        border: 0;
-        border-radius: 2px;
-        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-        margin: 10px;
-        padding: 0 0.5em;
-        font: 400 18px Roboto, Arial, sans-serif;
-        overflow: hidden;
-        height: 40px;
-        cursor: pointer;
-      }
-      .custom-map-control-button:hover {
-        background: #ebebeb;
-      }
+#map {
+  height: 600px;
+  width: 1000px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-map-control-button {
+  background-color: #fff9f3;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
+}
+.custom-map-control-button:hover {
+  background: #6f4c5b;
+}
 
 h5 {
-    font-size:22px;
+  font-size: 22px;
 }
 
 h4 {
-    font-size:18px;
+  font-size: 17px;
 }
 
 .mb-details {
-    font-size:18px;
-    margin-bottom: 15px;
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
 .frame-line {
-    position: relative;
-    height: 65vh;
-    border-radius: 44px;
-    border: 3px solid #577157;
-  }
-  
-  .head-name {
-    position: absolute;
-    top: -32px;
-    left: 65px;
-    font-size: 48px;
-    background-color: #FFF9F3;
-    padding: 0 15px;
-  }
+  position: relative;
+  height: 75vh;
+  border-radius: 44px;
+  border: 3px solid #577157;
+}
 
-  .mb-content {
-      margin-top: 50px;
-      margin-left: 50px;
-  }
+.head-name {
+  position: absolute;
+  top: -32px;
+  left: 65px;
+  font-size: 48px;
+  background-color: #fff9f3;
+  padding: 0 15px;
+}
 
-  .active {
-      color: #2e944b;
-  }
+.mb-content {
+  margin-top: 50px;
+  margin-left: 50px;
+}
 
-  .strock {
-      border: 2.5px solid #486648;
-      border-radius: 50%;
-  }
+.active {
+  color: #2e944b;
+}
 
-  .head-myprofile {
-      text-transform: uppercase;
-      letter-spacing: 10px;
-  }
-  
-  .image-profile {
-      max-width: 150px;
-      width: 100%;
-  }
+.strock {
+  border: 2.5px solid #486648;
+  border-radius: 50%;
+}
 
-  .tag {
-      background-color: #C7D7C7;
-      padding: 4px 12px;
-      border-radius: 25px;
-  }
+.head-myprofile {
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+.image-profile {
+  max-width: 150px;
+  width: 100%;
+}
+
+.tag {
+  background-color: #c7d7c7;
+  padding: 4px 12px;
+  border-radius: 25px;
+}
+
+.chart-shop {
+  background-color: #c7d7c7;
+  padding: 50px 50px;
+  size-adjust: 50px;
+  border-radius: 50px;
+}
+
+.mb-orders {
+  word-spacing: 70px;
+}
+
+.mb-orders-details {
+  word-spacing: 68px;
+}
+
+.icon {
+  width: 25px;
+  margin-left: 12px;
+  opacity: 0.5;
+}
+
+.icon:first-child {
+  margin-left: 0px;
+}
+
+
+.active-score {
+  opacity: 1;
+}
+
+.line-stroke {
+  position: relative;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 50px;
+  max-width: 284px;
+  width: 100%;
+  padding: 27px 0 9px 0;
+  margin: 50px 5px 0 5px;
+}
+
+.score {
+  margin-left: auto;
+  margin-right: auto;
+  left: 37px;
+  right: 37px;
+  text-align: center;
+  font-family: Timmana;
+  font-size: 16px;
+  position: absolute;
+  background-color: #7D907D;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  top: -22px;
+  padding: 10px 16px 2px 16px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.point {
+  font-family: Timmana;
+  font-size: 24px;
+}
+
+table {
+  border-spacing: 55px;
+}
+
+.menu-img {
+  width: 300px;
+}

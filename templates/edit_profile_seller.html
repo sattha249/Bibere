@@ -1,56 +1,97 @@
-{% extends "layout.html" %}
-
-{% block title %}
-Buyer Profile
-{% endblock %}
-
+{% extends "layout.html" %} {% block title %} Edit Seller Profile {% endblock %}
 {% block main %}
+<style>
+  input[type='file'] {
+  color: transparent;
+  }
+  </style>
 
-<form action="/edit_profile_buyer" method="post" name="form">
-    <div class="row">
-        <div class="col-6"><img src="src" class="rounded mx-auto d-block" alt="Profile Picture"></div>
-        <div class="col-6"><h1 class="text-center">username</h1><h2 class="text-center">email</h2></div>
+  <div class="row">
+    <div class="col-6" align="center">
+      <h4>Profile image</h4>
+      <img
+        src="/static/profile/{{picture}}"
+        id="inp"
+        class="rounded-circle"
+        alt="Profile picture"
+        width="250"
+        height="250"
+      />
+      <div class="form-group">
+        <form action="/upload" id="upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" onchange="form.submit()" />
+         
+      </form>
+      </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Name" type="text" value = {{f}}>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="surname">Surname:</label>
-                    <input class="form-control" name="surname" placeholder="Surname" type="text" value = {{l}}>
-                </div>
-            </div>
-        </div>
+    <div class="col-6" align="center">
+      <h1 class="text-center">{{user}}</h1>
+      <h2 class="text-center">{{mail}}</h2>
     </div>
-    
-<label for="date">Date of birth</label>
-<input name="date" type = "date" value="2022-03-02">
-</P>
-<label for="occupation">Occupation</label>
-<input class="form-control" name="occupation" placeholder="Student" type="text" value = {{oc}}>
-<label for="favorite">Favorite</label>
-<input class="form-control" name="favorite" placeholder="Coffee or tea" type="text" value ={{fav}}>
-<label for="sickness">Sickness</label>
-<input class="form-control" name="sickness" placeholder="Diabeties" type="text" value = {{s}}>
-<div class="input-group">
+  </div>
+  <form action="/edit_profile_seller" method="post" name="form">
+  <div class="form-group row">
+    <label for="seller-name" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-10">
+      <input
+        autocomplete="off"
+        autofocus
+        class="form-control"
+        name="seller-name"
+        placeholder="Name"
+        type="text"
+        value="{{name}}"
+      />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="seller-address" class="col-sm-2 col-form-label">Address:</label>
+    <div class="col-sm-10">
+      <input
+        autocomplete="off"
+        autofocus
+        class="form-control"
+        name="seller-address"
+        placeholder="Address"
+        type="text"
+        value="{{address}}"
+      />
+    </div>
+  </div>
+
+  <div class="input-group">
     <div class="input-group-prepend">
-        <span class="input-group-text">Description</span>
+      <span class="input-group-text">Description</span>
     </div>
-    <textarea class="form-control" name ="desc" aria-label="With textarea" value = {{desc}}></textarea>
-    </div>
-    <div style="padding-top: 20px;">
-        <button class="btn btn-primary" href="profile_display_buyer.html" role="button"  style="background-color: #000000">BACK</button>
-        <button class="btn btn-primary" type="submit"  style="background-color: #000000">SAVE</button>
-    </div>
-    
+    <textarea
+      class="form-control"
+      name="desc"
+      aria-label="With textarea"
+      rows="4"
+      value="{{desc}}"
+    ></textarea>
+  </div>
+  <div style="padding-top: 20px">
+    <button
+      class="btn btn-primary"
+      type = "submit"
+      name = "action"
+      value = "back"
+      style="background-color: #000000"
+    >
+      BACK
+    </button>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      name="action"
+      value="update"
+      style="background-color: #000000"
+    >
+      SAVE
+    </button>
+  </div>
 </form>
-
-
-
 
 {% endblock %}

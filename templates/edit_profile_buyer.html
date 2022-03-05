@@ -1,104 +1,174 @@
-{% extends "layout.html" %}
-
-{% block title %}
-Buyer Profile
-{% endblock %}
-
+{% extends "layout.html" %} {% block title %} Edit Buyer Profile {% endblock %}
 {% block main %}
+<style>
+  input[type='file'] {
+  color: transparent;
+  }
+  </style>
+<div class="head-myprofile col-7">
+  <h1 style="font-size: 48px; margin-bottom: 20px">edit my profile</h1>
+</div>
 
-<form action="/upload" method="post" name="form1">
-    <div class="row">
+  <div class="row">
     <div class="col-6">
-        <h4>Profile image</h4>
-        <img src="/static/Logo.png" id="inp" class="rounded-circle" alt="Profile picture" width="250" height="250">
-        <div class="form-group">
-        <input type="file" name="file">
-        <input type="submit" value="submit" class = "btn btn-info">
-        </div>
+      <h4>Profile image</h4>
+      <img
+        src="/static/profile/{{picture}}"
+        id="inp"
+        class="strock rounded-circle"
+        alt="Profile picture"
+        width="200"
+        height="200"
+      />
+      <div class="form-group">
+        <form action="/upload" id="upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" onchange="form.submit()" />
+        </form>
+      </div>
     </div>
-    </div></form>
-
+    <div class="col-6">
+      <h1>{{user}}</h1>
+      <h2>{{m}}</h2>
+      <h3>Age:{{age}}</h3>
+    </div>
+  </div>
+</form>
 
 <form action="/edit_profile_buyer" method="post" name="form">
-    
-        <div class="col-6">
-            <h1>username</h1>
-            <h2>email</h2>
-        
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                        <input autocomplete="off" autofocus class="form-control" name="name" placeholder="Name" type="text" value = {{f}}>
-                </div>
-            </div>
-            <div class="col">
-                <div class="form-group">
-                    <label for="surname">Surname:</label>
-                    <input class="form-control" name="surname" placeholder="Surname" type="text" value = {{l}}>
-                </div>
-            </div>
-        </div>
-    </div>
- 
+  <div class="container">
     <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="date">Date of birth</label>
-                <input name="date" type = "date" value={{d}}>
-            </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Name:</label>
+          <div class="col-sm-10">
+            <input
+              autocomplete="off"
+              autofocus
+              class="form-control"
+              name="name"
+              placeholder="Name"
+              type="text"
+              value="{{f}}"
+            />
+          </div>
         </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="occupation">Occupation</label>
-                <input class="form-control" name="occupation" placeholder="Student" type="text" value = {{oc}}>
-            </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="surname" class="col-sm-2 col-form-label">Surname:</label>
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              name="surname"
+              placeholder="Surname"
+              type="text"
+              value="{{l}}"
+            />
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="row">
-        <div class="col">
-            <div class="form-group">
-                <label for="favorite">Favorite</label>
-                <input class="form-control" name="favorite" placeholder="Coffee or tea" type="text" value ={{fav}}>
-            </div>
+      <div class="col-6">
+        <div class="form-group" style="text-align: left">
+          <label for="date">Date of birth</label>
+          <input name="date" type="date" value="{{d}}" />
         </div>
-        <div class="col">
-            <div class="form-group">
-                <label for="sickness">Sickness</label>
-                <input class="form-control" name="sickness" placeholder="Diabeties" type="text" value = {{s}}>
-            </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="occupation" class="col-sm-2 col-form-label"
+            >Occupation</label
+          >
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              name="occupation"
+              placeholder="Student"
+              type="text"
+              value="{{oc}}"
+            />
+          </div>
         </div>
+      </div>
     </div>
-    <!-- <div class="row">
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="favorite" class="col-sm-2 col-form-label">Favorite</label>
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              name="favorite"
+              placeholder="Coffee or tea"
+              type="text"
+              value="{{fav}}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group row">
+          <label for="sickness" class="col-sm-2 col-form-label">Sickness</label>
+          <div class="col-sm-10">
+            <input
+              class="form-control"
+              name="sickness"
+              placeholder="Diabeties"
+              type="text"
+              value="{{s}}"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row">
         <div class="col-6"><label for="date">Date of birth</label>
             <input name="date" type = "date" value={{d}}></div>
         <div class="col-6"><label for="occupation">Occupation</label><input class="form-control" name="occupation" placeholder="Student" type="text" value = {{oc}}></div>
     </div> -->
-    <!-- <div class="row">
+  <!-- <div class="row">
         <div class="col-6"><label for="favorite">Favorite</label>
             <input class="form-control" name="favorite" placeholder="Coffee or tea" type="text" value ={{fav}}></div>
         <div class="col-6"><label for="sickness">Sickness</label>
             <input class="form-control" name="sickness" placeholder="Diabeties" type="text" value = {{s}}></div>
     </div> -->
-    
-<div class="input-group">
+
+  <div class="input-group">
     <div class="input-group-prepend">
-        <span class="input-group-text">Description</span>
+      <span class="input-group-text">Description</span>
     </div>
-    <textarea class="form-control" name ="desc" aria-label="With textarea" value = {{desc}}></textarea>
-    </div>
-    <div style="padding-top: 20px;">
-        <button class="btn btn-primary" type="submit" name="action" value="back" style="background-color: #000000">BACK</button>
-        <button class="btn btn-primary" type="submit" name="action" value="update"  style="background-color: #000000">SAVE</button>
-    </div>
-    
+    <textarea
+      class="form-control"
+      rows="4"
+      name="desc"
+      aria-label="With textarea"
+      value="{{desc}}"
+    ></textarea>
+  </div>
+  <div style="padding-top: 20px">
+    <button
+      class="btn btn-primary"
+      type="submit"
+      name="action"
+      value="back"
+      style="background-color: #000000"
+    >
+      BACK
+    </button>
+    <button
+      class="btn btn-primary"
+      type="submit"
+      name="action"
+      value="update"
+      style="background-color: #000000"
+    >
+      SAVE
+    </button>
+  </div>
 </form>
-
-
-
 
 {% endblock %}

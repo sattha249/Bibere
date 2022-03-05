@@ -1,64 +1,132 @@
-{% extends "layout.html" %}
-
-{% block title %}
-Buyer Profile
-{% endblock %}
-
-{% block main %}
+{% extends "layout.html" %} {% block title %} Buyer Profile {% endblock %} {%
+block main %}
 
 <form action="/edit_profile_buyer" method="get" name="form">
-    <div class="row">
-        <div class="head-myprofile col-5"><h1 style="font-size:48px; margin-bottom: 20px;">my profile</h1>
+  <div class="row">
+    <div class="head-myprofile col-5">
+      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-3">
+      <div class="row">
+        <div class="col-3">
+          <div style="display: inline-block; text-align: center">
+            <div>
+              <img
+                src="/static/profile/{{picture}}"
+                class="strock rounded-circle mx-auto d-block image-profile"
+                alt="Profile Picture"
+                style="text-align: center"
+              />
+            </div>
+            <div>
+              <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
+                {{f}} {{l}}
+              </h2>
+            </div>
+            <div style="display: inline-block; text-align: left">
+              <div><h4>DOB: {{d}}</h4></div>
+              <div><h4>Age: {{age}}</h4></div>
+              <div>
+                <h4>Status: <span class="active">Active</span></h4>
+              </div>
+            </div>
+          </div>
 
-                <div style="display: inline-block; text-align: center">
-                    <div ><img src="\static\Logo.png" class="strock rounded-circle mx-auto d-block image-profile" alt="Profile Picturestyle=" style="text-align: center"></div>
-                    <div ><h2 style="font-size:32px; text-align: center; margin-top: 20px;">{{f}} {{l}}</h2></div>
-                        <div style="display: inline-block; text-align: left">
-                            <div ><h4>DOB: {{d}}</h4></div>
-                            <div ><h4>Age:</h4></div>
-                            <div ><h4>Status: <span class="active">Active</span></h4></div>
-                        </div>
+          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+            <div><h5 href="">My Profile</h5></div>
+            <div><h5 href="">My Favorite</h5></div>
+            <div><h5 href="">My Orders</h5></div>
+            <div><h5 href="">Beverages History</h5></div>
+            <div><h5 href="">Cafes History</h5></div>
+            <div><h5 href="">Grabs</h5></div>
+          </div>
+        </div>
+
+        <div class="col-9" style="margin-top: 30px">
+          <div class="frame-line">
+            <div>
+              <h2 class="head-name" style="font-size: 48px">{{f}} {{l}}</h2>
+            </div>
+            <div style="text-align: left">
+              <div class="mb-content">
+                <div><p class="mb-details">Email address: {{m}}</p></div>
+                <div><p class="mb-details">Country: Thailand</p></div>
+                <div><p class="mb-details">Sickness: {{s}}</p></div>
+                <div><p class="mb-details">Occupation: {{oc}}</p></div>
+                <div>
+                  <p class="mb-details">
+                    Favorite: <span class="tag"> {{fav}} </span>
+                  </p>
+                </div>
+                <div>
+                  <p class="mb-details">
+                    Description: <span class="tag"> {{desc}} </span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex">
+
+                <div class="line-stroke">
+                  <div class="beverages d-flex justify-content-center align-items-center">
+                    <div class="icon active-score"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon"><img src="/static/coffee.svg" alt="Beverages"></div>
+                  </div>
+                  <div class="score">
+                    <span class="type-score">Beverages Scores</span>
+                  </div>
                 </div>
                 
-                <div style="padding-top: 20px; font-family:'Timmana', sans-serif;">
-                    <div><h5 href="">My Favorite</h5></div>
-                    <div><h5 href="">My Orders</h5></div>
-                    <div><h5 href="">Discusion</h5></div>
-                    <div><h5 href="">Messenger</h5></div>
-                    <div><h5 href="">Articles</h5></div>
-                    <div><h5 href="">Products</h5></div>
-                    <div><h5 href="">Cafes</h5></div>
-                    <div><h5 href="">Grabs</h5></div>
+                <div class="line-stroke">
+                  <div class="beverages d-flex justify-content-center align-items-center">
+                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon"><img src="/static/sign.svg" alt="Beverages"></div>
+                  </div>
+                  <div class="score">
+                    <span class="type-score">Cafes Visits Records</span>
+                  </div>
                 </div>
-            </div>
 
-            <div class="col-9" style="margin-top: 30px;">
-                <div class="frame-line">
-                    <div><h2 class="head-name" style="font-size:48px;">{{f}} {{l}}</h2></div>
-                        <div style="text-align: left;">
-                            <div class="mb-content">
-                                <div><p class="mb-details">Email address: {{m}}</p> </div>
-                                <div><p class="mb-details">Country: Thailand</p>  </div>
-                                <div><p class="mb-details">Sickness: {{s}}</p>  </div>
-                                <div><p class="mb-details">Occupation: {{oc}}</p> </div>
-                                <div><p class="mb-details">Favorite: <span class="tag"> {{fav}} </span></p> </div>
-                            </div>
-                            <div style="margin-top: 240px; text-align: center;">
-                                <button class="btn btn-primary" action="/edit_profile_buyer" role="button"  style="background-color: #000000; font-size:22px">Edit Profile</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="line-stroke">
+                  <div class="beverages d-flex justify-content-center align-items-center">
+                    <span class="point">6,256 points</span>
+                  </div>
+                  <div class="score">
+                    <span class="type-score">Cuppa Point</span>
+                  </div>
                 </div>
+              </div>
+
+              <div style="margin-top: 65px; text-align: center">
+                <button
+                  class="btn btn-primary"
+                  action="/edit_profile_buyer"
+                  role="button"
+                  style="
+                    background-color: #000000;
+                    font-size: 18px;
+                    padding: 6px 22px;
+                    border-radius: 25px;
+                  "
+                >
+                  Edit Profile
+                </button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-
+  </div>
 </form>
-
 
 {% endblock %}

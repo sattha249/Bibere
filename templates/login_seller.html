@@ -25,12 +25,16 @@ Log In Seller
 </script>
 <form action="/login_seller" method="post" name="form" onsubmit="return validate()">
     <p><img src="\static\Logo.png" width="300" height="300" class="d-inline-block align-top"></p>
-    <h1 style="color: #6F4C5B">SELLER</h1>
+    <h1 style="color: #6F4C5B; font-family: 'Timmana';">SELLER</h1>
     <div class="form-group">
+        <div class="col-sm-5" style="display: inline-block">
         <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
     </div>
     <div class="form-group">
+        <div class="col-sm-5" style="display: inline-block">
         <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
     </div>
     <button class="btn btn-primary" type="submit"  style="background-color: #486648">Log In</button>
     <p id="boxing"><a href="/sell_register">Seller's Register</a></p>

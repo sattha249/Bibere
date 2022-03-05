@@ -1,0 +1,93 @@
+{% extends "layout.html" %} {% block title %} Buyer favorite {% endblock %} {%
+block main %}
+
+<form action="/edit_profile_buyer" method="get" name="form">
+  <div class="row">
+    <div class="head-myprofile col-5">
+      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div style="display: inline-block; text-align: center">
+            <div>
+              <img
+                src="\static\Logo.png"
+                class="strock rounded-circle mx-auto d-block image-profile"
+                alt="Profile Picture"
+                style="text-align: center"
+              />
+            </div>
+            <div>
+              <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
+                {{f}} {{l}}
+              </h2>
+            </div>
+            <div style="display: inline-block; text-align: left">
+              <div><h4>DOB: {{d}}</h4></div>
+              <div><h4>Age: {{age}}</h4></div>
+              <div>
+                <h4>Status: <span class="active">Active</span></h4>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+            <div><h5 href="">My Profile</h5></div>
+            <div><h5 href="">My Favorite</h5></div>
+            <div><h5 href="">My Orders</h5></div>
+            <div><h5 href="">Beverages History</h5></div>
+            <div><h5 href="">Cafes History</h5></div>
+            <div><h5 href="">Grabs</h5></div>
+          </div>
+        </div>
+
+        <div class="col-9" style="margin-top: 30px">
+          <div class="frame-line">
+            <div>
+              <h2 class="head-name" style="font-size: 48px">History beverages</h2>
+            </div>
+            <div style="text-align: left">
+              <div class="mb-content">
+                <div>
+                  <h3 >List of beverages</h3>
+                </div>
+
+                <table style="width:100%">
+                  <tr>
+                    <th>No.</th>
+                    <th>Beverage name</th>
+                    <th>Type of Beverage</th>
+                    <th>Cafe</th>
+                    <th>Location</th>
+                    <th>Price</th>
+                  </tr>
+                  <tr>
+                    <td>1.</td>
+                    <td>Matcha green tea</td>
+                    <td>Tea</td>
+                    <td>Cuppa</td>
+                    <td>SuanDok, Chiang Mai</td>
+                    <td>$8</td>
+                  </tr>
+                  <tr>
+                    <td>2.</td>
+                    <td>Ice black coffee</td>
+                    <td>Coffee</td>
+                    <td>Cuppa</td>
+                    <td>SuanDok, Chiang Mai</td>
+                    <td>$12</td>
+                  </tr>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
