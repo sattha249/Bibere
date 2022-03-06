@@ -1,0 +1,91 @@
+{% extends "layout.html" %} {% block title %} Buyer Orders {% endblock %} {%
+block main %}
+
+<form action="/edit_profile_buyer" method="get" name="form">
+  <div class="row">
+    <div class="head-myprofile col-5">
+      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <div style="display: inline-block; text-align: center">
+            <div>
+              <img
+                src="/static/profile/{{picture}}"
+                class="strock rounded-circle mx-auto d-block image-profile"
+                alt="Profile Picture"
+                style="text-align: center"
+              />
+            </div>
+            <div>
+              <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
+                {{f}} {{l}}
+              </h2>
+            </div>
+            <div style="display: inline-block; text-align: left">
+              <div><h4>DOB: {{d}}</h4></div>
+              <div><h4>Age: {{age}}</h4></div>
+              <div>
+                <h4>Status: <span class="active">Active</span></h4>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+            <a class="menu-style" href="/profile"><h5 href="">My Profile</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a>
+            <a class="menu-style" href="#"><h5>My Orders</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
+            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+          </div>
+        </div>
+
+        <div class="col-9" style="margin-top: 30px">
+          <div class="frame-line">
+            <div>
+              <h2 class="head-name" style="font-size: 48px">My Orders</h2>
+            </div>
+            <div style="text-align: left">
+              <div class="mb-content">
+                  <table style="width:100%">
+                    <tr>
+                      <th>No.</th>
+                      <th>Product</th>
+                      <th>Shop</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Payment</th>
+                      <th>Total</th>
+                    </tr>
+                    <tr>
+                      <td>1.</td>
+                      <td>Green tea</td>
+                      <td>Cuppa</td>
+                      <td>01/01/1999</td>
+                      <td>Shipped</td>
+                      <td>PromptPay</td>
+                      <td>$199</td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>Coffee</td>
+                      <td>Cuppa</td>
+                      <td>02/01/1999</td>
+                      <td>Preparing</td>
+                      <td>PromptPay</td>
+                      <td>$999</td>
+                    </tr>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}
