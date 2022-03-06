@@ -13,7 +13,7 @@ block main %}
           <div style="display: inline-block; text-align: center">
             <div>
               <img
-                src="\static\Logo.png"
+                src="/static/profile/{{picture}}"
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
@@ -34,12 +34,12 @@ block main %}
           </div>
 
           <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
-            <div><h5 href="">My Profile</h5></div>
-            <div><h5 href="">My Favorite</h5></div>
-            <div><h5 href="">My Orders</h5></div>
-            <div><h5 href="">Beverages History</h5></div>
-            <div><h5 href="">Cafes History</h5></div>
-            <div><h5 href="">Grabs</h5></div>
+            <a class="menu-style" href="/profile"><h5 href="">My Profile</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
+            <a class="menu-style" href="#"><h5>Grabs</h5></a>
           </div>
         </div>
 
@@ -47,11 +47,62 @@ block main %}
           <div class="frame-line">
             <div>
               <h2 class="head-name" style="font-size: 48px">My favorites</h2>
-            </div>
+            </div> 
             <div style="text-align: left">
+            <div class="d-flex justify-content-center">
+              <div class="main-position">
+                <img class="fav-img mt-5" src="static/tea-fav.jpeg" alt="">
+                  <div>
+                    <div class="position-tag">
+                      <div class="type-tag d-flex flex-column">
+                        <span class="tag-name">Tea</span>
+                        <span class="tag-name">Lorem ipsum pla</span>
+                      </div>
+                    </div>
+                    <div class="position-icon">
+                      <img class="icon-tag" src="static/coffee.svg" alt="">
+                    </div>
+                  </div>
+              </div>
+            </div>
+            
+
               <div class="mb-content">
-                <div>
-                  <p class="mb-orders">No. Product Shop date Payment Total</p>
+                <div >
+                  <div class="row">
+                    <div class="col-3">
+                      <span>Type of Beverage:</span>
+                    </div>
+                    <div class="col-9 mb-3">
+                      <div class="tag mr-5">
+                        <span>Tea</span>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <span>Flavor: </span>
+                    </div>
+                    <div class="col-9 mb-3">
+                      <div  class="tag mr-5">
+                        <span>-</span>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <span>Cafe name:</span>
+                    </div>
+                    <div class="col-9 mb-3">
+                      <div  class="tag mr-5">
+                        <span>Brew passion</span>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <span>Description:</span>
+                    </div>
+                    <div class="col-9 mb-3">
+                      <div class="tag mr-5">
+                        <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, excepturi ducimus molestias aspernatur natus corrupti eius. Consequatur illum ipsa, necessitatibus maiores natus unde, iure, delectus tempore nam deleniti exercitationem mollitia.</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

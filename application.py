@@ -92,6 +92,15 @@ def login(username,hash_pass,mode):
         session["name"] = username 
         session["id"] = login_data[0][2]
 
+def getmode():
+    try:
+        cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
+        s = cursor.fetchall()
+        mode = s[0][3]
+        return mode
+    except:
+        return redirect("login_buyer")
+
 
 #flask
 @app.route('/',methods = ["get","post"])
@@ -143,24 +152,8 @@ def login_seller():
 
 
 
-@app.route('/sell_register',methods =['get','post'])
-def sell_register():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        email = request.form.get("email")
-        if len(password) >= 8:
-            hash_pass = hashlib.md5(str(password).encode('utf-8'))
-            hash_pass = hash_pass.hexdigest()
-            try:
-                mode = 0
-                register (username,hash_pass,mode,email)
-                return redirect("login_seller")
-            except:
-                return "<h3>Username already in use<h3>"
-        else:
-            return "password must more than 8 charactor" 
-    return render_template("sell_register.html") 
+
+
 
 @app.route('/buy_register',methods =['get','post'])
 def buy_register():
@@ -180,9 +173,30 @@ def buy_register():
                 return "<h3>Username already in use<h3>"
     return render_template("buy_register.html") 
 
+
+@app.route('/sell_register',methods =['get','post'])
+def sell_register():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        email = request.form.get("email")
+        if len(password) >= 8:
+            hash_pass = hashlib.md5(str(password).encode('utf-8'))
+            hash_pass = hash_pass.hexdigest()
+            try:
+                mode = 0
+                register (username,hash_pass,mode,email)
+                return redirect("login_seller")
+            except:
+                return "<h3>Username already in use<h3>"
+        else:
+            return "password must more than 8 charactor" 
+    return render_template("sell_register.html") 
+
+
+
 @app.route('/cafenearyou',methods =['get','post'])
-def barNearYou():
-    
+def barNearYou():   
      #get my location
     myloc = geocoder.ip('me')
     lat = myloc.latlng[0]
@@ -214,23 +228,72 @@ def barNearYou():
     cafe = []
     for i in business_list:
         cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
+    print (business_list[0])
     print (cafe)
     return render_template("cafenearyou.html",location = locations,cafe = cafe)
+
+
+
 
 
 
 @app.route('/profile',methods =['get','post'])
 def profile():
     if session["name"]:
-        try:
-            cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
-            s = cursor.fetchall()
-            mode = s[0][3]
-        except:
-            return redirect("login_buyer")
+        mode = getmode()
         if mode == True:
             return redirect("profile_display_buyer")
         return redirect("profile_display_seller")
+    return redirect("login_buyer")
+
+
+
+@app.route('/profile_display_buyer',methods = ['get','post'])
+def profile_display_buyer():
+    try:
+        data = fetch_information()
+        print(data)
+        return render_template("profile_display_buyer.html",
+        f = data[0][1],
+        l = data[0][2],
+        d = data[0][3],
+        oc = data[0][4],
+        fav = data[0][5],
+        s = data[0][6],
+        desc = data[0][7],
+        m = data[0][8],
+        picture = data[0][9],
+        age = data[1])
+    except:
+        return redirect('login_buyer')
+
+@app.route('/profile_display_seller',methods = ['get','post'])
+def profile_display_seller():
+    try:
+        data = fetch_information()
+        print(data)
+        return render_template("profile_display_seller.html",
+        name= data[0][1],
+        address = data[0][5],
+        desc = data[0][7],
+        mail = data[0][8],
+        picture = data[0][9],
+        user = session['name'])
+    except:
+        return redirect('login_seller')
+
+
+
+
+
+
+@app.route('/edit',methods = ['get','post'])
+def edit():
+    if session["name"]:
+        mode = getmode()
+        if mode == True:
+            return redirect("edit_profile_buyer")
+        return redirect("edit_profile_seller")
     return redirect("login_buyer")
 
 
@@ -252,21 +315,42 @@ def edit_profile_buyer():
             mydb.commit()
         return redirect("profile")    
     data = fetch_information()
-    return render_template("edit_profile_buyer.html",id= data[0][0],f = data[0][1],l = data[0][2],d = data[0][3],
-    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],picture = data[0][9],user = session['name'],age = data[1])
-    
+    return render_template("edit_profile_buyer.html",id= data[0][0],
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
+
+@app.route('/edit_profile_seller',methods =['get','post'])
+def edit_profile_seller():
+    if request.method =='POST':
+        if request.form['action'] =='update':
+            name = request.form.get('seller-name')
+            address = request.form.get('seller-address')
+            desc = request.form.get('desc')
+            print(name,address,desc)
+            cursor.execute("""UPDATE user_inf SET firstname = '{0}',favorite ='{1}',descriptions ='{2}'
+            WHERE id = {3} """.format(name,address,desc,session["id"]))
+            mydb.commit()
+        return redirect("profile")    
+    data = fetch_information()
+    return render_template("edit_profile_seller.html",
+        name= data[0][1],
+        address = data[0][5],
+        desc = data[0][7],
+        mail = data[0][8],
+        picture = data[0][9],
+        user = session['name'])
 
 
-@app.route('/profile_display_buyer',methods = ['get','post'])
-def profile_display_buyer():
-    try:
-        data = fetch_information()
-        print(data)
-        return render_template("profile_display_buyer.html",f = data[0][1],l = data[0][2],d = data[0][3],
-        oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],picture = data[0][9],age = data[1])
-    except:
-        return redirect('login_buyer')
-    
+
+
     
 
 @app.route('/logout')
@@ -290,71 +374,130 @@ def upload():
             cursor.execute("UPDATE user_inf SET profile  = '{0}' WHERE id = {1}".format(picture,session['id']))
             mydb.commit()
             return redirect(request.url)
-    return redirect("edit_profile_buyer")
-
-
-
-@app.route('/edit_profile_seller',methods =['get','post'])
-def edit_profile_seller():
-    if request.method =='POST':
-        if request.form['action'] =='update':
-            name = request.form.get('seller-name')
-            address = request.form.get('seller-address')
-            desc = request.form.get('desc')
-            print(name,address,desc)
-            cursor.execute("""UPDATE user_inf SET firstname = '{0}',favorite ='{1}',descriptions ='{2}'
-            WHERE id = {3} """.format(name,address,desc,session["id"]))
-            mydb.commit()
-        return redirect("profile")    
-    data = fetch_information()
-    return render_template("edit_profile_seller.html",name= data[0][1],address = data[0][5],desc = data[0][7],mail = data[0][8],picture = data[0][9],user = session['name'])
-
-@app.route('/profile_display_seller',methods = ['get','post'])
-def profile_display_seller():
-    try:
-        data = fetch_information()
-        print(data)
-        return render_template("profile_display_seller.html",name= data[0][1],address = data[0][5],desc = data[0][7],mail = data[0][8],picture = data[0][9],user = session['name'])
-    except:
-        return redirect('login_seller')
+    return redirect("edit")
     
-# route ที่ยังไม่ได้ใช้
+
+
+
+
+
+    
+
 @app.route('/profile_display_buyer_order',methods = ['get','post'])
 def profile_display_buyer_order():
     data = fetch_information()
-    return render_template("profile_display_buyer_order.html",f = data[0][1],l = data[0][2],d = data[0][3],
-    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],age = data[1])
+    return render_template("profile_display_buyer_order.html",
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
 
 @app.route('/profile_display_seller_order',methods = ['get','post'])
 def profile_display_seller_order():
     data = fetch_information()
-    return render_template("profile_display_seller_order.html",f = data[0][1],l = data[0][2],d = data[0][3],
-    oc = data[0][4] ,fav = data[0][5],s = data[0][6],desc = data[0][7],m = data[0][8],age = data[1])
+    return render_template("profile_display_seller_order.html",
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
 
 @app.route('/profile_display_buyer_cafeHis',methods = ['get','post'])
 def profile_display_buyer_cafeHis():
-    return render_template("profile_display_buyer_cafeHis.html")
+    data = fetch_information()
+    return render_template("profile_display_buyer_cafeHis.html",
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
 
 @app.route('/profile_display_buyer_favorite_details',methods = ['get','post'])
 def profile_display_buyer_favorite_details():
-    return render_template("profile_display_buyer_favorite_details.html")
+    data = fetch_information()
+    return render_template("profile_display_buyer_favorite_details.html",
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
 
 @app.route('/profile_display_buyer_favorite',methods = ['get','post'])
 def profile_display_buyer_favorite():
-    return render_template("profile_display_buyer_favorite.html")
+    data = fetch_information()
+    return render_template("profile_display_buyer_favorite.html",
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
 
 
 @app.route('/profile_display_buyer_teaHis',methods = ['get','post'])
 def profile_display_buyer_teaHis():
-    return render_template("profile_display_buyer_teaHis.html")
+    data = fetch_information()
+    return render_template("profile_display_buyer_teaHis.html",
+    f = data[0][1],
+    l = data[0][2],
+    d = data[0][3],
+    oc = data[0][4],
+    fav = data[0][5],
+    s = data[0][6],
+    desc = data[0][7],
+    m = data[0][8],
+    picture = data[0][9],
+    age = data[1])
+    
+
+# route ที่ยังไม่ได้ใช้
 
 @app.route('/profile_display_seller_product',methods = ['get','post'])
 def profile_display_seller_product():
-    return render_template("profile_display_seller_product.html")
+    data = fetch_information()
+    return render_template("profile_display_seller_product.html",
+    name= data[0][1],
+    address = data[0][5],
+    desc = data[0][7],
+    mail = data[0][8],
+    picture = data[0][9],
+    user = session['name'])
 
 @app.route('/profile_display_seller_product_details',methods = ['get','post'])
 def profile_display_seller_product_details():
-    return render_template("profile_display_seller_product_details.html")
+    data = fetch_information()
+    return render_template("profile_display_seller_product_details.html",
+    name= data[0][1],
+    address = data[0][5],
+    desc = data[0][7],
+    mail = data[0][8],
+    picture = data[0][9],
+    user = session['name'])
 
 
 

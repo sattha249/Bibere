@@ -13,7 +13,7 @@ block main %}
           <div style="display: inline-block; text-align: center">
             <div>
               <img
-                src="\static\Logo.png"
+                src="/static/profile/{{picture}}"
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
@@ -33,10 +33,10 @@ block main %}
           </div>
 
           <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
-            <div><h5 href="">My Information</h5></div>
-            <div><h5 href="">My Orders</h5></div>
-            <div><h5 href="">My Products</h5></div>
-            <div><h5 href="">Grabs</h5></div>
+            <a class="menu-style" href="#"><h5 href="">My Information</h5></a>
+            <a class="menu-style" href="/profile_display_seller_order"><h5>My Orders</h5></a>
+            <a class="menu-style" href="/profile_display_seller_product"><h5>My products</h5></a>
+            <a class="menu-style" href="#"><h5>Grabs</h5></a>
           </div>
         </div>
 
