@@ -284,9 +284,6 @@ def profile_display_seller():
 
 
 
-
-
-
 @app.route('/edit',methods = ['get','post'])
 def edit():
     if session["name"]:
@@ -499,8 +496,26 @@ def profile_display_seller_product_details():
     picture = data[0][9],
     user = session['name'])
 
+@app.route('/seller_point',methods = ['get','post'])
+def seller_point():
+    return render_template('seller_point.html')
 
+@app.route('/qr_seller',methods = ['get','post'])
+def qr_seller():
+    return render_template('qr_seller.html')
+
+@app.route('/home',methods = ['get','post'])
+def home():
+    return render_template('home.html')
+
+@app.route('/about_us',methods = ['get','post'])
+def about_us():
+    return render_template('about_us.html')
+
+@app.route('/contact_us',methods = ['get','post'])
+def contact_us():
+    return render_template('contact_us.html')
 
 
 if __name__ == "__main__" :
-    app.run(debug=True)
+    app.run(debug=True,host = "0.0.0.0")

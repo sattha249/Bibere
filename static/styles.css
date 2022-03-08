@@ -87,6 +87,11 @@ body {
   background: #6f4c5b;
 }
 
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px
+}
+
 h5 {
   font-size: 22px;
 }
@@ -102,9 +107,9 @@ h4 {
 
 .frame-line {
   position: relative;
-  height: 75vh;
   border-radius: 44px;
   border: 3px solid #577157;
+  padding: 10px;
 }
 
 .head-name {
@@ -114,6 +119,7 @@ h4 {
   font-size: 48px;
   background-color: #fff9f3;
   padding: 0 15px;
+  font-size: 48px;
 }
 
 .mb-content {
@@ -237,17 +243,19 @@ table {
 
 .type-tag {
   background-color: #fff;
-  padding: 8px 10px 8px 75px;
+  padding: 8px 10px 8px 47px;
+  margin-left: 30px;
   border-radius: 10px;
 }
 
 .main-position {
   position: relative;
+  margin: 0 20px;
 }
 
 .position-tag {
   position: absolute;
-  top: 74px;
+  top: 71px;
   left: 20px;
 }
 
@@ -259,7 +267,7 @@ table {
 
 .position-icon {
   position: absolute;
-  top: 71px;
+  top: 68px;
   left: 16px;
 }
 
@@ -267,5 +275,44 @@ table {
  background-color: #f5b82e;
  padding: 15px;
  border-radius: 50px;
- width: 70px;
+ width: 75px;
+ box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+
+/* Media */
+@media screen and (max-width: 375px) {
+  .head-name {
+    font-size: 30px;
+    top: -10px;
+    left: -17px;
+  }
+
+  .main-position {
+    margin: 0;
+    left: -36px;
+  }
+
+  .frame-line {
+    border-radius: 30px;
+    padding-bottom: 25px;
+  }
+
+  .tag {
+    border-radius: 15px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .head-myprofile {
+    text-transform: uppercase;
+    letter-spacing: 6px;
+  }
+
+  .mb-content {
+    margin-left: 0;
+  }
+
 }
