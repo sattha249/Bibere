@@ -21,7 +21,7 @@ block main %}
             </div>
             <div>
               <h2 style="font-size: 2vw; text-align: center; margin-top: 20px">
-                Name cafe
+                {{name}}
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
@@ -34,16 +34,16 @@ block main %}
 
           <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
             <a class="menu-style" href="/profile"><h5 href="">My Information</h5></a>
-            <a class="menu-style" href="/profile_display_seller_order"><h5>My Orders</h5></a>
+            <a class="menu-style" href="#"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_seller_product"><h5>My products</h5></a>
-            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+            <a class="menu-style" href="/seller_point"><h5>Points</h5></a>
           </div>
         </div>
 
         <div class="col-9" style="margin-top: 30px">
           <div class="frame-line">
             <div>
-              <h2 class="head-name" style="font-size: 48px">Name cafe</h2>
+              <h2 class="head-name" style="font-size: 48px">{{name}}</h2>
             </div>
             <div style="text-align: left">
               <div class="mb-content">
@@ -60,24 +60,19 @@ block main %}
                       <th>Payment</th>
                       <th>Total</th>
                     </tr>
+                      {%for i in order %}
                     <tr>
-                      <td>1.</td>
-                      <td>Somsri Meemark</td>
-                      <td>Green tea</td>
-                      <td>01/01/1999</td>
-                      <td>Shipped</td>
-                      <td>PromptPay</td>
+                      <td>{{loop.index}}</td>
+                      <td>{{i[0]}}</td>
+                      <td>{{i[1]}}</td>
+                      <td>{{i[2]}}</td>
+                      <td>{{i[3]}}</td>
+                      <td>{{i[4]}}</td>
                       <td>$19</td>
                     </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Somboon</td>
-                      <td>Coffee</td>
-                      <td>02/01/1999</td>
-                      <td>Shipped</td>
-                      <td>PromptPay</td>
-                      <td>$99</td>
-                    </tr>
+                    {% endfor %}
+                  
+                    
                   </table>
 
               </div>

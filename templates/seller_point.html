@@ -89,7 +89,7 @@ function reset_form() {
               </div>
               <div>
                 <h2 style="font-size: 2vw; text-align: center; margin-top: 20px">
-                  Name cafe
+                  {{name}}
                 </h2>
               </div>
               <div style="display: inline-block; text-align: left">
@@ -104,7 +104,7 @@ function reset_form() {
               <a class="menu-style" href="#"><h5 href="">My Information</h5></a>
               <a class="menu-style" href="/profile_display_seller_order"><h5>My Orders</h5></a>
               <a class="menu-style" href="/profile_display_seller_product"><h5>My products</h5></a>
-              <a class="menu-style" href="#"><h5>Grabs</h5></a>
+              <a class="menu-style" href="#"><h5>Points</h5></a>
             </div>
           </div>
   
@@ -118,8 +118,8 @@ function reset_form() {
                     <table width="100%">
                         <tbody>
                             <tr>
-                            <td width="25%" height="60" class="thmx"><strong>Menu</strong></td>
-                            <td width="25%" height="60" class="thmx"><strong>Level sweet</strong></td>
+                            <td width="25%" height="60" class="thmx" style="font-size: 20px;"><strong>Menu</strong></td>
+                            <td width="25%" height="60" class="thmx" style="font-size: 20px;"><strong>Level sweet</strong></td>
                             </tr>
                         </tbody>
                         </table>         
@@ -129,7 +129,7 @@ function reset_form() {
                                         <tr>
                                           <td width="50%" class="thmx">
                                               <!-- <label for="beverages">Choose beverage</label> -->
-                                                <select style="margin-right: 280px;" name="menu1" id="menu1" onclick="cal();" onchange="cal();">
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu1" id="menu1" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -140,7 +140,7 @@ function reset_form() {
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
-                                                <select name="level1" id="level1" onclick="cal();" onchange="cal();">
+                                                <select style="font-size: 18px; min-width: 150px;" name="level1" id="level1" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -154,12 +154,12 @@ function reset_form() {
                           </span>
                                   
                                   <span id="tr2" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu2" id="menu2" onclick="cal();" onchange="cal();">
+                                        <tr>
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu2" id="menu2" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -169,8 +169,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level2" id="level2" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level2" id="level2" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -184,12 +184,12 @@ function reset_form() {
                           </span>
                                   
                                   <span id="tr3" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu3" id="menu3" onclick="cal();" onchange="cal();">
+                                        <tr>
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu3" id="menu3" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -199,8 +199,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level3" id="level3" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level3" id="level3" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -214,12 +214,12 @@ function reset_form() {
                           </span>
                                   
                                   <span id="tr4" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu4" id="menu4" onclick="cal();" onchange="cal();">
+                                        <tr>
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu4" id="menu4" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -229,8 +229,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level4" id="level4" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level4" id="level4" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -244,12 +244,12 @@ function reset_form() {
                           </span>
                           
                                   <span id="tr5" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu5" id="menu5" onclick="cal();" onchange="cal();">
+                                        <tr>
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu5" id="menu5" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -259,8 +259,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level5" id="level5" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level5" id="level5" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -274,12 +274,12 @@ function reset_form() {
                           </span>
                           
                                   <span id="tr6" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu6" id="menu6" onclick="cal();" onchange="cal();">
+                                        <tr >
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu6" id="menu6" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -289,8 +289,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level6" id="level6" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level6" id="level6" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -304,12 +304,12 @@ function reset_form() {
                           </span>
                           
                                   <span id="tr7" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu7" id="menu7" onclick="cal();" onchange="cal();">
+                                        <tr >
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu7" id="menu7" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -319,8 +319,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level7" id="level7" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level7" id="level7" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -334,12 +334,12 @@ function reset_form() {
                           </span>
                           
                                   <span id="tr8" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu8" id="menu8" onclick="cal();" onchange="cal();">
+                                        <tr>
+                                          <td width="50%"  class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu8" id="menu8" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -349,8 +349,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level8" id="level8" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level8" id="level8" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -364,12 +364,12 @@ function reset_form() {
                           </span>
                           
                                   <span id="tr9" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu9" id="menu9" onclick="cal();" onchange="cal();">
+                                        <tr >
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu9" id="menu9" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -379,8 +379,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level9" id="level9" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level9" id="level9" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -394,12 +394,12 @@ function reset_form() {
                           </span>
                           
                                   <span id="tr10" style="display:none">
-                                    <table border="0" width="100%">
+                                    <table width="100%">
                                       <tbody>
-                                        <tr align="center">
-                                          <td width="50%" bgcolor="#FFFFCC" class="thmx">
-                                              <label for="beverages">Choose beverage</label>
-                                                <select name="menu10" id="menu10" onclick="cal();" onchange="cal();">
+                                        <tr >
+                                          <td width="50%" class="thmx">
+                                              <!-- <label for="beverages">Choose beverage</label> -->
+                                                <select style="margin-right: 20px; font-size: 18px; min-width: 380px;" name="menu10" id="menu10" onclick="cal();" onchange="cal();">
                                                   <optgroup label="Coffee">
                                                     <option value="Ice Latte">Ice Latte</option>
                                                     <option value="Hot Latte">Hot Latte</option>
@@ -409,8 +409,8 @@ function reset_form() {
                                                     <option value="Thai tea">Thai tea</option>
                                                   </optgroup>
                                                 </select>
-                                                <label for="sweetlevel">Sweet level</label>
-                                                <select name="level10" id="level10" onclick="cal();" onchange="cal();">
+                                                <!-- <label for="sweetlevel">Sweet level</label> -->
+                                                <select style="font-size: 18px; min-width: 150px;" name="level10" id="level10" onclick="cal();" onchange="cal();">
                                                     <option value="100">100%</option>
                                                     <option value="75">75%</option>
                                                     <option value="50">50%</option>
@@ -423,10 +423,27 @@ function reset_form() {
                                    </table>
                           </span>
 
-                            
-                            <p></p><a href="#" onclick="return show();">เพิ่มเมนู</a> | <a href="#" onclick="return hide();">ลบเมนูล่าสุด</a></p>
+                            <p></p>
+                            <button style="background-color: #486648; font-family: timmana;" href="#" onclick="return show();">Add menu</button> 
+                            <button class="btn btn-primary" style="background-color: #486648; font-family: timmana;" href="#" onclick="return hide();">Delete menu</button></p>
                     <br><br>
-                    <input type="submit" value="Get QR code" >
+                    <!-- <input type="submit" value="Get QR code" > -->
+                    <div style="margin-bottom: 10px; text-align: center">
+                      <button
+                        class="btn btn-primary"
+                        action="/qr_seller"
+                        role="button"
+                        style="
+                          background-color: #000000;
+                          font-size: 18px;
+                          padding: 6px 22px;
+                          border-radius: 25px;
+                          font-family: timmana;
+                        "
+                      >
+                        Get QR code
+                      </button>
+                    </div>
                   </form>
             </div>
           </div>

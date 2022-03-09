@@ -51,10 +51,17 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit(',',1)[1].lower() in ALLOWED_EXTENSIONS
 
 def fetch_information():
-    cursor.execute("SELECT id,firstname,lastname,dob,occupation,favorite,sickness,descriptions,e_mail,profile FROM user_inf WHERE id = {}".format(session["id"]))
+    cursor.execute("SELECT id,firstname,lastname,dob,occupation,favorite,sickness,descriptions,e_mail,profile,address FROM user_inf WHERE id = {}".format(session["id"]))
     data = cursor.fetchall()
     data.append(get_age(data[0][3]))
     print(data)
+    return data 
+
+def fetch_order():
+    cursor.execute("SELECT customer_id,product_id,order_date,status,payment FROM order_inf WHERE seller_id = {}".format(session["id"]))
+    data = cursor.fetchall()
+    for i in data:
+        print(i)
     return data 
 
 
@@ -259,10 +266,10 @@ def profile_display_seller():
         print(data)
         return render_template("profile_display_seller.html",
         name= data[0][1],
-        address = data[0][5],
         desc = data[0][7],
         mail = data[0][8],
         picture = data[0][9],
+        address = data[0][10],
         user = session['name'])
     except:
         return redirect('login_seller')
@@ -317,17 +324,17 @@ def edit_profile_seller():
             address = request.form.get('seller-address')
             desc = request.form.get('desc')
             print(name,address,desc)
-            cursor.execute("""UPDATE user_inf SET firstname = '{0}',favorite ='{1}',descriptions ='{2}'
+            cursor.execute("""UPDATE user_inf SET firstname = '{0}',address ='{1}',descriptions ='{2}'
             WHERE id = {3} """.format(name,address,desc,session["id"]))
             mydb.commit()
         return redirect("profile")    
     data = fetch_information()
     return render_template("edit_profile_seller.html",
         name= data[0][1],
-        address = data[0][5],
         desc = data[0][7],
         mail = data[0][8],
         picture = data[0][9],
+        address = data[0][10],
         user = session['name'])
 
 
@@ -380,28 +387,19 @@ def profile_display_buyer_order():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
 @app.route('/profile_display_seller_order',methods = ['get','post'])
 def profile_display_seller_order():
+    order = fetch_order()
     data = fetch_information()
     return render_template("profile_display_seller_order.html",
-    f = data[0][1],
-    l = data[0][2],
-    d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
-    picture = data[0][9],
-    age = data[1])
+    order = order,
+    name= data[0][1],
+    picture = data[0][9])
+
+
 
 @app.route('/profile_display_buyer_cafeHis',methods = ['get','post'])
 def profile_display_buyer_cafeHis():
@@ -410,11 +408,6 @@ def profile_display_buyer_cafeHis():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
@@ -425,11 +418,6 @@ def profile_display_buyer_favorite_details():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
@@ -440,11 +428,6 @@ def profile_display_buyer_favorite():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
@@ -456,11 +439,6 @@ def profile_display_buyer_teaHis():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
     
@@ -472,26 +450,25 @@ def profile_display_seller_product():
     data = fetch_information()
     return render_template("profile_display_seller_product.html",
     name= data[0][1],
-    address = data[0][5],
-    desc = data[0][7],
-    mail = data[0][8],
-    picture = data[0][9],
-    user = session['name'])
+    picture = data[0][9])
 
 @app.route('/profile_display_seller_product_details',methods = ['get','post'])
 def profile_display_seller_product_details():
     data = fetch_information()
     return render_template("profile_display_seller_product_details.html",
     name= data[0][1],
-    address = data[0][5],
     desc = data[0][7],
     mail = data[0][8],
     picture = data[0][9],
+    address = data[0][10],
     user = session['name'])
 
 @app.route('/seller_point',methods = ['get','post'])
 def seller_point():
-    return render_template('seller_point.html')
+    data = fetch_information()
+    return render_template('seller_point.html',
+    name= data[0][1],
+    picture = data[0][9])
 
 @app.route('/qr_seller',methods = ['get','post'])
 def qr_seller():
