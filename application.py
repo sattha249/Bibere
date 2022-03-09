@@ -32,25 +32,6 @@ mydb = mysql.connector.connect(
 )
 cursor = mydb.cursor(buffered=True)
 
-"""
- #Code to add hash password
-hash_pass = hashlib.md5(str(passwd).encode('utf-8'))
-hash_pass = hash_pass.hexdigest()
-try :
-    cursor.execute("INSERT INTO user_data (Username,hashpass,client) VALUES  ('satts','?',False)".format(hash_pass))
-    mydb.commit()
-except: 
-    print("cannot connect")
-    
-#Code example to get hash from sql and check password
-cursor.execute("SELECT hashpass FROM user_data WHERE id = 2")
-c = cursor.fetchone()
-"""
-
-
- 
-
-
 
 def miles_to_meters(miles):
     try:
@@ -111,6 +92,10 @@ def index():
         return redirect("login_buyer")
     return redirect("profile")
     
+
+@app.route('/test',methods = ["get","post"])
+def test():
+    return render_template('test.html')
 
 @app.route('/login_buyer',methods = ["get","post"])
 def login():
@@ -364,10 +349,18 @@ def upload():
     if request.method == 'POST':
         file = request.files['file']
         if file:
+            cursor.execute("SELECT profile FROM user_inf WHERE id = {0}".format(session['id']))
+            last_file = cursor.fetchone()
+            last_file = str(os.path.join(path,last_file[0]))
+            if last_file != "default.png":
+                try:
+                    os.remove(str(last_file))
+                    print ('photo deleted')
+                except:
+                    print ('photo not found')
             filename = secure_filename(file.filename)
             file.save(os.path.join(path,filename))
             picture = filename
-            print (picture)
             cursor.execute("UPDATE user_inf SET profile  = '{0}' WHERE id = {1}".format(picture,session['id']))
             mydb.commit()
             return redirect(request.url)
@@ -511,10 +504,6 @@ def home():
 @app.route('/about_us',methods = ['get','post'])
 def about_us():
     return render_template('about_us.html')
-
-@app.route('/contact_us',methods = ['get','post'])
-def contact_us():
-    return render_template('contact_us.html')
 
 
 if __name__ == "__main__" :

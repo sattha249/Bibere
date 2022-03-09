@@ -46,7 +46,7 @@ block main %}
         <div class="col-lg-9" style="margin-top: 30px">
           <div class="frame-line">
             <div>
-              <h2 class="head-name">{{f}} {{l}}</h2>
+              <h2 class="head-name">Information</h2>
             </div>
             <div style="text-align: left">
               <div class="mb-content">
@@ -54,19 +54,19 @@ block main %}
                 <div><p class="mb-details">Country: Thailand</p></div>
                 <div><p class="mb-details">Sickness: {{s}}</p></div>
                 <div><p class="mb-details">Occupation: {{oc}}</p></div>
-                <div>
+                <div d-lg-flex flex-lg-row flex-column>
                   <p class="mb-details">
                     Favorite: <span class="tag"> {{fav}} </span>
                   </p>
                 </div>
-                <div>
-                  <p class="mb-details">
-                    Description: <span class="tag"> {{desc}} </span>
-                  </p>
+                <div d-lg-flex flex-lg-column flex-row>
+                  <p class="mb-details"> Description: </p>
+                  <span class="tag"> {{desc}} </span>
+                  
                 </div>
               </div>
 
-              <div class="d-md-flex flex-lg-row flex-column">
+              <div class="d-md-flex flex-lg-row flex-column align-items-center">
 
                 <div class="line-stroke">
                   <div class="beverages d-flex justify-content-center align-items-center">
