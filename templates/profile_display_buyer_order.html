@@ -39,7 +39,7 @@ block main %}
             <a class="menu-style" href="#"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
             <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
-            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+            <a class="menu-style" href="#"><h5>Points</h5></a>
           </div>
         </div>
 
@@ -59,22 +59,16 @@ block main %}
                       <th>Location</th>
                       <th>Price</th>
                     </tr>
+                    {%for i in order %}
                     <tr>
                       <td>1.</td>
-                      <td>Matcha green tea</td>
+                      <td>{{i[1]}}</td>
                       <td>Tea</td>
-                      <td>Cuppa</td>
-                      <td>SuanDok, Chiang Mai</td>
+                      <td>{{i[0]}}</td>
+                      <td>{{address}}</td>
                       <td>$8</td>
                     </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Ice black coffee</td>
-                      <td>Coffee</td>
-                      <td>Cuppa</td>
-                      <td>SuanDok, Chiang Mai</td>
-                      <td>$12</td>
-                    </tr>
+                    {% endfor %}
                   </table>
               </div>
             </div>

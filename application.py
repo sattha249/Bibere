@@ -50,6 +50,15 @@ def get_age(y):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit(',',1)[1].lower() in ALLOWED_EXTENSIONS
 
+def getmode():
+    try:
+        cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
+        s = cursor.fetchall()
+        mode = s[0][3]
+        return mode
+    except:
+        return redirect("login_buyer")
+
 def fetch_information():
     cursor.execute("SELECT id,firstname,lastname,dob,occupation,favorite,sickness,descriptions,e_mail,profile,address FROM user_inf WHERE id = {}".format(session["id"]))
     data = cursor.fetchall()
@@ -58,8 +67,14 @@ def fetch_information():
     return data 
 
 def fetch_order():
-    cursor.execute("SELECT customer_id,product_id,order_date,status,payment FROM order_inf WHERE seller_id = {}".format(session["id"]))
-    data = cursor.fetchall()
+    mode = getmode()
+    print (mode)
+    if mode == True:
+        cursor.execute("SELECT seller_id,product_id,order_date,status,payment FROM order_inf WHERE customer_id = {}".format(session["id"]))
+        data = cursor.fetchall()
+    else :
+        cursor.execute("SELECT customer_id,product_id,order_date,status,payment FROM order_inf WHERE seller_id = {}".format(session["id"]))
+        data = cursor.fetchall()
     for i in data:
         print(i)
     return data 
@@ -80,14 +95,7 @@ def login(username,hash_pass,mode):
         session["name"] = username 
         session["id"] = login_data[0][2]
 
-def getmode():
-    try:
-        cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
-        s = cursor.fetchall()
-        mode = s[0][3]
-        return mode
-    except:
-        return redirect("login_buyer")
+
 
 
 #flask
@@ -383,10 +391,13 @@ def upload():
 @app.route('/profile_display_buyer_order',methods = ['get','post'])
 def profile_display_buyer_order():
     data = fetch_information()
+    order = fetch_order()
     return render_template("profile_display_buyer_order.html",
+    order = order,
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
+    address = data[0][10],
     picture = data[0][9],
     age = data[1])
 
