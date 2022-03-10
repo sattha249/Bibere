@@ -417,7 +417,6 @@ def profile_display_buyer_cafeHis():
     data = fetch_information()
     return render_template("profile_display_buyer_cafeHis.html",
     f = data[0][1],
-    l = data[0][2],
     d = data[0][3],
     picture = data[0][9],
     age = data[1])
@@ -493,6 +492,17 @@ def home():
 def about_us():
     return render_template('about_us.html')
 
+@app.route('/profile_display_buyer_point',methods = ['get','post'])
+def profile_display_buyer_point():
+    data = fetch_information()
+    return render_template('profile_display_buyer_point.html',f = data[0][1],
+    d = data[0][3],
+    picture = data[0][9],
+    age = data[1])
+
+@app.route('/profile_display_buyer_point_redemption',methods = ['get','post'])
+def profile_display_buyer_point_redemption():
+    return render_template('profile_display_buyer_point_redemption.html')
 
 if __name__ == "__main__" :
     app.run(debug=True,host = "0.0.0.0")
