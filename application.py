@@ -32,6 +32,9 @@ mydb = mysql.connector.connect(
 )
 cursor = mydb.cursor(buffered=True)
 
+cursor.execute("SELECT product_inf.product_name,product_inf.tea,user_inf.firstname,user_inf.address,product_inf.price FROM product_inf inner join order_inf on product_inf.product_id = order_inf.product_id inner join user_inf on user_inf.id = order_inf.seller_id WHERE order_inf.customer_id = 1;")
+test = cursor.fetchall()
+print (test)
 
 def miles_to_meters(miles):
     try:
@@ -70,10 +73,25 @@ def fetch_order():
     mode = getmode()
     print (mode)
     if mode == True:
-        cursor.execute("SELECT seller_id,product_id,order_date,status,payment FROM order_inf WHERE customer_id = {}".format(session["id"]))
+        # cursor.execute("SELECT seller_id,product_id,order_date,status,payment FROM order_inf WHERE customer_id = {}".format(session["id"]))
+        cursor.execute("""SELECT product_inf.product_name,
+        product_inf.tea,
+        user_inf.firstname,
+        user_inf.address,
+        product_inf.price 
+        FROM product_inf 
+        inner join order_inf on product_inf.product_id = order_inf.product_id 
+        inner join user_inf on user_inf.id = order_inf.seller_id 
+        WHERE order_inf.customer_id = {0};""".format(session['id']))
         data = cursor.fetchall()
     else :
-        cursor.execute("SELECT customer_id,product_id,order_date,status,payment FROM order_inf WHERE seller_id = {}".format(session["id"]))
+        cursor.execute("""SELECT user_inf.firstname ,
+         product_inf.product_name,
+         order_date,status,payment,
+         product_inf.price 
+         from user_inf inner join order_inf on user_inf.id = order_inf.customer_id 
+         inner join product_inf on product_inf.product_id = order_inf.product_id 
+         where order_inf.seller_id = {0};""".format(session['id']))
         data = cursor.fetchall()
     for i in data:
         print(i)
@@ -473,12 +491,12 @@ def profile_display_seller_product_details():
     address = data[0][10],
     user = session['name'])
 
-@app.route('/seller_point',methods = ['get','post'])
+@app.route('/seller_point',methods = ['get','post']) 
 def seller_point():
-    data = fetch_information()
+    data = fetch_information()  
     return render_template('seller_point.html',
     name= data[0][1],
-    picture = data[0][9])
+    picture = data[0][9]) 
 
 @app.route('/qr_seller',methods = ['get','post'])
 def qr_seller():
@@ -486,7 +504,7 @@ def qr_seller():
 
 @app.route('/home',methods = ['get','post'])
 def home():
-    return render_template('home.html')
+    return render_template('home.html')   
 
 @app.route('/about_us',methods = ['get','post'])
 def about_us():
@@ -504,5 +522,33 @@ def profile_display_buyer_point():
 def profile_display_buyer_point_redemption():
     return render_template('profile_display_buyer_point_redemption.html')
 
+@app.route('/test_generate_sell',methods = ['get','post'])
+def test_generate_sell():
+    if request.method == 'POST':
+        menu = [request.form.get("menu1"),request.form.get("menu2"),
+        request.form.get("menu3"),request.form.get("menu4"),
+        request.form.get("menu5"),request.form.get("menu6"),
+        request.form.get("menu7"),request.form.get("menu8"),
+        request.form.get("menu9"),request.form.get("menu10")]
+
+        level = [request.form.get("level1"),request.form.get("level2"),
+        request.form.get("level3"),request.form.get("level4"),
+        request.form.get("level5"),request.form.get("level6"),
+        request.form.get("level7"),request.form.get("level8"),
+        request.form.get("level9"),request.form.get("level10")]
+
+
+        print(menu)
+        print(level)
+    return render_template('test_generate_sell.html')
+
+@app.route('/matchmybeverage',methods = ['get','post'])
+def matchmybeverage():
+    return render_template('matchmybeverage.html')
+
+@app.route('/product',methods = ['get','post'])
+def product():
+    return render_template('product.html')
+
 if __name__ == "__main__" :
-    app.run(debug=True,host = "0.0.0.0")
+    app.run(debug=True,host = "0.0.0.0")    

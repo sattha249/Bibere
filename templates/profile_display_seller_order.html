@@ -58,7 +58,7 @@ block main %}
                       <th>Date orders</th>
                       <th>Status</th>
                       <th>Payment</th>
-                      <th>Total</th>
+                      <th>Price</th>
                     </tr>
                       {%for i in order %}
                     <tr>
@@ -68,7 +68,7 @@ block main %}
                       <td>{{i[2]}}</td>
                       <td>{{i[3]}}</td>
                       <td>{{i[4]}}</td>
-                      <td>$19</td>
+                      <td>{{i[5]}}</td>
                     </tr>
                     {% endfor %}
                   
