@@ -17,6 +17,8 @@ block main %}
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
+                width="150"
+                height="150"
               />
             </div>
             <div>
@@ -49,11 +51,58 @@ block main %}
               <h2 class="head-name">Information</h2>
             </div>
             <div style="text-align: left">
-              <div class="mb-content">
-                <div><p class="mb-details">Email address: {{m}}</p></div>
-                <div><p class="mb-details">Country: Thailand</p></div>
-                <div><p class="mb-details">Sickness: {{s}}</p></div>
-                <div><p class="mb-details">Occupation: {{oc}}</p></div>
+              <div class="mb-content ml-lg-3">
+                <div class="row d-flex justify-content-center align">
+                  <div class="col-lg-2">
+                    <span class="mb-details">Email:</span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{m}}</span>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <span class="mb-details">Country: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>Thailand</span>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <span class="mb-details">Sickness: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{s}}</span>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <span class="mb-details">Occupation: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{oc}}</span>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-2">
+                    <span class="mb-details">Description: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{desc}}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div><p class="mb-details">Email address: <span class="tag"> {{m}}</span></p></div>
+                <div><p class="mb-details">Country: <span class="tag"> Thailand</span></p></div>
+                <div><p class="mb-details">Sickness: <span class="tag"> {{s}}</span></p></div>
+                <div><p class="mb-details">Occupation: <span class="tag"> {{oc}}</span></p></div>
                 <div d-lg-flex flex-lg-row flex-column>
                   <p class="mb-details">
                     Favorite: <span class="tag"> {{fav}} </span>
@@ -63,7 +112,7 @@ block main %}
                   <p class="mb-details"> Description: </p>
                   <span class="tag"> {{desc}} </span>
                   
-                </div>
+                </div> -->
               </div>
 
               <div class="d-md-flex flex-lg-row flex-column align-items-center">
