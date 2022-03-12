@@ -17,11 +17,13 @@ block main %}
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
+                width="150"
+                height="150"
               />
             </div>
             <div>
               <h2 style="font-size: 2vw; text-align: center; margin-top: 20px">
-                Name cafe
+                {{name}}
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
@@ -36,7 +38,7 @@ block main %}
             <a class="menu-style" href="#"><h5 href="">My Information</h5></a>
             <a class="menu-style" href="/profile_display_seller_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_seller_product"><h5>My products</h5></a>
-            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+            <a class="menu-style" href="/seller_point"><h5>Points</h5></a>
           </div>
         </div>
 
@@ -46,15 +48,45 @@ block main %}
               <h2 class="head-name" style="font-size: 48px">{{name}}</h2>
             </div>
             <div style="text-align: left">
-              <div class="mb-content">
-                <div><p class="mb-details">Email address: {{mail}}</p></div>
-                <div><p class="mb-details">Address:{{address}}</p></div>
-                <div><p class="mb-details">Country: Thailand</p></div>
-                <div>
-                  <p class="mb-details">
-                    Description: <span class="tag"> {{desc}} </span>
-                  </p>
+              <div class="mb-content ml-lg-3">
+
+                <div class="row d-flex justify-content-center align">
+                  <div class="col-lg-2">
+                    <span class="mb-details">Email:</span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{mail}}</span>
+                    </div>
+                  </div>
+
+                <div class="col-lg-2">
+                  <span class="mb-details">Address: </span>
                 </div>
+                <div class="col-lg-10 col-sm-12 mb-lg-3">
+                  <div class="tag">
+                    <span>{{address}}</span>
+                  </div>
+                </div>
+
+                <div class="col-lg-2">
+                  <span class="mb-details">Country: </span>
+                </div>
+                <div class="col-lg-10 col-sm-12 mb-lg-3">
+                  <div class="tag">
+                    <span>Thailand</span>
+                  </div>
+                </div>
+
+                <div class="col-lg-2">
+                  <span class="mb-details">Description: </span>
+                </div>
+                <div class="col-lg-10 col-sm-12 mb-lg-3">
+                  <div class="tag">
+                    <span>{{desc}}</span>
+                  </div>
+                </div>
+
               </div>
 
               <div class="d-flex">

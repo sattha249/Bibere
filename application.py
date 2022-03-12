@@ -1,4 +1,4 @@
-from flask import Flask, render_template , request , redirect , session , flash
+from flask import Flask, render_template , request , redirect , session 
 from flask_session import Session
 import googlemaps
 import geocoder
@@ -7,7 +7,7 @@ import hashlib
 import os
 from os.path import join,dirname,realpath
 from werkzeug.utils import secure_filename
-import urllib.request
+import qrcode
 
 
 user_name = "root"
@@ -18,7 +18,8 @@ API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
 app = Flask(__name__)
 app.config["SESSION_TYPE"] = "filesystem"
 app.config['UPLOAD_FOLDER'] = join(dirname(realpath(__file__)), 'static/profile/')
-path = join(dirname(realpath(__file__)), 'static/profile/')
+path = join(os.getcwd(), 'static/profile/')
+pathQR = join(os.getcwd(), 'static/QRcode/')
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 Session(app)
@@ -31,24 +32,6 @@ mydb = mysql.connector.connect(
     database="cuppa"
 )
 cursor = mydb.cursor(buffered=True)
-
-"""
- #Code to add hash password
-hash_pass = hashlib.md5(str(passwd).encode('utf-8'))
-hash_pass = hash_pass.hexdigest()
-try :
-    cursor.execute("INSERT INTO user_data (Username,hashpass,client) VALUES  ('satts','?',False)".format(hash_pass))
-    mydb.commit()
-except: 
-    print("cannot connect")
-    
-#Code example to get hash from sql and check password
-cursor.execute("SELECT hashpass FROM user_data WHERE id = 2")
-c = cursor.fetchone()
-"""
-
-
- 
 
 
 
@@ -69,12 +52,64 @@ def get_age(y):
 def allowed_file(filename):
     return '.' in filename and filename.rsplit(',',1)[1].lower() in ALLOWED_EXTENSIONS
 
+def getmode():
+    try:
+        cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
+        s = cursor.fetchall()
+        mode = s[0][3]
+        return mode
+    except:
+        return redirect("login_buyer")
+
 def fetch_information():
-    cursor.execute("SELECT id,firstname,lastname,dob,occupation,favorite,sickness,descriptions,e_mail,profile FROM user_inf WHERE id = {}".format(session["id"]))
+    cursor.execute("SELECT id,firstname,lastname,dob,occupation,favorite,sickness,descriptions,e_mail,profile,address,points FROM user_inf WHERE id = {}".format(session["id"]))
     data = cursor.fetchall()
     data.append(get_age(data[0][3]))
     print(data)
     return data 
+
+def fetch_order():
+    mode = getmode()
+    print (mode)
+    if mode == True:
+        # cursor.execute("SELECT seller_id,product_id,order_date,status,payment FROM order_inf WHERE customer_id = {}".format(session["id"]))
+        cursor.execute("""SELECT product_inf.product_name,
+        product_inf.tea,
+        user_inf.firstname,
+        user_inf.address,
+        product_inf.price 
+        FROM product_inf 
+        inner join order_inf on product_inf.product_id = order_inf.product_id 
+        inner join user_inf on user_inf.id = order_inf.seller_id 
+        WHERE order_inf.customer_id = {0};""".format(session['id']))
+        data = cursor.fetchall()
+    else :
+        cursor.execute("""SELECT user_inf.firstname ,
+         product_inf.product_name,
+         order_date,status,payment,
+         product_inf.price 
+         from user_inf inner join order_inf on user_inf.id = order_inf.customer_id 
+         inner join product_inf on product_inf.product_id = order_inf.product_id 
+         where order_inf.seller_id = {0};""".format(session['id']))
+        data = cursor.fetchall()
+    for i in data:
+        print(i)
+    return data 
+
+def fetch_product():
+    cursor.execute("SELECT product_name,tea,descriptions,price,point,picture FROM product_inf WHERE seller = {}".format(session['id']))
+    bev = cursor.fetchall()
+    return bev
+
+def fetch_history():
+    mode = getmode()
+    if mode == True:
+        cursor.execute("""SELECT user_inf.firstname,user_inf.address,
+        order_inf.order_date 
+        FROM user_inf INNER JOIN order_inf ON order_inf.seller_id = user_inf.id 
+        WHERE order_inf.customer_id = 1 ORDER BY order_inf.order_date;""")
+        history = cursor.fetchall()
+    return history
 
 
 def register(username,hash_pass,mode,email):
@@ -92,14 +127,7 @@ def login(username,hash_pass,mode):
         session["name"] = username 
         session["id"] = login_data[0][2]
 
-def getmode():
-    try:
-        cursor.execute("SELECT * FROM user_data WHERE username = '{0}'".format(session["name"]))
-        s = cursor.fetchall()
-        mode = s[0][3]
-        return mode
-    except:
-        return redirect("login_buyer")
+
 
 
 #flask
@@ -111,6 +139,10 @@ def index():
         return redirect("login_buyer")
     return redirect("profile")
     
+
+@app.route('/test',methods = ["get","post"])
+def test():
+    return render_template('test.html')
 
 @app.route('/login_buyer',methods = ["get","post"])
 def login():
@@ -263,6 +295,7 @@ def profile_display_buyer():
         desc = data[0][7],
         m = data[0][8],
         picture = data[0][9],
+        point = data[0][11],
         age = data[1])
     except:
         return redirect('login_buyer')
@@ -274,16 +307,13 @@ def profile_display_seller():
         print(data)
         return render_template("profile_display_seller.html",
         name= data[0][1],
-        address = data[0][5],
         desc = data[0][7],
         mail = data[0][8],
         picture = data[0][9],
+        address = data[0][10],
         user = session['name'])
     except:
         return redirect('login_seller')
-
-
-
 
 
 
@@ -335,17 +365,17 @@ def edit_profile_seller():
             address = request.form.get('seller-address')
             desc = request.form.get('desc')
             print(name,address,desc)
-            cursor.execute("""UPDATE user_inf SET firstname = '{0}',favorite ='{1}',descriptions ='{2}'
+            cursor.execute("""UPDATE user_inf SET firstname = '{0}',address ='{1}',descriptions ='{2}'
             WHERE id = {3} """.format(name,address,desc,session["id"]))
             mydb.commit()
         return redirect("profile")    
     data = fetch_information()
     return render_template("edit_profile_seller.html",
         name= data[0][1],
-        address = data[0][5],
         desc = data[0][7],
         mail = data[0][8],
         picture = data[0][9],
+        address = data[0][10],
         user = session['name'])
 
 
@@ -367,64 +397,55 @@ def upload():
     if request.method == 'POST':
         file = request.files['file']
         if file:
+            cursor.execute("SELECT profile FROM user_inf WHERE id = {0}".format(session['id']))
+            last_file = cursor.fetchone()
+            if last_file[0] != "default.png":
+                try:
+                    os.remove(str(os.path.join(path,last_file[0])))
+                    print ('photo deleted')
+                except:
+                    print ('photo not found')
             filename = secure_filename(file.filename)
             file.save(os.path.join(path,filename))
             picture = filename
-            print (picture)
             cursor.execute("UPDATE user_inf SET profile  = '{0}' WHERE id = {1}".format(picture,session['id']))
             mydb.commit()
             return redirect(request.url)
     return redirect("edit")
-    
-
-
-
-
-
-    
+        
 
 @app.route('/profile_display_buyer_order',methods = ['get','post'])
 def profile_display_buyer_order():
     data = fetch_information()
+    order = fetch_order()
     return render_template("profile_display_buyer_order.html",
+    order = order,
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
+    address = data[0][10],
     picture = data[0][9],
     age = data[1])
 
 @app.route('/profile_display_seller_order',methods = ['get','post'])
 def profile_display_seller_order():
+    order = fetch_order()
     data = fetch_information()
     return render_template("profile_display_seller_order.html",
-    f = data[0][1],
-    l = data[0][2],
-    d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
-    picture = data[0][9],
-    age = data[1])
+    order = order,
+    name= data[0][1],
+    picture = data[0][9])
+
+
 
 @app.route('/profile_display_buyer_cafeHis',methods = ['get','post'])
 def profile_display_buyer_cafeHis():
     data = fetch_information()
+    history = fetch_history()
     return render_template("profile_display_buyer_cafeHis.html",
+    history = history,
     f = data[0][1],
-    l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
@@ -435,11 +456,6 @@ def profile_display_buyer_favorite_details():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
@@ -450,11 +466,6 @@ def profile_display_buyer_favorite():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
 
@@ -466,41 +477,140 @@ def profile_display_buyer_teaHis():
     f = data[0][1],
     l = data[0][2],
     d = data[0][3],
-    oc = data[0][4],
-    fav = data[0][5],
-    s = data[0][6],
-    desc = data[0][7],
-    m = data[0][8],
     picture = data[0][9],
     age = data[1])
     
 
-# route ที่ยังไม่ได้ใช้
+
 
 @app.route('/profile_display_seller_product',methods = ['get','post'])
 def profile_display_seller_product():
     data = fetch_information()
+    product = fetch_product()
+    print(product)
     return render_template("profile_display_seller_product.html",
+    product = product,
     name= data[0][1],
-    address = data[0][5],
-    desc = data[0][7],
-    mail = data[0][8],
-    picture = data[0][9],
-    user = session['name'])
+    picture = data[0][9])
 
 @app.route('/profile_display_seller_product_details',methods = ['get','post'])
 def profile_display_seller_product_details():
     data = fetch_information()
     return render_template("profile_display_seller_product_details.html",
     name= data[0][1],
-    address = data[0][5],
     desc = data[0][7],
     mail = data[0][8],
     picture = data[0][9],
+    address = data[0][10],
     user = session['name'])
 
+@app.route('/seller_point',methods = ['get','post']) 
+def seller_point():
+    
+    if request.method == 'POST':
+        menu = [request.form.get("menu1"),request.form.get("menu2"),
+        request.form.get("menu3"),request.form.get("menu4"),
+        request.form.get("menu5"),request.form.get("menu6"),
+        request.form.get("menu7"),request.form.get("menu8"),
+        request.form.get("menu9"),request.form.get("menu10")]
+
+        level = [request.form.get("level1"),request.form.get("level2"),
+        request.form.get("level3"),request.form.get("level4"),
+        request.form.get("level5"),request.form.get("level6"),
+        request.form.get("level7"),request.form.get("level8"),
+        request.form.get("level9"),request.form.get("level10")]
+
+        #check file
+
+        counter = session['id']
+        file_name = "qr{0}.png"
+        file_name = file_name.format(counter)
+        hash_name = hashlib.md5(str(file_name).encode('utf-8'))
+        file_name = hash_name.hexdigest()+".png"
+
+        qrcode_img = qrcode.make(menu)
+        qrcode_img.save(os.path.join(pathQR,file_name))
+        print(os.path.join(pathQR,file_name))
+        print(menu)
+        print(level)  
+        return render_template('qr_seller.html',qr = file_name)
+    data = fetch_information()
+    product = fetch_product()
+    
+    return render_template('seller_point.html',
+    bev = product,
+    name= data[0][1],
+    picture = data[0][9]) 
+
+# @app.route('/qr_seller',methods = ['get','post'])
+# def qr_seller():
+#     return render_template('qr_seller.html')
+
+@app.route('/home',methods = ['get','post'])
+def home():
+    return render_template('home.html')   
+
+@app.route('/about_us',methods = ['get','post'])
+def about_us():
+    return render_template('about_us.html')
+
+@app.route('/profile_display_buyer_point',methods = ['get','post'])
+def profile_display_buyer_point():
+    data = fetch_information()
+    return render_template('profile_display_buyer_point.html',f = data[0][1],
+    d = data[0][3],
+    picture = data[0][9],
+    age = data[1])
+
+@app.route('/profile_display_buyer_point_redemption',methods = ['get','post'])
+def profile_display_buyer_point_redemption():
+    data = fetch_information()
+    return render_template('profile_display_buyer_point_redemption.html',f = data[0][1],
+    d = data[0][3],
+    picture = data[0][9],
+    point = data[0][11],
+    age = data[1])
 
 
+# route ที่ยังไม่ได้ใช้
+
+@app.route('/matchmybeverage',methods = ['get','post'])
+def matchmybeverage():
+    return render_template('matchmybeverage.html')
+
+@app.route('/product',methods = ['get','post'])
+def product():
+    return render_template('product.html')
+
+@app.route('/profile_display_seller_add_product',methods = ['get','post'])
+def profile_display_seller_add_product():
+    if request.method == 'POST':
+        prod_name = request.form.get('prod_name')
+        bev_type = request.form.get('type')
+        description = request.form.get('desc')
+        price = request.form.get('price')
+        point = request.form.get('point')
+        # cursor.execute("SELECT product_name,tea,descriptions,price,point FROM product_inf WHERE seller = {}".format(session['id']))
+        # for i in p:
+        #     if i[0].upper() == prod_name.upper():
+        #         print ("fucking caramel")
+        #     else :
+        #         print(i[0])  
+    data = fetch_information()
+    return render_template('profile_display_seller_add_product.html',name = data[0][1],
+    d = data[0][3],
+    picture = data[0][9])
+
+# cursor.execute("SELECT product_name,tea,descriptions,price,point FROM product_inf WHERE seller =2")
+# p = cursor.fetchall()
+# print (p)
+# for i in p:
+#     if i[0].upper() == 'green tea'.upper():
+#         print ("fucking caramel")
+#     else :
+#         print(i[0])
+#     for j in i :
+#         print(j)
 
 if __name__ == "__main__" :
-    app.run(debug=True)
+    app.run(debug=True,host = "0.0.0.0")    

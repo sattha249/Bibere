@@ -1,0 +1,2275 @@
+
+<script language=Javascript>
+
+var no = 10;
+function cal() {
+	var f = document.grade;
+	var last_unit = 0;
+	var last_score = 0;
+
+	var next_unit = 0;
+	var next_total = 0;
+	var score = 0;
+/*
+	if (f.last_unit.value)
+	{
+		if (!IsNumber(f.last_unit.value))
+		{
+			alert("โปรดป้อนหน่วยกิตสะสมที่ผ่านมาเป็นตัวเลขเท่านั้น");
+			f.last_unit.value = "";
+			f.last_unit.focus();
+			return false;
+		}
+		last_unit = parseFloat(f.last_unit.value);
+	}
+	if (f.last_score.value)
+	{
+		if (!IsNumber(f.last_score.value))
+		{
+			alert("โปรดป้อนแต้มคำแนนแนนสะสมเป็นตัวเลขเท่านั้น");
+			f.last_score.value = "";
+			f.last_score.focus();
+			return false;
+		}
+		last_score = parseFloat(f.last_score.value);
+		document.getElementById("last_total").innerHTML = FormatNumber(parseFloat(f.last_score.value)/parseFloat(f.last_unit.value),2);
+	}
+*/
+	if (f.unit1.value)
+	{
+		if (!IsNumber(f.unit1.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit1.value = "";
+			f.unit1.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit1.value);
+		score = (parseFloat(f.unit1.value)*parseFloat(f.grade1.value));
+		next_total += score
+		document.getElementById("score1").innerHTML = score;
+	}
+	if (f.unit2.value)
+	{
+		if (!IsNumber(f.unit2.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit2.value = "";
+			f.unit2.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit2.value);
+		score = (parseFloat(f.unit2.value)*parseFloat(f.grade2.value));
+		next_total += score
+		document.getElementById("score2").innerHTML = score;
+	}
+	if (f.unit3.value)
+	{
+		if (!IsNumber(f.unit3.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit3.value = "";
+			f.unit3.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit3.value);
+		score = (parseFloat(f.unit3.value)*parseFloat(f.grade3.value));
+		next_total += score
+		document.getElementById("score3").innerHTML = score;
+	}
+	if (f.unit4.value)
+	{
+		if (!IsNumber(f.unit4.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit4.value = "";
+			f.unit4.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit4.value);
+		score = (parseFloat(f.unit4.value)*parseFloat(f.grade4.value));
+		next_total += score
+		document.getElementById("score4").innerHTML = score;
+	}
+	if (f.unit5.value)
+	{
+		if (!IsNumber(f.unit5.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit5.value = "";
+			f.unit5.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit5.value);
+		score = (parseFloat(f.unit5.value)*parseFloat(f.grade5.value));
+		next_total += score
+		document.getElementById("score5").innerHTML = score;
+	}
+	if (f.unit6.value)
+	{
+		if (!IsNumber(f.unit6.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit6.value = "";
+			f.unit6.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit6.value);
+		score = (parseFloat(f.unit6.value)*parseFloat(f.grade6.value));
+		next_total += score
+		document.getElementById("score6").innerHTML = score;
+	}
+	if (f.unit7.value)
+	{
+		if (!IsNumber(f.unit7.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit7.value = "";
+			f.unit7.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit7.value);
+		score = (parseFloat(f.unit7.value)*parseFloat(f.grade7.value));
+		next_total += score
+		document.getElementById("score7").innerHTML = score;
+	}
+	if (f.unit8.value)
+	{
+		if (!IsNumber(f.unit8.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit8.value = "";
+			f.unit8.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit8.value);
+		score = (parseFloat(f.unit8.value)*parseFloat(f.grade8.value));
+		next_total += score
+		document.getElementById("score8").innerHTML = score;
+	}
+	if (f.unit9.value)
+	{
+		if (!IsNumber(f.unit9.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit9.value = "";
+			f.unit9.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit9.value);
+		score = (parseFloat(f.unit9.value)*parseFloat(f.grade9.value));
+		next_total += score
+		document.getElementById("score9").innerHTML = score;
+	}
+	if (f.unit10.value)
+	{
+		if (!IsNumber(f.unit10.value))
+		{
+			alert("โปรดป้อนหน่วยกิตเป็นตัวเลขเท่านั้น");
+			f.unit10.value = "";
+			f.unit10.focus();
+			return false;
+		}
+		next_unit += parseFloat(f.unit10.value);
+		score = (parseFloat(f.unit10.value)*parseFloat(f.grade10.value));
+		next_total += score
+		document.getElementById("score10").innerHTML = score;
+	}
+	
+
+	document.getElementById("next_unit").innerHTML = next_unit;
+	if (next_unit>0 && next_total>0)
+	{
+		document.getElementById("next_total").innerHTML = FormatNumber(next_total/next_unit,2);
+	} else {
+		document.getElementById("next_total").innerHTML = 0;
+	}
+	
+//	if (last_unit>0 && last_score>0 && next_unit>0 && next_total>0)
+//	{
+//		document.getElementById("unit").innerHTML = (last_unit+next_unit);
+//		document.getElementById("total").innerHTML = FormatNumber((last_score+next_total)/(last_unit+next_unit),2);
+//	}
+	return false;
+}
+
+function hide() {
+	document.getElementById("tr"+no).style.display = "none";
+	document.getElementById("code"+no).value = "";
+	document.getElementById("unit"+no).value = "";
+	document.getElementById("grade"+no).value = "";
+	document.getElementById("score"+no).innerHTML = "";
+	no = (no<=1)?1:no-1;
+	cal();
+	return false;
+}
+function show() {
+	no = (no>=60)?60:no+1;
+	document.getElementById("tr"+no).style.display = "block";
+	return false;
+}
+
+
+function reset_form() {
+	var f = document.grade;
+
+//	f.last_unit.value = "";
+//	f.last_score.value = "";
+//	document.getElementById("last_total").innerHTML = "";
+
+	f.code1.value = "";
+	f.unit1.value = "";
+	f.grade1.value = "";
+	document.getElementById("score1").innerHTML = "";
+	f.code2.value = "";
+	f.unit2.value = "";
+	f.grade2.value = "";
+	document.getElementById("score2").innerHTML = "";
+	f.code3.value = "";
+	f.unit3.value = "";
+	f.grade3.value = "";
+	document.getElementById("score3").innerHTML = "";
+	f.code4.value = "";
+	f.unit4.value = "";
+	f.grade4.value = "";
+	document.getElementById("score4").innerHTML = "";
+	f.code5.value = "";
+	f.unit5.value = "";
+	f.grade5.value = "";
+	document.getElementById("score5").innerHTML = "";
+	f.code6.value = "";
+	f.unit6.value = "";
+	f.grade6.value = "";
+	document.getElementById("score6").innerHTML = "";
+	f.code7.value = "";
+	f.unit7.value = "";
+	f.grade7.value = "";
+	document.getElementById("score7").innerHTML = "";
+	f.code8.value = "";
+	f.unit8.value = "";
+	f.grade8.value = "";
+	document.getElementById("score8").innerHTML = "";
+	f.code9.value = "";
+	f.unit9.value = "";
+	f.grade9.value = "";
+	document.getElementById("score9").innerHTML = "";
+	f.code10.value = "";
+	f.unit10.value = "";
+	f.grade10.value = "";
+
+	document.getElementById("next_unit").innerHTML = "";
+	document.getElementById("next_total").innerHTML = "";
+//	document.getElementById("unit").innerHTML = "";
+//	document.getElementById("total").innerHTML = "";
+
+}
+
+function IsNumber(Expression)
+{
+	Expression = Expression.toLowerCase();
+	RefString = "0123456789.-";
+
+	if (Expression.length < 1) 
+		return (false);
+
+	for (var i = 0; i < Expression.length; i++) 
+	{
+		var ch = Expression.substr(i, 1)
+		var a = RefString.indexOf(ch, 0)
+		if (a == -1)
+			return (false);
+	}
+	return(true);
+}
+
+function FormatNumber(Expression, NumDigitsAfterDecimal)
+{
+	var iNumDecimals = NumDigitsAfterDecimal;
+	var dbInVal = Expression;
+	var bNegative = false;
+	var iInVal = 0;
+	var strInVal
+	var strWhole = "", strDec = "";
+	var strTemp = "", strOut = "";
+	var iLen = 0;
+
+	if (dbInVal < 0)
+	{
+		bNegative = true;
+		dbInVal *= -1;
+	}
+
+	dbInVal = dbInVal * Math.pow(10, iNumDecimals)
+	iInVal = parseInt(dbInVal);
+	if ((dbInVal - iInVal) >= .5)
+	{
+		iInVal++;
+	}
+	strInVal = iInVal + "";
+	strWhole = strInVal.substring(0, (strInVal.length - iNumDecimals));
+	strDec = strInVal.substring((strInVal.length - iNumDecimals), strInVal.length);
+	while (strDec.length < iNumDecimals)
+	{
+		strDec = "0" + strDec;
+	}
+	iLen = strWhole.length;
+	if (iLen >= 3)
+	{
+		while (iLen > 0)
+		{
+			strTemp = strWhole.substring(iLen - 3, iLen);
+			if (strTemp.length == 3)
+			{
+				strOut = "" + strTemp + strOut;
+				iLen -= 3;
+			}
+			else
+			{
+				strOut = strTemp + strOut;
+				iLen = 0;
+			}
+		}
+		if (strOut.substring(0, 1) == ",")
+		{
+			strWhole = strOut.substring(1, strOut.length);
+		}
+		else
+		{
+			strWhole = strOut;
+		}
+	}
+	if (bNegative)
+	{
+		return "-" + strWhole + "." + strDec;
+	}
+	else
+	{
+		return strWhole + "." + strDec;
+	}
+}
+
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="startclock();">
+<table width="1020" height="0" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" bgcolor="#ffffff">
+  <tr>
+    <td width="11" background="https://www.pg-ram.com/frame/rim_02.gif"> <img src="https://www.pg-ram.com/frame/rim_02.gif" width="11" height="10" alt=""></td>
+    <td colspan="4">
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Mitr:300" rel="stylesheet">
+
+
+<table id="Table_01" width="1000" height="200" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>	<img src="https://www.pg-ram.com/images/header6.jpg?v=1" width="1000" height="200" alt="สถาบันติวราม"></td>
+	</tr>
+</table>
+	<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+      <form name='stime'>
+	  <tr align="center">
+
+        <td bgcolor="#00B300" height="35"  style="width: 195px"><a href="https://www.pg-ram.com/home/หน้าแรก P&G/" class="fmenu">หน้าแรก</a></td>
+        <td bgcolor="#cc00ff" width="20%"><a href="https://www.pg-ram.com/news-open/pg-ram-1/นักศึกษาใหม่ คอร์ส 2 ปี 3 เดือน/" class="fmenu">ดูแล+จบ ป.ตรี ภายใน 3 ปี</a></td>
+		<td bgcolor="#ff9900" width="20%"><a href="https://www.pg-ram.com/register.php" class="fmenu">สมัครสมาชิกรับข่าวสาร</a></td>
+		<td bgcolor="#0033ff"><a href="https://www.pg-ram.com/contactus/ติดต่อสอบถาม P&G/" class="fmenu">ติดต่อเรา</a></td>
+<!--
+        <td bgcolor="#ff9900"><a href="https://www.pg-ram.com/services/บริการของสถาบันและบริษัท/" class="fmenu">บริการของสถาบันและบริษัท</a></td>
+        <td bgcolor="#ff00ff"><a href="https://www.pg-ram.com/how-to-pay/วิธีการชำระเงิน/" class="fmenu">วิธีการชำระเงิน</a></td>
+        <td bgcolor="#6600ff"><a href="https://www.pg-ram.com/downloads/ดาว์นโหลดแบบฟอร์ม/" class="fmenu">ดาว์นโหลดแบบฟอร์ม</a></td>
+-->
+        <td bgcolor='red' align="center" style="width: 205px">
+		<input name='distime' size='1' style='COLOR:#ffffff; BACKGROUND-COLOR: red; width:200px; border:0; text-align:center;' onFocus='this.blur()'>
+		</td>
+      </tr>
+	  </form>
+    </table>
+	<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="20%" valign="top"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+.style3 {color: #009900}
+-->
+</style>
+<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td align="left">
+			  <table width="100%"  border="0">
+
+			  	<tr>
+					<td bgcolor="#ffffff" align="center">
+					
+						<table border="0">
+							<tr>
+								<td><img src="https://www.pg-ram.com/images-gif/line-@joypg.png" align="absmiddle" title="line = @joypg" width="90"></td>
+								<td><img src="https://www.pg-ram.com/images-gif/instagram-pgjoy.gif" align="absmiddle" title="instagram = pgjoy" width="90"></td>
+							</tr>
+						</table>
+<!--	
+						<table border="0" bgcolor="#ffff00" width="100%">
+							<tr><td align="center">
+						<strong style="color: red">รับสมัครติวเตอร์<br>คณะนิติศาสตร์</strong> <img src="https://www.pg-ram.com/images/hot_gif.gif" border="0" alt="รับสมัครติวเตอร์ คณะนิติศาสตร์ ด่วน">
+						</td></tr></table>
+-->
+						<strong>062-879-1212
+						<br>
+						เวลา 09:00 - 15:00 น.
+						</strong>				
+						<br>
+					</td>
+				</tr>
+
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/what-this/สถาบันติวคืออะไร/" class="menu5">สถาบันติวคืออะไร</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-3/คณะที่เปิดติว/" class="menu5">คณะที่สถาบันเปิดติว</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-1/นักศึกษาใหม่ คอร์ส 2 ปี 3 เดือน/" class="menu5">ดูแล+จบ ป.ตรี ภายใน 3 ปี</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-2/เอกสารที่ใช้ในการสมัคร/" class="menu5">เอกสารที่ใช้สมัคร ม.ราม</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pre-degree/วุฒิ ม.3 สมัคร ป.ตรี/" class="menu5">วุติ ม.3 สมัคร ป.ตรี</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-4/การเทียบวุฒิ ม.ราม/" class="menu5">การเทียบวุฒิ ม.ราม</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/ram/หลักสูตรมหาวิทยาลัยรามคำแหง" class="menu5">หลักสูตร ม.รามคำแหง</a></td>
+			  </tr>
+<!--
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/answer/รวมแนวข้อสอบ ม.ราม/" class="menu5">ตย.แนวข้อสอบ ม.ราม</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/summarize/ชีทคำบรรยาย ม.ราม/" class="menu5">ตย.ชีทคำอธิบาย</a></td>
+			  </tr>
+-->
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/contactus/ติดต่อสอบถาม P&G/" class="menu5">แผนที่สถาบันติว</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/grade-online/ระบบคำนวนเกรดเฉลี่ย ม.ราม ออนไลน์" class="menu5">ระบบคำนวนเกรดเฉลี่ย</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-5/เกร็ดความรู้วิชาป.ตรี/" class="menu10">เกร็ดความรู้วิชา ป.ตรี</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-6/เกร็ดความรู้วิชาป.โท/" class="menu2">เกร็ดความรู้วิชา ป.โท</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/ram1/ตารางเรียนมหาวิทยาลัยรามคำแหง/หัวหมาก/" class="menu1">ตารางติว</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/images-upload/20211105161230_1.jpg" target="_blank"><img src="https://www.pg-ram.com/images-upload/tm-20211105161230_1.jpg" title="1-64" alt="1-64" border="3"></a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/images-upload/20210624134740_1.jpg" target="_blank"><img src="https://www.pg-ram.com/images-upload/tm-20210624134740_1.jpg" title="ป.โทร" alt="ป.โทร" border="3"></a></td>
+			  </tr>
+<!--
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/ram1/ตารางเรียนมหาวิทยาลัยรามคำแหง/หัวหมาก/" class="menu1">ตารางติว</a></td>
+			  </tr>
+
+			   <tr bgcolor="#ffffff">
+				<td align="center">
+					รับสมัครติวนักศึกษาใหม่
+				</td>
+              </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-1/นักศึกษาใหม่ คอร์ส 2 ปี 3 เดือน/" class="menu4">ดูแล+เรียนจบภายใน 3 ปี</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-2/เอกสารที่ใช้ในการสมัคร/" class="menu2">เอกสารที่ใช้ในการสมัคร</a></td>
+			  </tr>
+			   <tr bgcolor="#ffffff">
+				<td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pg-ram-3/คณะที่เปิดติว/" class="menu3">คณะที่เปิดติว</a></td>
+			  </tr>
+
+
+                <tr>
+                  <td bgcolor="#ff9900" height="30" class="fmenu"><strong><img src="https://www.pg-ram.com/images-gif/online.gif" width="16" height="16" align="absmiddle">ติว ม.รามคำแหง</strong></td>
+                </tr>
+                <tr>
+                  <td align="left" nowrap><img src="https://www.pg-ram.com/images-gif/offline.gif" width="16" height="16" align="absmiddle"> <a href="https://www.pg-ram.com/ram1/ตารางเรียนมหาวิทยาลัยรามคำแหง/หัวหมาก/" class="fmenuleft">ตารางติว</a></td>
+                </tr>
+                <tr>
+                  <td align="left" nowrap><img src="https://www.pg-ram.com/images-gif/offline.gif" width="16" height="16" align="absmiddle"> <a href="https://www.pg-ram.com/courses/a4/ปรึกษาปัญหาการเรียน/" class="fmenuleft">ปรึกษาปัญหาการเรียน</a></td>
+                </tr>
+                <tr>
+                  <td align="left"><img src="https://www.pg-ram.com/images-gif/offline.gif" width="16" height="16" align="absmiddle"> <a href="https://www.pg-ram.com/news-open/what-this/สถาบันติวคืออะไร/" class="fmenuleft">สถาบันติวคืออะไร</a></td>
+                </tr>
+                <tr>
+                  <td align="left"><img src="https://www.pg-ram.com/images-gif/offline.gif" width="16" height="16" align="absmiddle"> <a href="https://www.pg-ram.com/news-open/recommend/แนะนำการเลือกคณะเรียน/" class="fmenuleft">แนะนำการเลือกคณะเรียน</a></td>
+                </tr>
+                <tr>
+                  <td align="left"><img src="https://www.pg-ram.com/images-gif/offline.gif" width="16" height="16" align="absmiddle"> <a href="https://www.pg-ram.com/ram/หลักสูตรมหาวิทยาลัยรามคำแหง/" class="fmenuleft">หลักสูตร ม.รามคำแหง</a></td>
+                </tr>
+                <tr>
+                  <td align="left"><img src="https://www.pg-ram.com/images-gif/offline.gif" width="16" height="16" align="absmiddle"> <a href="http://www.iregis2.ru.ac.th/ass_prog_semester2/Index/application_kunnavut.jsp" target="_blank" class="fmenuleft">เทียบวุฒิที่ใช้สมัครมหาลัยรามคำแหง</a></td>
+                </tr>
+				<tr><td>&nbsp;</td></tr>
+-->
+              </table>
+		</td>
+      </tr>
+</table>
+</td>
+        <td width="60%" valign="top" bgcolor="#FFFFFF"><table width="100%"  border="1" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" align="center">
+          <tr>
+            <td>
+              <table width="100%"  border="0" bgcolor="#FFFFFF">
+                <tr>
+                  <td align="center" class="thmx"><font size="+1"><strong>ระบบคำนวนเกรดเกรดเฉลี่ย ม.ราม ออนไลน์</strong></font></td>
+                </tr>
+              </table>
+              </td>
+          </tr>
+        </table>
+		<br>
+
+
+		<br>
+          <table width="100%"  border="1" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" align="center">
+		  <tr>
+		  <td>
+
+
+			<form name="grade">
+			<table width="600"  border="0" align="center" cellpadding="0" cellspacing="0" class="thmx">
+			  <tr>
+				<td height="30" align="center" bgcolor="#FFCC00" class="thmx"><strong>โปรดกรอกข้อมูลสำหรับการคำนวนผลการเรียน</strong></td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+			  </tr>
+			  <tr>
+				<td>
+				
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#99FF00" height="30" class="thmx"><strong>ลำดับ</strong></td>
+					<td width="25%" bgcolor="#99FF00" height="30" class="thmx"><strong>รหัสวิชา</strong></td>
+					<td width="22%" bgcolor="#99FF00" class="thmx"><strong>หน่วยกิต</strong></td>
+					<td width="22%" bgcolor="#99FF00" class="thmx"><strong>เกรด</strong></td>
+					<td width="22%" bgcolor="#99FF00" class="thmx"><strong>คะแนน</strong></td>
+					</tr>
+					</table>
+								<span id="tr1" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">1</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code1" type="text" id="code1" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit1" type="text" id="unit1" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade1" id="grade1" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score1"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr2" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">2</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code2" type="text" id="code2" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit2" type="text" id="unit2" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade2" id="grade2" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score2"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr3" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">3</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code3" type="text" id="code3" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit3" type="text" id="unit3" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade3" id="grade3" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score3"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr4" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">4</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code4" type="text" id="code4" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit4" type="text" id="unit4" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade4" id="grade4" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score4"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr5" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">5</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code5" type="text" id="code5" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit5" type="text" id="unit5" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade5" id="grade5" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score5"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr6" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">6</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code6" type="text" id="code6" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit6" type="text" id="unit6" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade6" id="grade6" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score6"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr7" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">7</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code7" type="text" id="code7" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit7" type="text" id="unit7" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade7" id="grade7" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score7"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr8" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">8</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code8" type="text" id="code8" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit8" type="text" id="unit8" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade8" id="grade8" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score8"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr9" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">9</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code9" type="text" id="code9" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit9" type="text" id="unit9" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade9" id="grade9" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score9"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr10" style="display:block">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">10</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code10" type="text" id="code10" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit10" type="text" id="unit10" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade10" id="grade10" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score10"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr11" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">11</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code11" type="text" id="code11" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit11" type="text" id="unit11" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade11" id="grade11" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score11"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr12" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">12</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code12" type="text" id="code12" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit12" type="text" id="unit12" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade12" id="grade12" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score12"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr13" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">13</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code13" type="text" id="code13" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit13" type="text" id="unit13" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade13" id="grade13" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score13"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr14" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">14</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code14" type="text" id="code14" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit14" type="text" id="unit14" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade14" id="grade14" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score14"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr15" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">15</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code15" type="text" id="code15" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit15" type="text" id="unit15" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade15" id="grade15" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score15"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr16" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">16</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code16" type="text" id="code16" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit16" type="text" id="unit16" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade16" id="grade16" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score16"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr17" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">17</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code17" type="text" id="code17" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit17" type="text" id="unit17" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade17" id="grade17" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score17"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr18" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">18</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code18" type="text" id="code18" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit18" type="text" id="unit18" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade18" id="grade18" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score18"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr19" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">19</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code19" type="text" id="code19" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit19" type="text" id="unit19" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade19" id="grade19" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score19"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr20" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">20</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code20" type="text" id="code20" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit20" type="text" id="unit20" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade20" id="grade20" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score20"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr21" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">21</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code21" type="text" id="code21" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit21" type="text" id="unit21" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade21" id="grade21" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score21"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr22" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">22</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code22" type="text" id="code22" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit22" type="text" id="unit22" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade22" id="grade22" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score22"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr23" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">23</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code23" type="text" id="code23" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit23" type="text" id="unit23" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade23" id="grade23" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score23"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr24" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">24</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code24" type="text" id="code24" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit24" type="text" id="unit24" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade24" id="grade24" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score24"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr25" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">25</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code25" type="text" id="code25" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit25" type="text" id="unit25" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade25" id="grade25" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score25"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr26" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">26</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code26" type="text" id="code26" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit26" type="text" id="unit26" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade26" id="grade26" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score26"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr27" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">27</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code27" type="text" id="code27" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit27" type="text" id="unit27" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade27" id="grade27" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score27"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr28" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">28</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code28" type="text" id="code28" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit28" type="text" id="unit28" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade28" id="grade28" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score28"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr29" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">29</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code29" type="text" id="code29" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit29" type="text" id="unit29" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade29" id="grade29" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score29"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr30" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">30</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code30" type="text" id="code30" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit30" type="text" id="unit30" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade30" id="grade30" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score30"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr31" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">31</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code31" type="text" id="code31" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit31" type="text" id="unit31" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade31" id="grade31" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score31"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr32" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">32</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code32" type="text" id="code32" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit32" type="text" id="unit32" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade32" id="grade32" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score32"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr33" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">33</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code33" type="text" id="code33" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit33" type="text" id="unit33" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade33" id="grade33" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score33"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr34" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">34</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code34" type="text" id="code34" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit34" type="text" id="unit34" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade34" id="grade34" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score34"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr35" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">35</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code35" type="text" id="code35" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit35" type="text" id="unit35" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade35" id="grade35" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score35"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr36" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">36</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code36" type="text" id="code36" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit36" type="text" id="unit36" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade36" id="grade36" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score36"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr37" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">37</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code37" type="text" id="code37" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit37" type="text" id="unit37" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade37" id="grade37" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score37"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr38" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">38</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code38" type="text" id="code38" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit38" type="text" id="unit38" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade38" id="grade38" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score38"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr39" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">39</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code39" type="text" id="code39" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit39" type="text" id="unit39" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade39" id="grade39" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score39"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr40" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">40</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code40" type="text" id="code40" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit40" type="text" id="unit40" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade40" id="grade40" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score40"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr41" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">41</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code41" type="text" id="code41" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit41" type="text" id="unit41" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade41" id="grade41" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score41"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr42" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">42</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code42" type="text" id="code42" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit42" type="text" id="unit42" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade42" id="grade42" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score42"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr43" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">43</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code43" type="text" id="code43" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit43" type="text" id="unit43" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade43" id="grade43" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score43"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr44" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">44</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code44" type="text" id="code44" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit44" type="text" id="unit44" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade44" id="grade44" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score44"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr45" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">45</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code45" type="text" id="code45" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit45" type="text" id="unit45" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade45" id="grade45" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score45"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr46" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">46</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code46" type="text" id="code46" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit46" type="text" id="unit46" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade46" id="grade46" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score46"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr47" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">47</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code47" type="text" id="code47" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit47" type="text" id="unit47" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade47" id="grade47" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score47"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr48" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">48</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code48" type="text" id="code48" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit48" type="text" id="unit48" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade48" id="grade48" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score48"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr49" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">49</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code49" type="text" id="code49" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit49" type="text" id="unit49" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade49" id="grade49" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score49"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr50" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">50</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code50" type="text" id="code50" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit50" type="text" id="unit50" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade50" id="grade50" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score50"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr51" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">51</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code51" type="text" id="code51" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit51" type="text" id="unit51" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade51" id="grade51" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score51"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr52" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">52</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code52" type="text" id="code52" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit52" type="text" id="unit52" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade52" id="grade52" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score52"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr53" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">53</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code53" type="text" id="code53" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit53" type="text" id="unit53" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade53" id="grade53" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score53"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr54" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">54</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code54" type="text" id="code54" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit54" type="text" id="unit54" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade54" id="grade54" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score54"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr55" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">55</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code55" type="text" id="code55" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit55" type="text" id="unit55" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade55" id="grade55" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score55"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr56" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">56</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code56" type="text" id="code56" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit56" type="text" id="unit56" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade56" id="grade56" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score56"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr57" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">57</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code57" type="text" id="code57" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit57" type="text" id="unit57" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade57" id="grade57" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score57"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr58" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">58</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code58" type="text" id="code58" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit58" type="text" id="unit58" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade58" id="grade58" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score58"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr59" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">59</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code59" type="text" id="code59" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit59" type="text" id="unit59" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade59" id="grade59" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score59"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<span id="tr60" style="display:none">
+				<table border="0" width="100%">
+				  <tr align="center">
+					<td width="10%" bgcolor="#FFFFCC" class="thmx">60</td>
+					<td width="25%" bgcolor="#FFFFCC" class="thmx"><input name="code60" type="text" id="code60" size="15"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><input name="unit60" type="text" id="unit60" size="5" onkeyup="cal();"></td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx">
+						<select name="grade60" id="grade60" onclick="cal();" onchange="cal();">
+						<option value="0">เกรด</option>
+						<option value="4">A</option>
+						<option value="3.5">B+</option>
+						<option value="3">B</option>
+						<option value="2.5">C+</option>
+						<option value="2">C</option>
+						<option value="1.5">D+</option>
+						<option value="1">D</option>
+						<option value="0">F</option>
+						</select>
+					</td>
+					<td width="22%" bgcolor="#FFFFCC" class="thmx"><b><font id="score60"></font><b></td>
+					</tr>
+				</table>
+				</span>
+								<p align="center"><a href="#" onclick="return show();">เพิ่มรหัสวิชา</a> | <a href="#" onclick="return hide();">ลบรหัสวิชาล่าสุด</a></p>
+				
+				</td>
+			  </tr>
+			  <tr>
+				<td align="center" class="thmx"><strong>ผลการคำนวนเกรด</strong></td>
+			  </tr>
+			  <tr>
+				<td><table width="100%"  border="0">
+				  <tr align="center" bgcolor="#CCFF99">
+					<td width="50%" height="28" class="thmx">จำนวนหน่วยกิต</td>
+					<td width="50%" class="thmx">เกรดเฉลี่ย</td>
+				  </tr>
+				  <tr align="center" bgcolor="#FFFFCC">
+					<td class="thmx"><b><font id="next_unit">&nbsp;</font><b></td>
+					<td class="thmx"><b><u><font id="next_total"></font></u><b></td>
+				  </tr>
+				</table></td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+			  </tr>
+			  <tr>
+				<td height="51" align="center"><input type="button" name="Submit" value="คำนวนเกรดเฉลี่ย" onclick="cal();">
+				<input type="button" name="Submit2" value="ป้อนใหม่" onclick="reset_form();"></td>
+			  </tr>
+			</table>
+			</form>
+
+			</td>
+          </tr>
+		  </table>
+
+
+		  </td>
+        <td width="20%" valign="top" bgcolor="#FFFFCC"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+
+          <tr>
+            <td>			
+			<table width="100%"  border="0">
+
+              <tr>
+                <td bgcolor="#FFFF00"><strong><img src="https://www.pg-ram.com/images-gif/options.gif" width="16" height="16" align="absmiddle"> <span class="style3">ข้อมูลการใช้งาน</span> </strong></td>
+              </tr>
+              <tr>
+                <td bgcolor="#ffffff">
+				<table width="100%"  border="0">
+                <tr>
+                  <td align="center">จำนวน online <b>
+                    37                  </b> คน </td>
+                </tr>
+                <tr>
+                  <td align="center">IP : <b>
+                    49.228.227.134                  </b></td>
+                </tr>
+              </table>
+					</td>
+				</tr>
+
+
+              <tr>
+                <td bgcolor="#FFFF00"><strong><img src="https://www.pg-ram.com/images-gif/options.gif" width="16" height="16" align="absmiddle"> <span class="style3">สมาชิกล่าสุด</span> </strong></td>
+              </tr>
+              <tr>
+                <td align="center">คุณ <b>อภิวัฒน์ xxxxxxx</b></td>
+              </tr>
+              <tr>
+                <td align="center">คณะ <b>คณะบริหารธุรกิจ</b></td>
+              </tr>
+              <tr>
+                <td align="center">วัน/เวลา 26 กุมภาพันธ์ 2565 19:04:08</td>
+              </tr>
+
+            </table>
+			</td>
+          </tr>
+
+<!--
+		   <tr bgcolor="#ffffff">
+            <td align="center" height="45"><a href="https://www.pg-ram.com/ram/หลักสูตรมหาวิทยาลัยรามคำแหง/" class="menu10">หลักสูตร ม.รามคำแหง</a></td>
+          </tr>
+		   <tr bgcolor="#ffffff">
+            <td align="center" height="45"><a href="https://www.pg-ram.com/news-open/pre-degree/วุฒิ ม.3 สมัคร ป.ตรี/" class="menu8">วุฒิ ม.3 สมัคร ป.ตรี</a></td>
+          </tr>
+		   <tr bgcolor="#ffffff" height="45">
+            <td align="center"><a href="https://www.pg-ram.com/grade-online/ระบบคำนวนเกรดเฉลี่ย ม.ราม ออนไลน์/" class="menu12">ระบบคำนวนเกรดเฉลี่ย</a></td>
+          </tr>
+		   <tr bgcolor="#ffffff">
+            <td>&nbsp;</td>
+          </tr>
+-->
+
+			<style>
+			ul {
+			  list-style-type: none;
+			  margin: 0;
+			  padding: 0;
+			  width: 200px;
+/*			  background-color: #f1f1f1;	*/
+			  background-color: #ffffff;
+			  border: 1px solid #555;
+			}
+
+			li a {
+			  display: block;
+			  color: #000;
+			  padding: 8px 16px;
+			  text-decoration: none;
+			}
+
+			li {
+			  text-align: center;
+			  border-bottom: 1px solid #555;
+			}
+
+			li:last-child {
+			  border-bottom: none;
+			}
+
+			li a.active {
+			  background-color: #4CAF50;
+			  color: white;
+			}
+
+			li a:hover:not(.active) {
+			  background-color: #555;
+			  color: white;
+			}
+			</style>
+
+		<tr>
+            <td>&nbsp;</td>
+          </tr>
+
+		   <tr>
+            <td align="center" bgcolor="#ffffff">
+			<ul>
+				<li><a class="active" href="#home">LINKS ที่น่าสนใจ</a></li>
+				<li><a href="https://www.aroundram.com/2021/02/17/ru46/" target="_blank">ประกาศพิธีพระราชทานปริญญาบัตร รุ่น 46       ขอแสดงความยินดีกับสมาชิกติวทุกท่านค่ะ</a></li>
+				<li><a href="http://www.iregis2.ru.ac.th/ass_prog_semester2/index.jsp" target="_blank">ม.ราม รับสมัคร น.ศ.ใหม่ทาง Internet</a></li>
+				<li><a href="http://www.iregis2.ru.ac.th/mr2/home.html" target="_blank">พิมพ์ใบสมัครมหาลัยรามคำแหง(มร.2)แบบสมัครด้วยตัวเองที่มหาลัย</a></li>
+				<li><a href="http://www.regis.ru.ac.th/checkstudentcard/" target="_blank">ตรวจสอบวันรับบัตรนักศึกษา(ต้องได้รหัสนักศึกษาก่อนนะคะ)</a></li>
+				<li><a href="https://www.ru.ac.th/th/Mr30" target="_blank">ค้นวันเวลาเรียนและวันเวลาสอบ</a></li>
+				<li><a href="https://www.ru.ac.th/th/images/Mr30/1633431686-.pdf" target="_blank">วันและเวลาเรียนม.ราม2/64 </a></li>
+				<li><a href="https://beta-e-service.ru.ac.th/" target="_blank">E-service และเช็คผลสอบ </a></li>
+				<li><a href="http://www.regis.ru.ac.th/document/calendar/20220215_2S64_Calendar1.pdf" target="_blank">ปฏิทินการศึกษาภาค2/64</a><img src='https://www.pg-ram.com/images/new2day.gif'></li>
+				<li><a href="http://www.regis.ru.ac.th/document/calendar/20220215_165_Calendar.pdf" target="_blank">ปฏิทินการศึกษาปีภาค1/2565</a><img src='https://www.pg-ram.com/images/new2day.gif'></li>
+				<li><a href="https://www.ru.ac.th/th/Mr30" target="_blank">มร.30วันและเวลาเรียนในม.รามคำแหง</a></li>
+				<li><a href="https://www.ru.ac.th/th/" target="_blank">มหาวิทยาลัยรามคำแหง</a></li>
+				<li><a href="http://www.mis.ru.ac.th/Ru_job.jsp" target="_blank">บันทึกภาวะผู้มีงานทำ(สำหรับนักศึกษาขอจบ)</a></li>
+				<li><a href="http://beta-e-service.ru.ac.th:8001/misservice/" target="_blank">พิมพ์บาร์โค๊ดลงทะเบียน 7 หลัก</a></li>
+				<li><a href="http://www.iregis2.ru.ac.th/regiscenter/index.jsp" target="_blank">ลงทะเบียนทางอินเตอร์เน็ต ม.ราม</a></li>
+				</ul>
+			</td>
+          </tr>
+
+		   <tr>
+            <td>&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td><table width="100%"  border="0">
+              <tr>
+                <td bgcolor="#FFFF00"><strong><img src="https://www.pg-ram.com/images-gif/options.gif" width="16" height="16" align="absmiddle"> <span class="style3">ภาพบรรยากาศการติว</span> </strong></td>
+              </tr>
+              <tr>
+                <td align="left"><table width="200"  border="0" cellpadding="2" bgcolor="#FFFFFF">
+                                    <tr>
+                    <td align="center"><a href="http://www.pg-ram.com/images-upload/20200707140350_pt.jpg" target="_blank"><img src="http://www.pg-ram.com/images-upload/tm_20200707140350_pt.jpg" alt="ห้องติวมีการจัดการเว้นระยะห่าง ตามมาตราการโควิด-19 และมีการทำความสะอาดสม่ำเสมอ" title="ห้องติวมีการจัดการเว้นระยะห่าง ตามมาตราการโควิด-19 และมีการทำความสะอาดสม่ำเสมอ"></a></td>
+                  </tr>
+                  <tr>
+                    <td align="center" height="5"></td>
+                  </tr>
+                                    <tr>
+                    <td align="center"><a href="http://www.pg-ram.com/images-upload/20200714100707_pt.jpg" target="_blank"><img src="http://www.pg-ram.com/images-upload/tm_20200714100707_pt.jpg" alt="ห้องน้ำมีพนักงานทำความสะอาดประจำสม่ำเสมอ" title="ห้องน้ำมีพนักงานทำความสะอาดประจำสม่ำเสมอ"></a></td>
+                  </tr>
+                  <tr>
+                    <td align="center" height="5"></td>
+                  </tr>
+                                    <tr>
+                    <td align="center"><a href="http://www.pg-ram.com/images-upload/20200707140259_pt.jpg" target="_blank"><img src="http://www.pg-ram.com/images-upload/tm_20200707140259_pt.jpg" alt="เคาร์เตอร์ประชาสัมพันธ์มีการป้องกันตามมาตราการโควิด-19 และมีการทำความสะอาดทุกๆ 1 ชม. " title="เคาร์เตอร์ประชาสัมพันธ์มีการป้องกันตามมาตราการโควิด-19 และมีการทำความสะอาดทุกๆ 1 ชม. "></a></td>
+                  </tr>
+                  <tr>
+                    <td align="center" height="5"></td>
+                  </tr>
+                                  </table></td>
+              </tr>
+            </table></td>
+          </tr>
+
+		   <tr>
+            <td>&nbsp;</td>
+          </tr>
+
+
+          <tr>
+            <td><table width="100%"  border="0">
+              <tr>
+                <td bgcolor="#FFFF00"><strong><img src="https://www.pg-ram.com/images-gif/options.gif" width="16" height="16" align="absmiddle"> <span class="style3">ประมวลภาพกิจกรรมต่างๆ</span> </strong></td>
+              </tr>
+                                <tr align="left" valign="top">                  
+                  <td width="98%" valign="top" align="center">
+                 <a href="https://www.pg-ram.com/photo_detail.php?photo_id=2" target="_blank">
+				 <img src="http://www.pg-ram.com/images-upload/tm_20200707141421_pt.jpg" alt="มีการสแกนคิวอาร์โค๊ดไทยชนะ และลงชื่อ เข้าและออกจากสถาบันติวP&G  พร้อมทั้งตรวจวัดอุณหภูมิ และรับแอลกอฮอล์เพื่อรับการทำความสะอาดเบื้องต้น ตามมาตราการโควิด-19 " title="มีการสแกนคิวอาร์โค๊ดไทยชนะ และลงชื่อ เข้าและออกจากสถาบันติวP&G  พร้อมทั้งตรวจวัดอุณหภูมิ และรับแอลกอฮอล์เพื่อรับการทำความสะอาดเบื้องต้น ตามมาตราการโควิด-19 ">
+				 <br>
+                    สถาบันติว P&G ซอยรามคำแหง43/1 เข้ามาจากปากซอยอยู่ด้านขวามือห้องที่ 2 และ 3                  </a>&nbsp;&nbsp;</td>
+			</tr>
+			            </table></td>
+          </tr>
+
+		  <tr>
+            <td>&nbsp;</td>
+          </tr>
+
+		  <tr>
+            <td>
+				<table width="100%"  border="0">
+				  <tr>
+					<td bgcolor="#FFFF00"><strong><img src="https://www.pg-ram.com/images-gif/options.gif" width="16" height="16" align="absmiddle"> <span class="style3">ประมวลภาพกิจกรรมต่างๆ</span> </strong></td>
+				  </tr>
+				  <tr bgcolor="#ffff99">
+					<td align="center"><a href="https://www.pg-ram.com/apartment-ram-2/"><img src="https://www.pg-ram.com/apartment-ram-2/images/logo1.gif"></a><br>บริการ ห้องพัก ราม 2, ที่พักราม2, หอพักราม 2, ห้องเช่าราม 2<br><a href="https://www.pg-ram.com/apartment-ram-2/">ดูรายละเอียดเพิ่มเติม</a></td>
+				  </tr>
+				</table>
+			</td>
+          </tr>
+
+        </table>
+</td>
+      </tr>
+      <tr align="center">
+        <td colspan="3"><table width="100%"  border="0" cellpadding="0" cellspacing="0" background="https://www.pg-ram.com/images/bg.png">
+          <tr>
+            <td width="20%" align="center"><style type="text/css">
+<!--
+.style1 {font-weight: bold}
+.style4 {	font-size: 9px;
+	font-family: Tahoma;
+}
+-->
+</style>
+
+<span class="style1">Copyright&copy; pg-ram.com <br>
+<span class="style4">designed by </span></span><span class="style4"><a href="https://www.pg-gov.com">pg-gov.com</a></span>
+<br>
+<font size="1">(B:
+229,C:
+0)</font>
+<table border="0"  cellspacing="0" cellpadding="0" style="border: 2px ridge #00FF00" bgcolor="#000000">
+<tr>
+<td valign="bottom" nowrap>
+<img align="absbottom" src="https://www.pg-ram.com/counter/0.gif"><img align="absbottom" src="https://www.pg-ram.com/counter/0.gif"><img align="absbottom" src="https://www.pg-ram.com/counter/0.gif"><img align="absbottom" src="https://www.pg-ram.com/counter/0.gif"><img align="absbottom" src="https://www.pg-ram.com/counter/7.gif"><img align="absbottom" src="https://www.pg-ram.com/counter/5scr.gif">
+</td>
+</tr>
+</table>
+
+</td>
+            <td width="80%" align="center" valign="top"> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+.style3x {color: #7F9C3F}
+.style5x {color: #7F9C3F; font-weight: bold; }
+-->
+</style>
+<a href="https://www.pg-ram.com/index.php">หน้าแรก</a> | <a href="https://www.pg-ram.com/schedule.php">ตารางเรียน</a> | <a href="https://www.pg-ram.com/ram2.php">สาขาราม 2</a> | <a href="https://www.pg-ram.com/ram.php">หลักสูตรราม</a> | <a href="https://www.pg-ram.com/board.php">การดานถามตอบ</a><br>
+
+                  <span class="style3x style5x"><strong>สถาบันติว PASS &amp; GOOD</strong></span><span class="style3x"><br>
+                  2151/2-3 ซอยรามคำแหง43/1 แขวงหัวหมาก เขตบางกะปิ กทม. 10240  <strong>Tel.02-7162180-2</strong></span>
+<br><b><font color="#000000">เข้าซอยรามคำแหง 43/1 มองด้านขวามือก่อนถึง 7-11 (เซเว่น)</font></b>
+</td>
+          </tr>
+        </table>
+        </td>
+      </tr>
+    </table></td>
+    <td width="12" background="https://www.pg-ram.com/frame/rim_04.gif"> <img src="https://www.pg-ram.com/frame/rim_04.gif" width="12" height="10" alt=""></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="left" valign="top" background="https://www.pg-ram.com/frame/rim_06.gif"> <img src="https://www.pg-ram.com/frame/rim_05.gif" width="24" height="29" alt=""></td>
+    <td background="https://www.pg-ram.com/frame/rim_06.gif"> <img src="https://www.pg-ram.com/frame/rim_06.gif" width="11" height="29" alt=""></td>
+    <td background="https://www.pg-ram.com/frame/rim_06.gif">&nbsp; </td>
+    <td colspan="2" align="right" valign="top" background="https://www.pg-ram.com/frame/rim_06.gif"> <img src="https://www.pg-ram.com/frame/rim_08.gif" width="25" height="29" alt=""></td>
+  </tr>
+  <tr>
+    <td> <img src="https://www.pg-ram.com/frame/spacer.gif" width="11" height="1" alt=""></td>
+    <td> <img src="https://www.pg-ram.com/frame/spacer.gif" width="13" height="1" alt=""></td>
+    <td> <img src="https://www.pg-ram.com/frame/spacer.gif" width="11" height="1" alt=""></td>
+    <td> <img src="https://www.pg-ram.com/frame/spacer.gif" width="193" height="1" alt=""></td>
+    <td> <img src="https://www.pg-ram.com/frame/spacer.gif" width="13" height="8" alt=""></td>
+    <td> <img src="https://www.pg-ram.com/frame/spacer.gif" width="12" height="1" alt=""></td>
+  </tr>
+</table>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<table width="900" align="center" border="0">
+<tr>
+<td align="center">
+						<a href="https://www.pg-ram.com/tags/ติว"><font size="4" color="#331472">ติว</font></a>
+						<a href="https://www.pg-ram.com/tags/สอน"><font size="5" color="#916406">สอน</font></a>
+						<a href="https://www.pg-ram.com/tags/สอบ"><font size="4" color="#218969">สอบ</font></a>
+						<a href="https://www.pg-ram.com/tags/สมัคร"><font size="3" color="#710632">สมัคร</font></a>
+						<a href="https://www.pg-ram.com/tags/เรียน"><font size="1" color="#499573">เรียน</font></a>
+						<a href="https://www.pg-ram.com/tags/รับติว"><font size="2" color="#886058">รับติว</font></a>
+						<a href="https://www.pg-ram.com/tags/รับสอน"><font size="3" color="#69578">รับสอน</font></a>
+						<a href="https://www.pg-ram.com/tags/ติวราม"><font size="5" color="#151980">ติวราม</font></a>
+						<a href="https://www.pg-ram.com/tags/ติวหน้าราม"><font size="4" color="#46891">ติวหน้าราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สอบราม"><font size="2" color="#389841">สอบราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สมัครราม"><font size="3" color="#369024">สมัครราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สมัครเรียนราม"><font size="3" color="#420358">สมัครเรียนราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สอนราม"><font size="3" color="#324942">สอนราม</font></a>
+						<a href="https://www.pg-ram.com/tags/เรียนราม"><font size="3" color="#799076">เรียนราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สอนหน้าราม"><font size="5" color="#83086">สอนหน้าราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สถาบันติวราม"><font size="2" color="#192278">สถาบันติวราม</font></a>
+						<a href="https://www.pg-ram.com/tags/สถาบันติวหน้าราม"><font size="4" color="#12463">สถาบันติวหน้าราม</font></a>
+								<a href="https://www.pg-ram.com/tags/ราม"><font size="2" color="#881667">ราม</font></a>
+						<a href="https://www.pg-ram.com/tags/หน้าราม"><font size="5" color="#791343">หน้าราม</font></a>
+						<a href="https://www.pg-ram.com/tags/รามคำแหง"><font size="2" color="#541889">รามคำแหง</font></a>
+						<a href="https://www.pg-ram.com/tags/ม.ราม"><font size="3" color="#617399">ม.ราม</font></a>
+						<a href="https://www.pg-ram.com/tags/มหาวิทยาลัยราม"><font size="1" color="#580788">มหาวิทยาลัยราม</font></a>
+						<a href="https://www.pg-ram.com/tags/มหาวิทยาลัยรามคำแหง"><font size="5" color="#610045">มหาวิทยาลัยรามคำแหง</font></a>
+						<a href="https://www.pg-ram.com/tags/ราม 2"><font size="5" color="#698887">ราม 2</font></a>
+						<a href="https://www.pg-ram.com/tags/หน้าราม 2"><font size="1" color="#353614">หน้าราม 2</font></a>
+						<a href="https://www.pg-ram.com/tags/รามคำแหง 2"><font size="4" color="#567779">รามคำแหง 2</font></a>
+						<a href="https://www.pg-ram.com/tags/ม.ราม 2"><font size="2" color="#32719">ม.ราม 2</font></a>
+						<a href="https://www.pg-ram.com/tags/มหาวิทยาลัยราม 2"><font size="5" color="#61033">มหาวิทยาลัยราม 2</font></a>
+						<a href="https://www.pg-ram.com/tags/มหาวิทยาลัยรามคำแหง 2"><font size="3" color="#200010">มหาวิทยาลัยรามคำแหง 2</font></a>
+		</td>
+
+</tr>
+</table></body>
+</html>

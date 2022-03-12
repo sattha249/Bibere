@@ -1,15 +1,15 @@
-{% extends "layout.html" %} {% block title %} Buyer favorite {% endblock %} {%
+{% extends "layout.html" %} {% block title %} My favorite details {% endblock %} {%
 block main %}
 
 <form action="/edit_profile_buyer" method="get" name="form">
   <div class="row">
-    <div class="head-myprofile col-5">
-      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
+    <div class="head-myprofile col-lg-5">
+      <h1>my profile</h1>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
           <div style="display: inline-block; text-align: center">
             <div>
               <img
@@ -17,11 +17,13 @@ block main %}
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
+                width="150"
+                height="150"
               />
             </div>
             <div>
               <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
-                {{f}} {{l}}
+                {{f}} 
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
@@ -39,14 +41,14 @@ block main %}
             <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
             <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
-            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
           </div>
         </div>
 
-        <div class="col-9" style="margin-top: 30px">
+        <div class="col-lg-9" style="margin-top: 30px">
           <div class="frame-line">
             <div>
-              <h2 class="head-name" style="font-size: 48px">My favorites</h2>
+              <h2 class="head-name">My favorites</h2>
             </div> 
             <div style="text-align: left">
             <div class="d-flex justify-content-center">
@@ -54,9 +56,8 @@ block main %}
                 <img class="fav-img mt-5" src="static/tea-fav.jpeg" alt="">
                   <div>
                     <div class="position-tag">
-                      <div class="type-tag d-flex flex-column">
-                        <span class="tag-name">Tea</span>
-                        <span class="tag-name">Lorem ipsum pla</span>
+                      <div class="type-tag">
+                        <span class="tag-name">Tea <br> Lorem ipsum</span>
                       </div>
                     </div>
                     <div class="position-icon">
@@ -67,38 +68,38 @@ block main %}
             </div>
             
 
-              <div class="mb-content">
-                <div >
-                  <div class="row">
-                    <div class="col-3">
+              <div class="container">
+                <div>
+                  <div class="row mt-md-5">
+                    <div class="mt-3 mt-md-0 col-lg-3 col-sm-12">
                       <span>Type of Beverage:</span>
                     </div>
-                    <div class="col-9 mb-3">
-                      <div class="tag mr-5">
+                    <div class="col-lg-9 col-sm-12 mb-lg-3">
+                      <div class="tag">
                         <span>Tea</span>
                       </div>
                     </div>
-                    <div class="col-3">
+                    <div class="mt-3 mt-md-0 col-lg-3 col-sm-12">
                       <span>Flavor: </span>
                     </div>
-                    <div class="col-9 mb-3">
-                      <div  class="tag mr-5">
+                    <div class="col-lg-9 col-sm-12 mb-lg-3">
+                      <div  class="tag">
                         <span>-</span>
                       </div>
                     </div>
-                    <div class="col-3">
+                    <div class="mt-3 mt-md-0 col-lg-3 col-sm-12">
                       <span>Cafe name:</span>
                     </div>
-                    <div class="col-9 mb-3">
-                      <div  class="tag mr-5">
+                    <div class="col-lg-9 col-sm-12 mb-lg-3">
+                      <div  class="tag">
                         <span>Brew passion</span>
                       </div>
                     </div>
-                    <div class="col-3">
+                    <div class="mt-3 mt-md-0 col-lg-3 col-sm-12">
                       <span>Description:</span>
                     </div>
-                    <div class="col-9 mb-3">
-                      <div class="tag mr-5">
+                    <div class="col-lg-9 col-sm-12 mb-lg-3">
+                      <div class="tag">
                         <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, excepturi ducimus molestias aspernatur natus corrupti eius. Consequatur illum ipsa, necessitatibus maiores natus unde, iure, delectus tempore nam deleniti exercitationem mollitia.</span>
                       </div>
                     </div>

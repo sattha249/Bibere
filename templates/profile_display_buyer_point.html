@@ -1,10 +1,10 @@
-{% extends "layout.html" %} {% block title %} Cafe history {% endblock %} {%
+{% extends "layout.html" %} {% block title %} My Point {% endblock %} {%
 block main %}
 
-<form action="/edit_profile_buyer" method="get" name="form">
+<form action="/profile_display_buyer_point_redemption" method="get" name="form">
   <div class="row">
     <div class="head-myprofile col-5">
-      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
+      <h1 style="font-size: 48px; margin-bottom: 20px">My profile</h1>
     </div>
 
     <div class="container">
@@ -40,41 +40,56 @@ block main %}
             <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a>
             <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
-            <a class="menu-style" href="#"><h5>Cafes History</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
+            <a class="menu-style" href="#"><h5>My Points</h5></a>
           </div>
         </div>
 
         <div class="col-9" style="margin-top: 30px">
           <div class="frame-line">
             <div>
-              <h2 class="head-name" style="font-size: 48px">History cafe</h2>
+              <h2 class="head-name" style="font-size: 48px">My Point</h2>
             </div>
             <div style="text-align: left">
               <div class="mb-content">
-                <div>
-                  <h3 >List of cafe</h3>
-                </div>
-
-                  <table style="width:100%">
+                  <table style="width:50%">
                     <tr>
                       <th>No.</th>
+                      <th>Beverage name</th>
                       <th>Cafe</th>
-                      <th>Location</th>
-                      <th>Visited date</th>
+                      <th>Point</th>
                     </tr>
+                  
+                    {%for i in order %}
                     <tr>
-                      {% for i in history %}
-                      <td>{{loop.index}}</td>
-                      <td>{{i[0]}}</td>
+                      <td>1.</td>
                       <td>{{i[1]}}</td>
-                      <td>{{i[2]}}</td>
+                      <td>{{i[0]}}</td>
+                      <td>10</td>
                     </tr>
-                      {% endfor %}
+                    {% endfor %}
                   </table>
               </div>
             </div>
+            
+            <div style="margin-top: 25px;margin-bottom: 15px; text-align: center">
+              <button
+                class="btn btn-primary"
+                action="/profile_display_buyer_point_redemption"
+                role="button"
+                style="
+                  background-color: #000000;
+                  font-size: 18px;
+                  padding: 6px 22px;
+                  border-radius: 25px;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                "
+              >
+                View redemption
+              </button>
+
           </div>
+
         </div>
       </div>
     </div>

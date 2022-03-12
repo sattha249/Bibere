@@ -1,5 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Timmana&display=swap");
 
+main .form-control {
+  /* Center form controls */
+  display: inline-block;
+
+  /* Override Bootstrap's 100% width for form controls */
+  /* width: 100%; */
+}
+
+.navbar.center .navbar-inner {
+  text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+  display:inline-block;
+  float: none;
+}
+
 nav .navbar-brand {
   /* size for brand */
   font-size: xx-large;
@@ -16,6 +33,16 @@ body {
 .padding-md {
   padding: 1em;
 }
+
+@media (min-width: 768px) {
+  .abs-center-x {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+
 
 nav .navbar-brand .blue {
   color: #537fbe;
@@ -87,6 +114,11 @@ body {
   background: #6f4c5b;
 }
 
+h1 {
+  font-size: 48px;
+  margin-bottom: 20px
+}
+
 h5 {
   font-size: 22px;
 }
@@ -102,9 +134,9 @@ h4 {
 
 .frame-line {
   position: relative;
-  height: 75vh;
   border-radius: 44px;
   border: 3px solid #577157;
+  padding: 10px;
 }
 
 .head-name {
@@ -114,11 +146,12 @@ h4 {
   font-size: 48px;
   background-color: #fff9f3;
   padding: 0 15px;
+  font-size: 48px;
 }
 
 .mb-content {
-  margin-top: 50px;
-  margin-left: 50px;
+  margin-top: 40px;
+
 }
 
 .active {
@@ -200,7 +233,7 @@ h4 {
   border: 2px solid #fff;
   border-radius: 50px;
   top: -22px;
-  padding: 10px 16px 2px 16px;
+  padding: 10px 10px 2px 10px;
   color: #fff;
   text-align: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
@@ -237,17 +270,19 @@ table {
 
 .type-tag {
   background-color: #fff;
-  padding: 8px 10px 8px 75px;
+  padding: 8px 10px 8px 47px;
+  margin-left: 73px;
   border-radius: 10px;
 }
 
 .main-position {
   position: relative;
+  /* margin: 0 20px; */
 }
 
 .position-tag {
   position: absolute;
-  top: 74px;
+  top: 71px;
   left: 20px;
 }
 
@@ -259,13 +294,215 @@ table {
 
 .position-icon {
   position: absolute;
-  top: 71px;
-  left: 16px;
+  top: 68px;
+  left: 55px;
 }
 
 .icon-tag {
  background-color: #f5b82e;
  padding: 15px;
  border-radius: 50px;
- width: 70px;
+ width: 75px;
+ box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+
+/* Media */
+@media screen and (max-width: 414px) {
+  .head-name {
+    font-size: 30px;
+    top: -10px;
+    left: -17px;
+  }
+
+  .main-position {
+    margin: 0;
+    left: -36px;
+  }
+
+  .frame-line {
+    border-radius: 30px;
+    padding-bottom: 25px;
+  }
+
+  .tag {
+    border-radius: 15px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  .head-myprofile {
+    text-transform: uppercase;
+    letter-spacing: 6px;
+  }
+
+  .mb-content {
+    margin-left: 0;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .fav-img {
+    flex-direction: row;
+  }
+
+  .head-name {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .type-tag {
+    margin-left: 40px;
+  }
+
+  .position-icon {
+    left: 22px;
+  }
+}
+
+.menu-option {
+  margin-right: 20px;
+  font-size: 18px;
+  min-width: 380px;
+  min-height: 30px;
+  text-indent:15px;
+  background-color: #C6D7C6;
+  border-radius: 25px;
+}
+
+.level-sweet {
+  font-size: 18px;
+  min-width: 150px;
+  min-height: 30px;
+  text-indent:15px;
+  background-color: #C6D7C6;
+  border-radius: 25px;
+}
+
+.qr-seller {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+}
+
+.collect-point {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 48px;
+  font-weight: bold;
+  color: #486648;
+}
+
+.your-point {
+  margin-top: 40px;
+  text-align: left;
+  text-indent:45px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.main-banner {
+  position: relative;
+  background: url(3tea.jpg) no-repeat center;
+  background-size: cover;
+  height: 570px;
+  overflow: hidden;
+}
+
+.container-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-family: Timmana;
+}
+
+.overlay {
+  background-color:rgba(0,0,0,0.5);
+  padding: 50px;
+}
+
+
+
+.overlay-welcome {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 1;
+}
+
+.welcome {
+  position: relative;
+  background: url(2hill.jpg) no-repeat center;
+  background-size: cover;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 500px;
+}
+
+.top-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: Timmana;
+  z-index: 3;
+}
+
+.overlay-welcome span {
+  z-index: 99;
+}
+
+.topic {
+  font-size: 36px;
+}
+
+.sub-topic {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.btn-order {
+  background-color: #FEF5ED;
+  border: 1px solid #486648;
+  padding: 15px 28px;
+  font-size: 18px;
+  border-radius: 50px;
+  font-family: roboto;
+  font-weight: 600;
+}
+
+.btn-order a {
+  text-decoration: none;
+  color: #486648;
+}
+
+.head-topic {
+  font-family: Timmana;
+  color: #486648;
+  font-size: 64px;
+}
+
+.match_bever{
+  margin-right: 20px;
+  font-size: 18px;
+  min-width: 380px;
+  min-height: 30px;
+  text-indent:15px;
+  background-color: #C6D7C6;
+  border-radius: 25px;
 }

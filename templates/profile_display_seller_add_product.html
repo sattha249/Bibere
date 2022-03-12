@@ -1,15 +1,15 @@
-{% extends "layout.html" %} {% block title %} My favorite {% endblock %} {%
+{% extends "layout.html" %} {% block title %} Seller add product{% endblock %} {%
 block main %}
 
-<form action="/edit_profile_buyer" method="get" name="form">
+<form action="/profile_display_seller_product" method="post" name="form">
   <div class="row">
-    <div class="head-myprofile col-lg-5">
-      <h1>my profile</h1>
+    <div class="head-myprofile">
+      <h1 style="font-size: 3vw; margin-bottom: 20px">my information</h1>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-3">
           <div style="display: inline-block; text-align: center">
             <div>
               <img
@@ -22,13 +22,12 @@ block main %}
               />
             </div>
             <div>
-              <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
-                {{f}}
+              <h2 style="font-size: 2vw; text-align: center; margin-top: 20px">
+                {{name}}
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
-              <div><h4>DOB: {{d}}</h4></div>
-              <div><h4>Age: {{age}}</h4></div>
+              <div><h4>Bangkok</h4></div>
               <div>
                 <h4>Status: <span class="active">Active</span></h4>
               </div>
@@ -36,23 +35,21 @@ block main %}
           </div>
 
           <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
-            <a class="menu-style" href="/profile"><h5 href="">My Profile</h5></a>
-            <a class="menu-style" href="#"><h5>My Favorite</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
+            <a class="menu-style" href="/profile"><h5 href="">My Information</h5></a>
+            <a class="menu-style" href="/profile_display_seller_order"><h5>My Orders</h5></a>
+            <a class="menu-style" href="#"><h5>My products</h5></a>
+            <a class="menu-style" href="/seller_point"><h5>Points</h5></a>
           </div>
         </div>
 
-        <div class="col-lg-9" style="margin-top: 30px">
+        <div class="col-9" style="margin-top: 30px">
           <div class="frame-line">
             <div>
-              <h2 class="head-name">My favorites</h2>
+              <h2 class="head-name" style="font-size: 48px">{{name}}</h2>
             </div>
             
-            <div class="row">
-              <div class="col-md-6 col-12 d-md-inline d-flex justify-content-center">
+            <!-- <div class="row">
+              <div class="col-6">
                 <div class="main-position">
                   <img class="fav-img mt-5" src="static/tea-fav.jpeg" alt="">
                     <div style="text-align: left">
@@ -67,7 +64,7 @@ block main %}
                     </div>
                 </div>
               </div>
-              <div class="col-md-6 col-12 d-md-inline d-flex justify-content-center">
+              <div class="col-6">
                 <div class="main-position">
                   <img class="fav-img mt-5" src="static/tea-fav.jpeg" alt="">
                     <div style="text-align: left">
@@ -82,7 +79,7 @@ block main %}
                     </div>
                 </div>
               </div>
-              <div class="col-md-6 col-12 d-md-inline d-flex justify-content-center">
+              <div class="col-6">
                 <div class="main-position">
                   <img class="fav-img mt-5" src="static/tea-fav.jpeg" alt="">
                     <div style="text-align: left">
@@ -97,11 +94,55 @@ block main %}
                     </div>
                 </div>
               </div>
+              <div class="col-6">
+                <div class="main-position">
+                  <img class="fav-img mt-5" src="static/tea-fav.jpeg" alt="">
+                    <div style="text-align: left">
+                      <div class="position-tag">
+                        <div class="type-tag">
+                          <span class="tag-name">Tea <br> Lorem ipsum</span>
+                        </div>
+                      </div>
+                      <div class="position-icon">
+                        <img class="icon-tag" src="static/coffee.svg" alt="">
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div> -->
+            
+            <div style="margin-bottom: 10px; text-align: center;">
+              <button
+                class="btn btn-primary"
+                action="/profile_display_seller_product"
+                role="button"
+                style="
+                  background-color: #000000;
+                  font-size: 18px;
+                  padding: 6px 22px;
+                  border-radius: 25px;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                "
+              >
+                Back
+              </button>
+              <button
+                class="btn btn-primary"
+                action="/profile_display_seller_product"
+                role="button"
+                style="
+                  background-color: #000000;
+                  font-size: 18px;
+                  padding: 6px 22px;
+                  border-radius: 25px;
+                  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                "
+              >
+                Save
+              </button>
             </div>
-            
-            
-            
-            
+
+          </div>
         </div>
       </div>
     </div>

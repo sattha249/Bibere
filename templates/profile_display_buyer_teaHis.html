@@ -1,4 +1,4 @@
-{% extends "layout.html" %} {% block title %} Buyer favorite {% endblock %} {%
+{% extends "layout.html" %} {% block title %} History beverages {% endblock %} {%
 block main %}
 
 <form action="/edit_profile_buyer" method="get" name="form">
@@ -17,11 +17,13 @@ block main %}
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
+                width="150"
+                height="150"
               />
             </div>
             <div>
               <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
-                {{f}} {{l}}
+                {{f}}
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
@@ -39,7 +41,7 @@ block main %}
             <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="#"><h5>Beverages History</h5></a>
             <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
-            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
           </div>
         </div>
 
@@ -55,30 +57,32 @@ block main %}
                 </div>
 
                 <table style="width:100%">
+
                   <tr>
                     <th>No.</th>
                     <th>Beverage name</th>
-                    <th>Type of Beverage</th>
                     <th>Cafe</th>
                     <th>Location</th>
                     <th>Price</th>
+                    <th>point</th>
                   </tr>
                   <tr>
                     <td>1.</td>
-                    <td>Matcha green tea</td>
-                    <td>Tea</td>
+                    <td>Green tea</td>
                     <td>Cuppa</td>
                     <td>SuanDok, Chiang Mai</td>
                     <td>$8</td>
+                    <td>10</td>
                   </tr>
                   <tr>
                     <td>2.</td>
-                    <td>Ice black coffee</td>
-                    <td>Coffee</td>
+                    <td>Thai tea</td>
                     <td>Cuppa</td>
                     <td>SuanDok, Chiang Mai</td>
-                    <td>$12</td>
+                    <td>$8</td>
+                    <td>10</td>
                   </tr>
+
                 </table>
 
               </div>

@@ -1,4 +1,4 @@
-{% extends "layout.html" %} {% block title %} Buyer Orders {% endblock %} {%
+{% extends "layout.html" %} {% block title %} My Orders {% endblock %} {%
 block main %}
 
 <form action="/edit_profile_buyer" method="get" name="form">
@@ -17,11 +17,13 @@ block main %}
                 class="strock rounded-circle mx-auto d-block image-profile"
                 alt="Profile Picture"
                 style="text-align: center"
+                width="150"
+                height="150"
               />
             </div>
             <div>
               <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
-                {{f}} {{l}}
+                {{f}}
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
@@ -39,7 +41,7 @@ block main %}
             <a class="menu-style" href="#"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_buyer_teaHis"><h5>Beverages History</h5></a>
             <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
-            <a class="menu-style" href="#"><h5>Grabs</h5></a>
+            <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
           </div>
         </div>
 
@@ -53,31 +55,22 @@ block main %}
                   <table style="width:100%">
                     <tr>
                       <th>No.</th>
-                      <th>Product</th>
-                      <th>Shop</th>
-                      <th>Date</th>
-                      <th>Status</th>
-                      <th>Payment</th>
-                      <th>Total</th>
+                      <th>Beverage name</th>
+                      <th>Type of Beverage</th>
+                      <th>Cafe</th>
+                      <th>Location</th>
+                      <th>Price</th>
                     </tr>
+                    {%for i in order %}
                     <tr>
-                      <td>1.</td>
-                      <td>Green tea</td>
-                      <td>Cuppa</td>
-                      <td>01/01/1999</td>
-                      <td>Shipped</td>
-                      <td>PromptPay</td>
-                      <td>$199</td>
+                      <td>{{loop.index}}</td>
+                      <td>{{i[0]}}</td>
+                      <td>{%if i[1] == 0 %} COFFEE {% else %} TEA {% endif %}</td>
+                      <td>{{i[2]}}</td>
+                      <td>{{i[3]}}</td>
+                      <td>{{i[4]}}</td>
                     </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Coffee</td>
-                      <td>Cuppa</td>
-                      <td>02/01/1999</td>
-                      <td>Preparing</td>
-                      <td>PromptPay</td>
-                      <td>$999</td>
-                    </tr>
+                    {% endfor %}
                   </table>
               </div>
             </div>
