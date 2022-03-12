@@ -6,19 +6,35 @@ Home
 
 {% block main %}
 
-<form action="/edit_profile_buyer" method="get" name="form">
-  <div class="row">
-    <div class="head-myprofile col-5">
-      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
+
+<form>
+  <div class="main-banner mb-lg-5">
+    <div class="container-content">
+      <div class="overlay d-flex flex-column">
+        <h1 class="mb-0"> Viva La Vida</h1>
+        <h2 class="mb-0">More than a celebration It's life</h2>
+      </div>
     </div>
   </div>
-</from>
 
-<head>
-  <div>
-    <img src="static/2hill.jpg" alt="">
+  <div class="welcome">
+    <div class="overlay-welcome"></div>
+    <div class="d-flex flex-column top-text">
+      <span class="topic">Welcome to Bibere!</span>
+      <span class="sub-topic">An open source platform for Tea and coffe lovers.</span>
+      <div>
+        <button class="btn-order"><a href="#">ORDER NOW!</a></button>
+      </div>
+    </div>
   </div>
-</head>
+
+  <div class="d-flex justify-content-start">
+    <span class="head-topic mt-lg-4">Recommended</span>
+  </div>
+
+</form>
+
+
 
   
 {% endblock %}

@@ -87,6 +87,8 @@ reset_form();
                   class="strock rounded-circle mx-auto d-block image-profile"
                   alt="Profile Picture"
                   style="text-align: center"
+                  width="150"
+                  height="150"
                 />
               </div>
               <div>
@@ -134,12 +136,18 @@ reset_form();
                                                 <select class="menu-option" name="menu1" id="menu1" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -166,12 +174,18 @@ reset_form();
                                                 <select class="menu-option" name="menu2" id="menu2" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -198,12 +212,18 @@ reset_form();
                                                 <select class="menu-option" name="menu3" id="menu3" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -230,12 +250,18 @@ reset_form();
                                                 <select class="menu-option" name="menu4" id="menu4" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -262,12 +288,18 @@ reset_form();
                                                 <select class="menu-option" name="menu5" id="menu5" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -294,12 +326,18 @@ reset_form();
                                                 <select class="menu-option" name="menu6" id="menu6" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -326,12 +364,18 @@ reset_form();
                                                 <select class="menu-option" name="menu7" id="menu7" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
-                                                  </optgroup>
-                                                  <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 0%}
+                                                  <option value="{{i[0]}}">{{i[0]}}</option>
+                                                    {%endif%}                            
+                                                  {% endfor %}
+                                                </optgroup>
+                                                <optgroup label="Tea">
+                                                  {% for i in bev %}
+                                                  {%if i[1] == 1%}
+                                                  <option value="{{i[0]}}">{{i[0]}}</option>
+                                                    {%endif%}
+                                                  {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -358,12 +402,18 @@ reset_form();
                                                 <select class="menu-option" name="menu8" id="menu8" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
-                                                  </optgroup>
-                                                  <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 0%}
+                                                  <option value="{{i[0]}}">{{i[0]}}</option>
+                                                    {%endif%}                            
+                                                  {% endfor %}
+                                                </optgroup>
+                                                <optgroup label="Tea">
+                                                  {% for i in bev %}
+                                                  {%if i[1] == 1%}
+                                                  <option value="{{i[0]}}">{{i[0]}}</option>
+                                                    {%endif%}
+                                                  {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -390,12 +440,18 @@ reset_form();
                                                 <select class="menu-option" name="menu9" id="menu9" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
-                                                  </optgroup>
-                                                  <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 0%}
+                                                  <option value="{{i[0]}}">{{i[0]}}</option>
+                                                    {%endif%}                            
+                                                  {% endfor %}
+                                                </optgroup>
+                                                <optgroup label="Tea">
+                                                  {% for i in bev %}
+                                                  {%if i[1] == 1%}
+                                                  <option value="{{i[0]}}">{{i[0]}}</option>
+                                                    {%endif%}
+                                                  {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->
@@ -422,12 +478,18 @@ reset_form();
                                                 <select class="menu-option" name="menu10" id="menu10" onclick="cal();" onchange="cal();">
                                                   <option value="none" selected disabled hidden>Select an Option</option>
                                                   <optgroup label="Coffee">
-                                                    <option value="Ice Latte">Ice Latte</option>
-                                                    <option value="Hot Latte">Hot Latte</option>
+                                                    {% for i in bev %}
+                                                      {%if i[1] == 0%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}                            
+                                                    {% endfor %}
                                                   </optgroup>
                                                   <optgroup label="Tea">
-                                                    <option value="Green tea">Green tea</option>
-                                                    <option value="Thai tea">Thai tea</option>
+                                                    {% for i in bev %}
+                                                    {%if i[1] == 1%}
+                                                    <option value="{{i[0]}}">{{i[0]}}</option>
+                                                      {%endif%}
+                                                    {%endfor%}
                                                   </optgroup>
                                                 </select>
                                                 <!-- <label for="sweetlevel">Sweet level</label> -->

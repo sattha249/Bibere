@@ -6,7 +6,7 @@ Seller QR code
 
 {% block main %}
 
-<form action="/seller_point" method="get" name="form">
+<form action="/profile_display_seller_order" method="get" name="form">
   <div style="margin-top: 30px; ">
       <div class="frame-line">
         <div>
@@ -14,7 +14,7 @@ Seller QR code
         </div>
         <div style="text-align: center">
           <img
-                  src="/static/Logo.png"
+                  src="./static/QRcode/{{qr}}"
                   class="qr-seller"
                   alt="QR Code"
                   style="text-align: center"

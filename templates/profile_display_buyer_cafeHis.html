@@ -61,17 +61,16 @@ block main %}
                       <th>No.</th>
                       <th>Cafe</th>
                       <th>Location</th>
+                      <th>Visited date</th>
                     </tr>
                     <tr>
-                      <td>1.</td>
-                      <td>Cuppa</td>
-                      <td>SuanDok, Chiang Mai</td>
+                      {% for i in history %}
+                      <td>{{loop.index}}</td>
+                      <td>{{i[0]}}</td>
+                      <td>{{i[1]}}</td>
+                      <td>{{i[2]}}</td>
                     </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Cuppa</td>
-                      <td>SuanDok, Chiang Mai</td>
-                    </tr>
+                      {% endfor %}
                   </table>
               </div>
             </div>

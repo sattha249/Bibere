@@ -8,6 +8,15 @@ main .form-control {
   /* width: 100%; */
 }
 
+.navbar.center .navbar-inner {
+  text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+  display:inline-block;
+  float: none;
+}
+
 nav .navbar-brand {
   /* size for brand */
   font-size: xx-large;
@@ -24,6 +33,16 @@ body {
 .padding-md {
   padding: 1em;
 }
+
+@media (min-width: 768px) {
+  .abs-center-x {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+  }
+}
+
+
 
 nav .navbar-brand .blue {
   color: #537fbe;
@@ -385,4 +404,105 @@ table {
   text-indent:45px;
   font-weight: bold;
   font-size: 18px;
+}
+
+.main-banner {
+  position: relative;
+  background: url(3tea.jpg) no-repeat center;
+  background-size: cover;
+  height: 570px;
+  overflow: hidden;
+}
+
+.container-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-family: Timmana;
+}
+
+.overlay {
+  background-color:rgba(0,0,0,0.5);
+  padding: 50px;
+}
+
+
+
+.overlay-welcome {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 1;
+}
+
+.welcome {
+  position: relative;
+  background: url(2hill.jpg) no-repeat center;
+  background-size: cover;
+  height: 340px;
+  overflow: hidden;
+  border-radius: 500px;
+}
+
+.top-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: Timmana;
+  z-index: 3;
+}
+
+.overlay-welcome span {
+  z-index: 99;
+}
+
+.topic {
+  font-size: 36px;
+}
+
+.sub-topic {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.btn-order {
+  background-color: #FEF5ED;
+  border: 1px solid #486648;
+  padding: 15px 28px;
+  font-size: 18px;
+  border-radius: 50px;
+  font-family: roboto;
+  font-weight: 600;
+}
+
+.btn-order a {
+  text-decoration: none;
+  color: #486648;
+}
+
+.head-topic {
+  font-family: Timmana;
+  color: #486648;
+  font-size: 64px;
+}
+
+.match_bever{
+  margin-right: 20px;
+  font-size: 18px;
+  min-width: 380px;
+  min-height: 30px;
+  text-indent:15px;
+  background-color: #C6D7C6;
+  border-radius: 25px;
 }
