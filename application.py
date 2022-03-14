@@ -8,7 +8,8 @@ import os
 from os.path import join,dirname,realpath
 from werkzeug.utils import secure_filename
 import qrcode
-
+import cv2
+from flask_dropzone import Dropzone
 
 user_name = "root"
 passwd = "Codercamp1"
@@ -16,13 +17,20 @@ passwd = "Codercamp1"
 API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'U63LKnnHGJ'
 app.config["SESSION_TYPE"] = "filesystem"
-app.config['UPLOAD_FOLDER'] = join(dirname(realpath(__file__)), 'static/profile/')
+app.config['UPLOAD_FOLDER'] = join(os.getcwd(), 'static/QRcode/')
+app.config['DROPZONE_MAX_FILE_SIZE'] = 5
+app.config['DROPZONE_MAX_FILES'] = 1
+app.config['DROPZONE_REDIRECT_VIEW'] = "test_decode"
 path = join(os.getcwd(), 'static/profile/')
 pathQR = join(os.getcwd(), 'static/QRcode/')
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 Session(app)
+dropzone = Dropzone(app)
+
+
 
 
 mydb = mysql.connector.connect(
@@ -66,7 +74,8 @@ def fetch_information():
     data = cursor.fetchall()
     data.append(get_age(data[0][3]))
     print(data)
-    return data 
+    return data
+
 
 def fetch_order():
     mode = getmode()
@@ -128,7 +137,14 @@ def login(username,hash_pass,mode):
         session["id"] = login_data[0][2]
 
 
-
+def fetch_point(collect):
+    print('collect = ' ,collect)
+    point = []
+    for i in collect:
+        command = ("insert into order_inf(seller_id,buyer_id,product_id,order_date,status,payment) VALUES({0},buyer_id,{1},order_date,status,payment)".format(session['id'],i))
+        point.append(command)
+    return point
+    
 
 #flask
 @app.route('/',methods = ["get","post"])
@@ -437,7 +453,6 @@ def profile_display_seller_order():
     picture = data[0][9])
 
 
-
 @app.route('/profile_display_buyer_cafeHis',methods = ['get','post'])
 def profile_display_buyer_cafeHis():
     data = fetch_information()
@@ -470,15 +485,15 @@ def profile_display_buyer_favorite():
     age = data[1])
 
 
-@app.route('/profile_display_buyer_teaHis',methods = ['get','post'])
-def profile_display_buyer_teaHis():
-    data = fetch_information()
-    return render_template("profile_display_buyer_teaHis.html",
-    f = data[0][1],
-    l = data[0][2],
-    d = data[0][3],
-    picture = data[0][9],
-    age = data[1])
+# @app.route('/profile_display_buyer_teaHis',methods = ['get','post'])
+# def profile_display_buyer_teaHis():
+#     data = fetch_information()
+#     return render_template("profile_display_buyer_teaHis.html",
+#     f = data[0][1],
+#     l = data[0][2],
+#     d = data[0][3],
+#     picture = data[0][9],
+#     age = data[1])
     
 
 
@@ -492,6 +507,32 @@ def profile_display_seller_product():
     product = product,
     name= data[0][1],
     picture = data[0][9])
+
+@app.route('/profile_display_seller_add_product',methods = ['get','post'])
+def profile_display_seller_add_product():
+    if request.method == 'POST':
+        prod_name = request.form.get('prod_name')
+        bev_type = request.form.get('type')
+        description = request.form.get('desc')
+        price = request.form.get('price')
+        point = request.form.get('point')
+        # cursor.execute("SELECT product_name,tea,descriptions,price,point FROM product_inf WHERE seller = {}".format(session['id']))
+        # for i in p:
+        #     if i[0].upper() == prod_name.upper():
+        #         print ("fucking caramel")
+        #     else :
+        #         print(i[0])  
+    data = fetch_information()
+    product = fetch_product()
+    return render_template('profile_display_seller_add_product.html',
+    bev = product,
+    name= data[0][1],
+    picture = data[0][9])
+    
+
+
+
+
 
 @app.route('/profile_display_seller_product_details',methods = ['get','post'])
 def profile_display_seller_product_details():
@@ -520,31 +561,37 @@ def seller_point():
         request.form.get("level7"),request.form.get("level8"),
         request.form.get("level9"),request.form.get("level10")]
 
+        collect = []
+        for i in menu:
+            print(i)
+            if i == None:
+                continue
+            else:
+                collect.append(i)
+        point = []
+        point = fetch_point(collect)
+        print(point)
         #check file
-
         counter = session['id']
         file_name = "qr{0}.png"
         file_name = file_name.format(counter)
         hash_name = hashlib.md5(str(file_name).encode('utf-8'))
         file_name = hash_name.hexdigest()+".png"
 
-        qrcode_img = qrcode.make(menu)
+        # qrcode_img = qrcode.make(collect)
+        qrcode_img = qrcode.make(point[0])
         qrcode_img.save(os.path.join(pathQR,file_name))
         print(os.path.join(pathQR,file_name))
-        print(menu)
-        print(level)  
+        # print(collect)
+        # print(level)  
         return render_template('qr_seller.html',qr = file_name)
     data = fetch_information()
     product = fetch_product()
-    
     return render_template('seller_point.html',
     bev = product,
     name= data[0][1],
     picture = data[0][9]) 
 
-# @app.route('/qr_seller',methods = ['get','post'])
-# def qr_seller():
-#     return render_template('qr_seller.html')
 
 @app.route('/home',methods = ['get','post'])
 def home():
@@ -578,39 +625,37 @@ def profile_display_buyer_point_redemption():
 def matchmybeverage():
     return render_template('matchmybeverage.html')
 
+
+
 @app.route('/product',methods = ['get','post'])
 def product():
     return render_template('product.html')
 
-@app.route('/profile_display_seller_add_product',methods = ['get','post'])
-def profile_display_seller_add_product():
-    if request.method == 'POST':
-        prod_name = request.form.get('prod_name')
-        bev_type = request.form.get('type')
-        description = request.form.get('desc')
-        price = request.form.get('price')
-        point = request.form.get('point')
-        # cursor.execute("SELECT product_name,tea,descriptions,price,point FROM product_inf WHERE seller = {}".format(session['id']))
-        # for i in p:
-        #     if i[0].upper() == prod_name.upper():
-        #         print ("fucking caramel")
-        #     else :
-        #         print(i[0])  
-    data = fetch_information()
-    return render_template('profile_display_seller_add_product.html',name = data[0][1],
-    d = data[0][3],
-    picture = data[0][9])
 
-# cursor.execute("SELECT product_name,tea,descriptions,price,point FROM product_inf WHERE seller =2")
-# p = cursor.fetchall()
-# print (p)
-# for i in p:
-#     if i[0].upper() == 'green tea'.upper():
-#         print ("fucking caramel")
-#     else :
-#         print(i[0])
-#     for j in i :
-#         print(j)
+
+
+
+@app.route('/testup',methods = ['get','post'])
+def testup():
+    if request.method == "POST":
+        global decoded_info
+        f =request.files.get("file")
+        filename, extension = f.filename.split(".")
+        generated_filename = f".{extension}"
+        file_location = os.path.join(app.config['UPLOAD_FOLDER'],generated_filename)
+        f.save(file_location)
+        img = cv2.imread(file_location)
+        det = cv2.QRCodeDetector()
+        val, pts , st_code = det.detectAndDecode(img)
+        os.remove(file_location)
+        decoded_info = val
+        print(decoded_info)
+    return render_template('testup.html')
+
+@app.route('/test_decode',methods = ['get','post'])
+def test_decode():
+    print(decoded_info)
+    return render_template('test_decode.html',data = decoded_info)
 
 if __name__ == "__main__" :
     app.run(debug=True,host = "0.0.0.0")    

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Seller Point
+{% endblock %}
+
+{% block main %}
+
+<div class = "justify-content-center">
+    <h4>Drop QR code to get decoded info</h4>
+</div>
+
+{{dropzone.create(action='testup')}}
+{{dropzone.load_js()}}
+{{dropzone.config()}}
+
+{{dropzone.load_css()}}
+{{ dropzone.style('border: 2px dashed #0087F7; margin: 2% 10% 2% 10%; min-height: 400px;')}}
+
+
+
+
+{% endblock %}
