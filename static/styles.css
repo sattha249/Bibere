@@ -17,6 +17,8 @@ main .form-control {
   float: none;
 }
 
+
+
 nav .navbar-brand {
   /* size for brand */
   font-size: xx-large;
@@ -499,3 +501,21 @@ table {
   background-color: #C6D7C6;
   border-radius: 25px;
 }
+
+.nav a{
+  color: white !important;
+  font-size: 1.8em !important;
+  }
+.navbar a{
+  color: #6F4C5B!important;
+  font-weight: 600;
+}
+
+  nav a:hover {
+    border-top: 4px solid white;
+    border-bottom: 4px solid white;
+    padding: 6px 0; 
+  }
+
+
+

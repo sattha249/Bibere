@@ -10,6 +10,7 @@ from werkzeug.utils import secure_filename
 import qrcode
 import cv2
 from flask_dropzone import Dropzone
+import random
 
 user_name = "root"
 passwd = "Codercamp1"
@@ -22,7 +23,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 app.config['UPLOAD_FOLDER'] = join(os.getcwd(), 'static/QRcode/')
 app.config['DROPZONE_MAX_FILE_SIZE'] = 5
 app.config['DROPZONE_MAX_FILES'] = 1
-app.config['DROPZONE_REDIRECT_VIEW'] = "test_decode"
+app.config['DROPZONE_REDIRECT_VIEW'] = "decode"
 path = join(os.getcwd(), 'static/profile/')
 pathQR = join(os.getcwd(), 'static/QRcode/')
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
@@ -40,7 +41,7 @@ mydb = mysql.connector.connect(
     database="cuppa"
 )
 cursor = mydb.cursor(buffered=True)
-
+ 
 
 
 def miles_to_meters(miles):
@@ -53,7 +54,6 @@ def miles_to_meters(miles):
 def get_age(y):
     a = str(y)
     b = a.split('-')
-    print (2022 - int(b[0]))
     return (2022 - int(b[0]))
 
 
@@ -79,9 +79,7 @@ def fetch_information():
 
 def fetch_order():
     mode = getmode()
-    print (mode)
     if mode == True:
-        # cursor.execute("SELECT seller_id,product_id,order_date,status,payment FROM order_inf WHERE customer_id = {}".format(session["id"]))
         cursor.execute("""SELECT product_inf.product_name,
         product_inf.tea,
         user_inf.firstname,
@@ -106,7 +104,7 @@ def fetch_order():
     return data 
 
 def fetch_product():
-    cursor.execute("SELECT product_name,tea,descriptions,price,point,picture FROM product_inf WHERE seller = {}".format(session['id']))
+    cursor.execute("SELECT product_name,tea,descriptions,price,point,picture,product_id FROM product_inf WHERE seller = {}".format(session['id']))
     bev = cursor.fetchall()
     return bev
 
@@ -116,10 +114,18 @@ def fetch_history():
         cursor.execute("""SELECT user_inf.firstname,user_inf.address,
         order_inf.order_date 
         FROM user_inf INNER JOIN order_inf ON order_inf.seller_id = user_inf.id 
-        WHERE order_inf.customer_id = 1 ORDER BY order_inf.order_date;""")
+        WHERE order_inf.customer_id = {0} ORDER BY order_inf.order_date;""".format(session['id']))
         history = cursor.fetchall()
     return history
 
+    
+def fetch_point(collect):
+    print('collect = ' ,collect)
+    point = []
+    for i in collect:
+        point.append(int(i[0]))
+    return point
+    
 
 def register(username,hash_pass,mode,email):
     cursor.execute("INSERT INTO user_data (username,hashpass,client) VALUES ('{0}','{1}',{2})".format(username,hash_pass,mode))
@@ -137,15 +143,6 @@ def login(username,hash_pass,mode):
         session["id"] = login_data[0][2]
 
 
-def fetch_point(collect):
-    print('collect = ' ,collect)
-    point = []
-    for i in collect:
-        command = ("insert into order_inf(seller_id,buyer_id,product_id,order_date,status,payment) VALUES({0},buyer_id,{1},order_date,status,payment)".format(session['id'],i))
-        point.append(command)
-    return point
-    
-
 #flask
 @app.route('/',methods = ["get","post"])
 def index():
@@ -155,10 +152,6 @@ def index():
         return redirect("login_buyer")
     return redirect("profile")
     
-
-@app.route('/test',methods = ["get","post"])
-def test():
-    return render_template('test.html')
 
 @app.route('/login_buyer',methods = ["get","post"])
 def login():
@@ -200,9 +193,6 @@ def login_seller():
 
 
 
-
-
-
 @app.route('/buy_register',methods =['get','post'])
 def buy_register():
     if request.method == "POST":
@@ -238,32 +228,35 @@ def sell_register():
             except:
                 return "<h3>Username already in use<h3>"
         else:
-            return "password must more than 8 charactor" 
+            return "password must more than 8 characters" 
     return render_template("sell_register.html") 
 
 
 
 @app.route('/cafenearyou',methods =['get','post'])
 def barNearYou():   
-     #get my location
+    #  get my location
     myloc = geocoder.ip('me')
     lat = myloc.latlng[0]
     lng = myloc.latlng[1]
     print(myloc.latlng)
 
-        # my home
-    # lat = 13.753263121876094 
-    # lng = 100.74236460509789
+    # siamscape
+    # lat = 13.745490
+    # lng = 100.531117
+    # locations = {'lat': lat , 'lng':lng}
 
+    #   my home
+    lat = 13.753263121876094 
+    lng = 100.74236460509789
     locations = {'lat': lat , 'lng':lng}
 
     #get nearby cafe
     map_client = googlemaps.Client(API_KEY)
-    # my home
-    #location = (13.753263121876094, 100.74236460509789)
+    
     location = (lat, lng)
-    search_string = 'cafe'
-    distance = miles_to_meters(15)
+    search_string = 'cafe','bakery'
+    distance = miles_to_meters(3)
     business_list = []
 
     response = map_client.places_nearby(
@@ -275,7 +268,9 @@ def barNearYou():
     business_list.extend(response.get('results'))
     cafe = []
     for i in business_list:
-        cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
+        #ส่วนนี้ใช้แก้ปัญหาเรื่อง Jason parse error
+        if 'Hob & Coff' not in i['name'] :
+            cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
     print (business_list[0])
     print (cafe)
     return render_template("cafenearyou.html",location = locations,cafe = cafe)
@@ -396,16 +391,11 @@ def edit_profile_seller():
 
 
 
-
-    
-
 @app.route('/logout')
 def logout():
     session["name"] = None
     session["id"] = None
     return redirect("/")
-
-
 
 
 @app.route('/upload',methods =['Get','POST'])
@@ -485,18 +475,6 @@ def profile_display_buyer_favorite():
     age = data[1])
 
 
-# @app.route('/profile_display_buyer_teaHis',methods = ['get','post'])
-# def profile_display_buyer_teaHis():
-#     data = fetch_information()
-#     return render_template("profile_display_buyer_teaHis.html",
-#     f = data[0][1],
-#     l = data[0][2],
-#     d = data[0][3],
-#     picture = data[0][9],
-#     age = data[1])
-    
-
-
 
 @app.route('/profile_display_seller_product',methods = ['get','post'])
 def profile_display_seller_product():
@@ -516,12 +494,18 @@ def profile_display_seller_add_product():
         description = request.form.get('desc')
         price = request.form.get('price')
         point = request.form.get('point')
-        # cursor.execute("SELECT product_name,tea,descriptions,price,point FROM product_inf WHERE seller = {}".format(session['id']))
-        # for i in p:
-        #     if i[0].upper() == prod_name.upper():
-        #         print ("fucking caramel")
-        #     else :
-        #         print(i[0])  
+        print(prod_name,bev_type,description,price,point)
+        cursor.execute("SELECT product_name FROM product_inf WHERE seller = {} AND product_name = '{}' ".format(session['id'],prod_name))
+        detail = cursor.fetchall()
+        if detail != []:
+            for i in detail:
+                if i[0].upper() == prod_name.upper():
+                    return "Already have this beverage in your menu"
+                else :
+                    print(detail[0])
+        cursor.execute("INSERT INTO product_inf(product_name,tea,descriptions,price,point,seller) VALUES ('{0}',{1},'{2}',{3},{4},{5})".format(prod_name,bev_type,description,price,point,session['id']))
+        mydb.commit()
+
     data = fetch_information()
     product = fetch_product()
     return render_template('profile_display_seller_add_product.html',
@@ -529,9 +513,6 @@ def profile_display_seller_add_product():
     name= data[0][1],
     picture = data[0][9])
     
-
-
-
 
 
 @app.route('/profile_display_seller_product_details',methods = ['get','post'])
@@ -568,9 +549,13 @@ def seller_point():
                 continue
             else:
                 collect.append(i)
+        hash = random.getrandbits(128)
+        hash = ("%032x" % hash)
         point = []
         point = fetch_point(collect)
-        print(point)
+        point.append(session['id'])
+        point.append(hash)
+        print("point = ", point)
         #check file
         counter = session['id']
         file_name = "qr{0}.png"
@@ -578,8 +563,7 @@ def seller_point():
         hash_name = hashlib.md5(str(file_name).encode('utf-8'))
         file_name = hash_name.hexdigest()+".png"
 
-        # qrcode_img = qrcode.make(collect)
-        qrcode_img = qrcode.make(point[0])
+        qrcode_img = qrcode.make(point)
         qrcode_img.save(os.path.join(pathQR,file_name))
         print(os.path.join(pathQR,file_name))
         # print(collect)
@@ -619,6 +603,49 @@ def profile_display_buyer_point_redemption():
     age = data[1])
 
 
+@app.route('/buyer_get_points',methods = ['get','post'])
+def buyer_get_points():
+    if request.method == "POST":
+        global decoded_info
+        f =request.files.get("file")
+        filename, extension = f.filename.split(".")
+        generated_filename = f".{extension}"
+        file_location = os.path.join(app.config['UPLOAD_FOLDER'],generated_filename)
+        f.save(file_location)
+        img = cv2.imread(file_location)
+        det = cv2.QRCodeDetector()
+        val, pts , st_code = det.detectAndDecode(img)
+        os.remove(file_location)
+        decoded_info = val
+        print("decoded = ",decoded_info)
+    return render_template('buyer_get_points.html')
+
+@app.route('/decode',methods = ['get','post'])
+def decode():
+    a = decoded_info.strip('][').split(', ')
+    info = [eval(x) for x in a]
+    bill = (info[-1])
+    info.pop()
+    seller = (info[-1])
+    info.pop()
+    j = 0
+    print("info = " ,info)
+    for i in info:
+        print("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill + str(j)))
+        try:
+            cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill+str(j)))
+            mydb.commit()
+            print ("completed")
+        except:
+            print ("sql error did you use old QR code ?")
+            return ("Qr code is already used")
+        finally:
+            j +=1
+            print (j)
+    return render_template('test_decode.html',data = decoded_info)
+
+
+
 # route ที่ยังไม่ได้ใช้
 
 @app.route('/matchmybeverage',methods = ['get','post'])
@@ -635,27 +662,8 @@ def product():
 
 
 
-@app.route('/testup',methods = ['get','post'])
-def testup():
-    if request.method == "POST":
-        global decoded_info
-        f =request.files.get("file")
-        filename, extension = f.filename.split(".")
-        generated_filename = f".{extension}"
-        file_location = os.path.join(app.config['UPLOAD_FOLDER'],generated_filename)
-        f.save(file_location)
-        img = cv2.imread(file_location)
-        det = cv2.QRCodeDetector()
-        val, pts , st_code = det.detectAndDecode(img)
-        os.remove(file_location)
-        decoded_info = val
-        print(decoded_info)
-    return render_template('testup.html')
 
-@app.route('/test_decode',methods = ['get','post'])
-def test_decode():
-    print(decoded_info)
-    return render_template('test_decode.html',data = decoded_info)
+
 
 if __name__ == "__main__" :
     app.run(debug=True,host = "0.0.0.0")    

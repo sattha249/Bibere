@@ -33,37 +33,39 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #486648;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D3E4CD">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img src="/static/cuppa_bw.svg" alt="" width="50" height="50" class="d-inline-block align-text-top">
+          <span style="color: #6F4C5B; font-weight: 700">
           CUPPA
+          </span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav" aria-controls="myNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
+        <div class="collapse navbar-collapse" id="myNav">
           {% if session.name %}
-        <ul class="navbar-nav">
+        <ul class="navbar-nav abs-center-x">
           <li class="nav-item">
-            <a class="nav-link" href="/profile">Proflie</a>
+            <a class="nav-link" href="/profile" >Proflie</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/cafenearyou">Cup Near You</a>
+            <a class="nav-link" href="/cafenearyou" >Cup Near You</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2">
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Log Out</a>
+            <a class="nav-link" href="/logout" >Log Out</a>
           </li>
         </ul>
         {% else %}
         <ul class="nav navbar-nav abs-center-x">
           <li class="nav-item">
-            <a class="nav-link"  href="/login_buyer">Buyer</a>
+            <a class="nav-link active"  href="/login_buyer" >Buyer</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  href="/login_seller">Seller</a>
+            <a class="nav-link"  href="/login_seller" >Seller</a>
           </li>
         </ul>
         {% endif %}
@@ -76,6 +78,6 @@
     <footer class="small text-center text-muted">
       Every cup is life.
     </footer>
-    
+ 
   </body>
 </html>

@@ -8,13 +8,12 @@ Cafe near you
 
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="/static/map.js"></script>
 
     <script>
       let user = JSON.parse('{{location|tojson}}');
       let cafe = JSON.parse('{{cafe|tojson}}');
       var maps, infoWindow;
-
+      console.log(cafe);
 
       function initMap() {
       const myLatLng = { lat: 13.847860, lng: 100.604274 },
@@ -30,11 +29,13 @@ Cafe near you
         (position) => {
           console.log(position);
           const pos = {
-              // get from python คลาดเคลื่อน
-            // lat: user.lat,
-            // lng: user.lng,
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
+              // siamscape
+             lat: user.lat,
+             lng: user.lng,
+
+                // real 
+            //lat: position.coords.latitude,
+            //lng: position.coords.longitude
             
           };
 
