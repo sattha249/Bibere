@@ -51,7 +51,7 @@ block main %}
             </div>
             <div style="text-align: left">
               <div class="mb-content">
-                  <table style="width:50%">
+                  <table style="width:100%">
                     <tr>
                       <th>No.</th>
                       <th>Beverage name</th>
@@ -59,12 +59,12 @@ block main %}
                       <th>Point</th>
                     </tr>
                   
-                    {%for i in order %}
+                    {%for i in point_details %}
                     <tr>
-                      <td>1.</td>
-                      <td>{{i[1]}}</td>
+                      <td>{{loop.index}}</td>
                       <td>{{i[0]}}</td>
-                      <td>10</td>
+                      <td>{{i[1]}}</td>
+                      <td>{{i[2]}}</td>
                     </tr>
                     {% endfor %}
                   </table>

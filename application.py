@@ -118,8 +118,18 @@ def fetch_history():
         history = cursor.fetchall()
     return history
 
+def fetch_point():
+    mode = getmode()
+    if mode == True:
+        cursor.execute("""SELECT product_inf.product_name,user_inf.firstname,product_inf.point 
+        FROM product_inf inner join order_inf on product_inf.product_id = order_inf.product_id 
+        inner join user_inf on user_inf.id = order_inf.seller_id 
+        WHERE order_inf.customer_id = {0} ORDER BY order_inf.order_date;""".format(session['id']))
+        point_details = cursor.fetchall()
+    return point_details
+
     
-def fetch_point(collect):
+def give_point(collect):
     print('collect = ' ,collect)
     point = []
     for i in collect:
@@ -268,7 +278,7 @@ def barNearYou():
     business_list.extend(response.get('results'))
     cafe = []
     for i in business_list:
-        #ส่วนนี้ใช้แก้ปัญหาเรื่อง Jason parse error
+        #ส่วนนี้ใช้แก้ปัญหาเรื่อง Json parse error
         if 'Hob & Coff' not in i['name'] :
             cafe.append([i['name'],i['geometry']['location']['lat'],i['geometry']['location']['lng']])
     print (business_list[0])
@@ -494,18 +504,23 @@ def profile_display_seller_add_product():
         description = request.form.get('desc')
         price = request.form.get('price')
         point = request.form.get('point')
-        print(prod_name,bev_type,description,price,point)
-        cursor.execute("SELECT product_name FROM product_inf WHERE seller = {} AND product_name = '{}' ".format(session['id'],prod_name))
-        detail = cursor.fetchall()
-        if detail != []:
-            for i in detail:
-                if i[0].upper() == prod_name.upper():
-                    return "Already have this beverage in your menu"
-                else :
-                    print(detail[0])
-        cursor.execute("INSERT INTO product_inf(product_name,tea,descriptions,price,point,seller) VALUES ('{0}',{1},'{2}',{3},{4},{5})".format(prod_name,bev_type,description,price,point,session['id']))
-        mydb.commit()
-
+        menu = request.form.get('menu1')
+        print(prod_name,bev_type,description,price,point,menu)
+        if menu == None:
+            cursor.execute("SELECT product_name FROM product_inf WHERE seller = {} AND product_name = '{}' ".format(session['id'],prod_name))
+            detail = cursor.fetchall()
+            if detail != []:
+                for i in detail:
+                    if i[0].upper() == prod_name.upper():
+                        return "Already have this beverage in your menu"
+                    else :
+                        print(detail[0])
+            cursor.execute("INSERT INTO product_inf(product_name,tea,descriptions,price,point,seller) VALUES ('{0}',{1},'{2}',{3},{4},{5})".format(prod_name,bev_type,description,price,point,session['id']))
+            mydb.commit()
+        else:
+            cursor.execute("DELETE FROM product_inf WHERE product_name = '{0}' AND seller = {1}".format(menu,session['id']))
+            mydb.commit()
+            print ("delete complete")
     data = fetch_information()
     product = fetch_product()
     return render_template('profile_display_seller_add_product.html',
@@ -552,7 +567,7 @@ def seller_point():
         hash = random.getrandbits(128)
         hash = ("%032x" % hash)
         point = []
-        point = fetch_point(collect)
+        point = give_point(collect)
         point.append(session['id'])
         point.append(hash)
         print("point = ", point)
@@ -588,7 +603,9 @@ def about_us():
 @app.route('/profile_display_buyer_point',methods = ['get','post'])
 def profile_display_buyer_point():
     data = fetch_information()
-    return render_template('profile_display_buyer_point.html',f = data[0][1],
+    point_details = fetch_point()
+    return render_template('profile_display_buyer_point.html',point_details = point_details,
+    f = data[0][1],
     d = data[0][3],
     picture = data[0][9],
     age = data[1])
@@ -635,10 +652,12 @@ def decode():
         try:
             cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill+str(j)))
             mydb.commit()
+            cursor.execute("UPDATE user_inf SET points = points + (select point from product_inf WHERE product_id ={0}) WHERE id = {1}".format(i,session['id']))
+            mydb.commit()
             print ("completed")
         except:
             print ("sql error did you use old QR code ?")
-            return ("Qr code is already used")
+            return render_template('test_decode.html',data ="Qr code is already used")
         finally:
             j +=1
             print (j)
