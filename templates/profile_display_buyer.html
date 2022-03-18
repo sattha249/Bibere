@@ -11,7 +11,7 @@ block main %}
       <div class="row">
         <div class="col-lg-3">
           <div style="display: inline-block; text-align: center">
-            <div>
+            <div class = "circle">
               <img
                 src="/static/profile/{{picture}}"
                 class="strock rounded-circle mx-auto d-block image-profile"
@@ -23,7 +23,7 @@ block main %}
             </div>
             <div>
               <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
-                {{f}} {{l}}
+                {{f}}
               </h2>
             </div>
             <div style="display: inline-block; text-align: left">
@@ -33,16 +33,18 @@ block main %}
                 <h4>Status: <span class="active">Active</span></h4>
               </div>
             </div>
-          </div>
-
-          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+        
+          
+          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif; text-align: right; border-top: 3px solid #486648;">
             <a class="menu-style" href="#"><h5 href="">My Profile</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a>
+            <!-- <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a> -->
             <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
             <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
           </div>
         </div>
+      </div>
+    
 
         <div class="col-lg-9" style="margin-top: 30px">
           <div class="frame-line">
@@ -118,12 +120,14 @@ block main %}
 
                 <div class="line-stroke">
                   <div class="beverages d-flex justify-content-center align-items-center">
-                    <div class="icon active-score"><img src="/static/coffee.svg" alt="Beverages"></div>
-                    <div class="icon active-score"><img src="/static/coffee.svg" alt="Beverages"></div>
-                    <div class="icon active-score"><img src="/static/coffee.svg" alt="Beverages"></div>
-                    <div class="icon"><img src="/static/coffee.svg" alt="Beverages"></div>
-                    <div class="icon"><img src="/static/coffee.svg" alt="Beverages"></div>
-                    <div class="icon"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon {%if bev >= 1%}active-score{%endif%}"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon {%if bev >= 2%}active-score{%endif%}"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon {%if bev >= 3%}active-score{%endif%}"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon {%if bev >= 4%}active-score{%endif%}"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon {%if bev >= 5%}active-score{%endif%}"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    <div class="icon {%if bev >= 6%}active-score{%endif%}"><img src="/static/coffee.svg" alt="Beverages"></div>
+                    
+                    
                   </div>
                   <div class="score">
                     <span class="type-score">Beverages Scores</span>
@@ -132,12 +136,12 @@ block main %}
                 
                 <div class="line-stroke">
                   <div class="beverages d-flex justify-content-center align-items-center">
-                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
-                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
-                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
-                    <div class="icon active-score"><img src="/static/sign.svg" alt="Beverages"></div>
-                    <div class="icon"><img src="/static/sign.svg" alt="Beverages"></div>
-                    <div class="icon"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon {%if visit >= 1%}active-score{%endif%}"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon {%if visit >= 2%}active-score{%endif%}"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon {%if visit >= 3%}active-score{%endif%}"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon {%if visit >= 4%}active-score{%endif%}"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon {%if visit >= 5%}active-score{%endif%}"><img src="/static/sign.svg" alt="Beverages"></div>
+                    <div class="icon {%if visit >= 6%}active-score{%endif%}"><img src="/static/sign.svg" alt="Beverages"></div>
                   </div>
                   <div class="score">
                     <span class="type-score">Cafes Visits Records</span>

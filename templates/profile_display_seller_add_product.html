@@ -70,15 +70,17 @@ function show() {
                   <h4>Status: <span class="active">Active</span></h4>
                 </div>
               </div>
-            </div>
+            
   
-            <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+            <div style="padding-top: 20px; font-family: 'Timmana', sans-serif; text-align: right; border-top: 3px solid #486648;">
               <a class="menu-style" href="/profile"><h5 href="">My Information</h5></a>
             <a class="menu-style" href="/profile_display_seller_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_seller_product"><h5>My products</h5></a>
             <a class="menu-style" href="/seller_point"><h5>Points</h5></a>
             </div>
           </div>
+        </div>
+      
   
           <div class="col-9" style="margin-top: 30px">
             <div class="frame-line">
@@ -87,52 +89,74 @@ function show() {
               </div>
 
                 <form name="menu">
+                  <br><br>
+                  <h2>Select mode</h2>
+                            <button class="btn btn-primary" 
+                              style="background-color: #486648; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" 
+                               onclick="return show();">Add menu</button> 
+                            <button class="btn btn-primary" 
+                              style="background-color: #486648; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" 
+                               onclick="return hide();">Delete menu</button></p>
+                    
                                   <span id="tr1" style="display:block">
-                                    <table width="100%">
-                                      <tbody>
+                                    <table class="table" width="100%">
+                                      <thead>
                                         <tr>
                                           <th width="25%" height="60" style="font-size: 20px;"><strong>Product name</strong></th>
                             <th width="25%" height="60" style="font-size: 20px;"><strong>type</strong></th>
                             <th width="25%" height="60" style="font-size: 20px;"><strong>Description</strong></th>
-                            <th width="25%" height="60" style="font-size: 20px;"><strong>Price</strong></th>
-                            <th width="25%" height="60" style="font-size: 20px;"><strong>Points</strong></th>
                                         </tr>
+                                      </thead>
+                                      <tbody>
                                         <tr>
-                                          <td width="50%" >
+                                          <td >
                                               <!-- <label for="beverages">Choose beverage</label> -->
-                                              <div class="col-sm-5">
                                               <input type="text" id="prod_name" name="prod_name">
-                                              </div>
+
                                                
                                           </td>
                                           <td>
+                                            <div class="form-check-inline">
                                             <div class="form-check">
                                               <label class="form-check-label" for="radio1">
                                                 <input type="radio" class="form-check-input" id="type" name="type" value=1 checked>tea
                                               </label>
                                             </div>
+                                          </div>
+                                            <div class="form-check-inline">
                                             <div class="form-check">
                                               <label class="form-check-label" for="radio2">
                                                 <input type="radio" class="form-check-input" id="type" name="type" value=0>coffee
                                               </label>
                                             </div>
+                                          </div>
                                           </td>
                                           <td>
                                             <input type="text" id="desc" name="desc">
                                           </td>
-                                          <td>
-                                          
-                                            <input type="text" id="price" name="price">
-
-                                          </td>
-                                          <td>
-                                           
-                                          <input type="text" id="point" name="point">
-        
-                                          </td>
-                                        </tr>
                                       </tbody>
                                    </table>
+                                   <table class="table">
+                                     <thead>
+                                       <tr>
+                                        <th width="25%" height="60" style="font-size: 20px;"><strong>Price</strong></th>
+                                        <th width="25%" height="60" style="font-size: 20px;"><strong>Points</strong></th>
+                                       </tr>
+                                     </thead>
+                                     <tbody>
+                                      <td>
+                                          
+                                        <input type="text" id="price" name="price">
+
+                                      </td>
+                                      <td>
+                                       
+                                      <input type="text" id="point" name="point">
+                                      </td>
+                                     </tbody>
+
+                                   </table>
+                                   
                           </span>
                     
                                   <span id="tr2" style="display:none">
@@ -168,16 +192,9 @@ function show() {
                                       </tbody>
                                    </table>
                             </span>
-                                  
+                                  <br><br>
 
-                            <p></p>
-                            <button class="btn btn-primary" 
-                              style="background-color: #486648; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" 
-                               onclick="return show();">Add menu</button> 
-                            <button class="btn btn-primary" 
-                              style="background-color: #486648; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;" 
-                               onclick="return hide();">Delete menu</button></p>
-                    <br><br>
+                            
                     <div style="margin-bottom: 10px; text-align: center">
                       <button
                         class="btn btn-primary"
@@ -195,6 +212,7 @@ function show() {
                       </button>
                     </div>
                   </form>
+                
             </div>
           </div>
         </div>

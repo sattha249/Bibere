@@ -9,10 +9,19 @@ Product
 <form action="/edit_profile_buyer" method="get" name="form">
   <div class="row">
     <div class="head-myprofile col-5">
-      <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
+      <h1 style="font-size: 48px; margin-bottom: 20px">random product</h1>
     </div>
   </div>
 </from>
 
+
+  
+    {% for i in suggest%}
+    
+    <a href="{{i[2]}}" target="_blank">
+    <img src="./static/product/{{i[1]}}" title="{{i[0]}}" width="300" height="300" style="vertical-align:middle;margin:50px 10px" ></a>
+    {%endfor%}
+  
+  
   
 {% endblock %}

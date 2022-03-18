@@ -31,7 +31,8 @@ ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 Session(app)
 dropzone = Dropzone(app)
 
-
+recommend_tea = ['Oolong tea','Black tea','Green tea','White tea','Rose tea']
+recommend_coffee = ['Americano','Espresso','Latte','Cappuccino','Mocha']
 
 
 mydb = mysql.connector.connect(
@@ -108,13 +109,51 @@ def fetch_product():
     bev = cursor.fetchall()
     return bev
 
+def get_bev_score(data):
+    bev = 0
+    if data >=1200:
+        bev = 6
+    elif data >=1000:
+        bev = 5
+    elif data >=800:
+        bev = 4
+    elif data >=600:
+        bev = 3
+    elif data >=400:
+        bev = 2
+    elif data >=200:
+        bev = 1
+    print ("bev = ", bev)
+    return bev
+
+def get_visit_score():
+    cursor.execute("select COUNT(*) from order_inf where customer_id = {0} GROUP BY seller_id,order_date;".format(session['id']))
+    data = cursor.fetchall()
+    data = len(data)
+    print (data)
+    visit = 0
+    if data >=12:
+        visit = 6
+    elif data >=10:
+        visit = 5
+    elif data >=8:
+        visit = 4
+    elif data >=6:
+        visit = 3
+    elif data >=4:
+        visit = 2
+    elif data >=1:
+        visit = 1
+    print ("visit = ", visit)
+    return visit
+
 def fetch_history():
     mode = getmode()
     if mode == True:
-        cursor.execute("""SELECT user_inf.firstname,user_inf.address,
-        order_inf.order_date 
+        cursor.execute("""SELECT user_inf.firstname,user_inf.address,order_inf.order_date 
         FROM user_inf INNER JOIN order_inf ON order_inf.seller_id = user_inf.id 
-        WHERE order_inf.customer_id = {0} ORDER BY order_inf.order_date;""".format(session['id']))
+        WHERE order_inf.customer_id = {0} GROUP BY user_inf.firstname,order_inf.order_date 
+        ORDER BY order_inf.order_date; """.format(session['id']))
         history = cursor.fetchall()
     return history
 
@@ -133,7 +172,7 @@ def give_point(collect):
     print('collect = ' ,collect)
     point = []
     for i in collect:
-        point.append(int(i[0]))
+        point.append(int(i))
     return point
     
 
@@ -176,9 +215,9 @@ def login():
             if username == login_data[0][0] and hash_pass == login_data[0][1]:
                 session["name"] = username 
                 session["id"] = login_data[0][2]
+                return redirect("/")
         except:
             return "<h3>Wrong username or password<h3>"
-        return redirect("/")
     return render_template("login_buyer.html") 
         
        
@@ -196,9 +235,10 @@ def login_seller():
             if username == login_data[0][0] and hash_pass == login_data[0][1]:
                 session["name"] = username 
                 session["id"] = login_data[0][2]
+                return redirect("/")
         except:
             return "<h3>Wrong username or password<h3>"
-        return redirect("/")
+        
      return render_template("login_seller.html") 
 
 
@@ -303,9 +343,11 @@ def profile():
 
 @app.route('/profile_display_buyer',methods = ['get','post'])
 def profile_display_buyer():
-    try:
+    # try:
         data = fetch_information()
         print(data)
+        bev = get_bev_score(data[0][11])
+        visit = get_visit_score()
         return render_template("profile_display_buyer.html",
         f = data[0][1],
         l = data[0][2],
@@ -317,9 +359,11 @@ def profile_display_buyer():
         m = data[0][8],
         picture = data[0][9],
         point = data[0][11],
-        age = data[1])
-    except:
-        return redirect('login_buyer')
+        age = data[1],
+        bev = bev,
+        visit = visit)
+    # except:
+    #     return redirect('login_buyer')
 
 @app.route('/profile_display_seller',methods = ['get','post'])
 def profile_display_seller():
@@ -551,11 +595,7 @@ def seller_point():
         request.form.get("menu7"),request.form.get("menu8"),
         request.form.get("menu9"),request.form.get("menu10")]
 
-        level = [request.form.get("level1"),request.form.get("level2"),
-        request.form.get("level3"),request.form.get("level4"),
-        request.form.get("level5"),request.form.get("level6"),
-        request.form.get("level7"),request.form.get("level8"),
-        request.form.get("level9"),request.form.get("level10")]
+        discount = request.form.get("level1")
 
         collect = []
         for i in menu:
@@ -564,12 +604,14 @@ def seller_point():
                 continue
             else:
                 collect.append(i)
+        
         hash = random.getrandbits(128)
         hash = ("%032x" % hash)
         point = []
         point = give_point(collect)
         point.append(session['id'])
         point.append(hash)
+        point.append(discount)
         print("point = ", point)
         #check file
         counter = session['id']
@@ -641,27 +683,57 @@ def buyer_get_points():
 def decode():
     a = decoded_info.strip('][').split(', ')
     info = [eval(x) for x in a]
+    discount = (info[-1])
+    dis = 0
+    redeem = 0
+    info.pop()
     bill = (info[-1])
     info.pop()
     seller = (info[-1])
     info.pop()
-    j = 0
+    j = 1
     print("info = " ,info)
-    for i in info:
-        print("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill + str(j)))
-        try:
-            cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill+str(j)))
-            mydb.commit()
-            cursor.execute("UPDATE user_inf SET points = points + (select point from product_inf WHERE product_id ={0}) WHERE id = {1}".format(i,session['id']))
-            mydb.commit()
-            print ("completed")
-        except:
-            print ("sql error did you use old QR code ?")
-            return render_template('test_decode.html',data ="Qr code is already used")
-        finally:
-            j +=1
-            print (j)
-    return render_template('test_decode.html',data = decoded_info)
+    if discount == '1':
+        print ("discount 50 bath")
+        dis = 50
+        redeem = 100
+    elif discount == '2':
+        print ("discount = 100 bath")
+        dis = 100
+        redeem = 200
+    elif discount == '3':
+        print ("discount = 150 bath")
+        dis = 150
+        redeem = 300
+    elif discount == '4':
+        print ("discount = 200 bath")
+        dis = 200
+        redeem = 400
+    else:
+        print ("no discount")
+    cursor.execute("SELECT points from user_inf where id = {0}".format(session['id']))
+    p = cursor.fetchone()
+    user_point = p[0]
+    if user_point >= redeem:
+        cursor.execute("UPDATE user_inf set points = points - {0} WHERE id = {1}".format(redeem,session['id']))
+        mydb.commit()
+        for i in info:
+            print("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill + str(j)))
+            try:
+                cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill+str(j)))
+                mydb.commit()
+                cursor.execute("UPDATE user_inf SET points = points + (select point from product_inf WHERE product_id ={0}) WHERE id = {1}".format(i,session['id']))
+                mydb.commit()
+                print ("completed")
+            except:
+                print ("sql error did you use old QR code ?")
+                return render_template('test_decode.html',data ="Qr code is already used")
+            finally:
+                j +=1
+    else:
+        return render_template('test_decode.html',data ="Not Enough point !!!!")
+    
+    return render_template('test_decode.html',data = "Congratulations! Go to see your points")
 
 
 
@@ -673,14 +745,13 @@ def matchmybeverage():
 
 
 
-@app.route('/product',methods = ['get','post'])
+@app.route('/product',methods = ['post'])
 def product():
-    return render_template('product.html')
-
-
-
-
-
+    if request.method == "POST":
+        cursor.execute("SELECT * FROM suggest ORDER BY RAND() LIMIT 3")
+        suggest = cursor.fetchall()
+        print (suggest)    
+        return render_template('product.html',suggest = suggest)
 
 
 

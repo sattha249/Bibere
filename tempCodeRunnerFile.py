@@ -1,2 +1,1 @@
-cursor.execute("INSERT INTO product_inf(product_name,tea,descriptions,price,point,seller) VALUES ('{0}',{1},'{2}',{3},{4},{5})".format(prod_name,bev_type,description,price,point,session['id']))
-        mydb.commit()
+print ("d = " , d)
