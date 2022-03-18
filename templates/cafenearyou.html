@@ -6,7 +6,11 @@ Cafe near you
 
 {% block main %}
 
-
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A&callback=initMap&v=weekly"
+      async
+    ></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script>
@@ -14,7 +18,10 @@ Cafe near you
       let cafe = JSON.parse('{{cafe|tojson}}');
       var maps, infoWindow;
       console.log(cafe);
-
+      var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+      var icon = {
+      url: "../static/pin_coffee.png",
+    };
       function initMap() {
       const myLatLng = { lat: 13.847860, lng: 100.604274 },
       maps = new google.maps.Map(document.getElementById("map"), {
@@ -23,7 +30,6 @@ Cafe near you
       zoom: 15,
    });
        infoWindow = new google.maps.InfoWindow();
-
        //set current position
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -32,13 +38,11 @@ Cafe near you
               // siamscape
              lat: user.lat,
              lng: user.lng,
-
                 // real 
             //lat: position.coords.latitude,
             //lng: position.coords.longitude
             
           };
-
           infoWindow.setPosition(pos);
           infoWindow.setContent("คุณอยู่ที่นี่");
           infoWindow.open(maps);
@@ -51,43 +55,42 @@ Cafe near you
       );
 
        
-    
       //create marker by loop from array
       var marker,i,info;
       for(i = 0 ; i < cafe.length ; i++){
         marker = new google.maps.Marker({
           position : new google.maps.LatLng(cafe[i][1],cafe[i][2]),
+          animation: google.maps.Animation.DROP,
+          icon : icon,
           map: maps,
           title: cafe[i][0]
         });
-        info = new google.maps.InfoWindow();
+        
         google.maps.event.addListener(marker,'click',function(marker,i){
           return function() {
-            info.setContent(location[i][0]);
-            info.open(maps,marker);
+            infoWindow.setContent(location[i][0]);
+            infoWindow.open(maps,marker);
           }
         });
+     
       }
     }
-
-    
+ 
   
-      
+    
 
     </script>
+    <center>
     <h3>"Cafe near me"</h3>
     <div id="map"></div>
-
+  </center>
 
     <form method="POST" action="" id="form" hidden>
       <input type ="text" name="lat" id="lat"/>
       <input type ="text" name="lng" id="lng"/>
       <input type ="submit" name = "btnsubmit"/>
     </form>
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A&callback=initMap&v=weekly"
-      async
-    ></script>
+    
+    
   
 {% endblock %}

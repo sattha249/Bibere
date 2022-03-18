@@ -17,6 +17,15 @@ main .form-control {
   float: none;
 }
 
+.circle {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
 
 
 nav .navbar-brand {
@@ -133,7 +142,9 @@ h4 {
   border: 3px solid #577157;
   padding: 10px;
 }
-
+.border-top{
+  border-top: 3px solid #577157;
+}
 .head-name {
   position: absolute;
   top: -32px;
@@ -253,6 +264,7 @@ table {
   text-decoration: none;
 }
 
+
 .fav-img{
   max-width: 253px;
   max-height: 115px;
@@ -275,6 +287,20 @@ table {
   /* margin: 0 20px; */
 }
 
+input[type=text] {
+  background-color: #C6D7C6;
+  border-radius: 1rem;
+}
+input[type=password] {
+  background-color: #C6D7C6;
+  border-radius: 1rem;
+}
+
+
+textarea {
+  background-color: #C6D7C6;
+  border-radius: 1rem;
+}
 .position-tag {
   position: absolute;
   top: 71px;
@@ -293,13 +319,21 @@ table {
   left: 55px;
 }
 
-.icon-tag {
+.icon-coffee {
  background-color: #f5b82e;
  padding: 15px;
  border-radius: 50px;
  width: 75px;
  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
+
+.icon-tea {
+  background-color: #2e944b;
+  padding: 15px;
+  border-radius: 50px;
+  width: 75px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+ }
 
 
 /* Media */
@@ -516,6 +550,4 @@ table {
     border-bottom: 4px solid white;
     padding: 6px 0; 
   }
-
-
 

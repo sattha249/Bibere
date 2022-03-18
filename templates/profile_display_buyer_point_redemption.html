@@ -3,15 +3,15 @@ block main %}
 
 <form action="/profile_display_buyer_point" method="get" name="form">
   <div class="row">
-    <div class="head-myprofile col-5">
+    <div class="head-myprofile col-lg-5">
       <h1 style="font-size: 48px; margin-bottom: 20px">my profile</h1>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
           <div style="display: inline-block; text-align: center">
-            <div>
+            <div class="circle">
               <img
                 src="/static/profile/{{picture}}"
                 class="strock rounded-circle mx-auto d-block image-profile"
@@ -33,18 +33,19 @@ block main %}
                 <h4>Status: <span class="active">Active</span></h4>
               </div>
             </div>
-          </div>
+          
 
-          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif">
+          <div style="padding-top: 20px; font-family: 'Timmana', sans-serif; text-align: right; border-top: 3px solid #486648;">
             <a class="menu-style" href="/profile"><h5 href="">My Profile</h5></a>
-            <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a>
+            <!-- <a class="menu-style" href="/profile_display_buyer_favorite"><h5>My Favorite</h5></a> -->
             <a class="menu-style" href="/profile_display_buyer_order"><h5>My Orders</h5></a>
             <a class="menu-style" href="/profile_display_buyer_cafeHis"><h5>Cafes History</h5></a>
             <a class="menu-style" href="/profile_display_buyer_point"><h5>My Points</h5></a>
           </div>
         </div>
+      </div>
 
-        <div class="col-9" style="margin-top: 10px">
+        <div class="col-lg-9" style="margin-top: 10px">
           <div class="frame-line">
             
             <div>
@@ -63,7 +64,7 @@ block main %}
                         </div>
                       </div>
                       <div class="position-icon">
-                        <img class="icon-tag" src="static/coffee.svg" alt="">
+                        <img class="icon-coffee" src="static/coffee.svg" alt="">
                       </div>
                     </div>
                 </div>
@@ -78,7 +79,7 @@ block main %}
                         </div>
                       </div>
                       <div class="position-icon">
-                        <img class="icon-tag" src="static/coffee.svg" alt="">
+                        <img class="icon-coffee" src="static/coffee.svg" alt="">
                       </div>
                     </div>
                 </div>
@@ -93,7 +94,7 @@ block main %}
                         </div>
                       </div>
                       <div class="position-icon">
-                        <img class="icon-tag" src="static/coffee.svg" alt="">
+                        <img class="icon-coffee" src="static/coffee.svg" alt="">
                       </div>
                     </div>
                 </div>
@@ -108,7 +109,7 @@ block main %}
                         </div>
                       </div>
                       <div class="position-icon">
-                        <img class="icon-tag" src="static/coffee.svg" alt="">
+                        <img class="icon-coffee" src="static/coffee.svg" alt="">
                       </div>
                     </div>
                 </div>

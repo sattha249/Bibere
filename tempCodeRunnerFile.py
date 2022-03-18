@@ -1,1 +1,1 @@
-/profile_display_buyer_teaHis
+print ("d = " , d)
