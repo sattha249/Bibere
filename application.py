@@ -796,16 +796,17 @@ def matchmybeverage():
 def product():
     if request.method == "POST":
         a = request.form['action']
-        print (a)
         cursor.execute("SELECT * FROM product_inf WHERE product_name = '{0}'".format(a))
         detail = cursor.fetchall()
         print(detail)
-        data = fetch_information()
-        return render_template('product.html',detail = detail,f = data[0][1],
-    d = data[0][3],
-    picture = data[0][9],
-    point = data[0][11],
-    age = data[1])
+        # data = fetch_information()
+        cursor.execute("SELECT firstname,profile,address FROM user_inf WHERE id = {}".format(detail[0][5]))
+        data = cursor.fetchall()
+        print(data)
+        return render_template('product.html',detail = detail,
+        f = data[0][0],
+        address = data[0][2],
+        picture = data[0][1],)
 
 
 

@@ -321,7 +321,8 @@ textarea {
 }
 
 .icon-coffee {
- background-color: #f5b82e;
+  
+  background-color: #be9b7b;
  padding: 15px;
  border-radius: 50px;
  width: 75px;
@@ -329,7 +330,7 @@ textarea {
 }
 
 .icon-tea {
-  background-color: #2e944b;
+  background-color: #96B83D;
   padding: 15px;
   border-radius: 50px;
   width: 75px;
@@ -551,6 +552,16 @@ textarea {
     border-bottom: 4px solid white;
     padding: 6px 0; 
   }
+
+option {
+  color: #486648;
+  font-weight: 600;
+}
+
+optgroup{
+  color:#444941;
+}
+
 
   .loader {
     position: fixed;
