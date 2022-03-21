@@ -23,7 +23,8 @@ Cafe near you
       url: "../static/pin_coffee.png",
     };
       function initMap() {
-      const myLatLng = { lat: 13.847860, lng: 100.604274 },
+      // const myLatLng = { lat: 13.847860, lng: 100.604274 },
+      const myLatLng = { lat: user.lat, lng: user.lng },
       maps = new google.maps.Map(document.getElementById("map"), {
     
       center: { lat: user.lat, lng: user.lng },
@@ -36,11 +37,11 @@ Cafe near you
           console.log(position);
           const pos = {
               // siamscape
-             lat: user.lat,
-             lng: user.lng,
+            //  lat: user.lat,
+            //  lng: user.lng,
                 // real 
-            //lat: position.coords.latitude,
-            //lng: position.coords.longitude
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
             
           };
           infoWindow.setPosition(pos);

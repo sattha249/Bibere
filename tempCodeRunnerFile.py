@@ -1,1 +1,1 @@
-print ("d = " , d)
+insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}'

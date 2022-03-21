@@ -26,6 +26,7 @@ app.config['DROPZONE_MAX_FILES'] = 1
 app.config['DROPZONE_REDIRECT_VIEW'] = "decode"
 path = join(os.getcwd(), 'static/profile/')
 pathQR = join(os.getcwd(), 'static/QRcode/')
+pathProduct = join(os.getcwd(), 'static/product/')
 app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 Session(app)
@@ -85,20 +86,19 @@ def fetch_order():
         product_inf.tea,
         user_inf.firstname,
         user_inf.address,
-        product_inf.price 
+        (product_inf.price - pay) as paid 
         FROM product_inf 
         inner join order_inf on product_inf.product_id = order_inf.product_id 
         inner join user_inf on user_inf.id = order_inf.seller_id 
         WHERE order_inf.customer_id = {0};""".format(session['id']))
+        
         data = cursor.fetchall()
     else :
-        cursor.execute("""SELECT user_inf.firstname ,
-         product_inf.product_name,
-         order_date,status,payment,
-         product_inf.price 
-         from user_inf inner join order_inf on user_inf.id = order_inf.customer_id 
-         inner join product_inf on product_inf.product_id = order_inf.product_id 
-         where order_inf.seller_id = {0};""".format(session['id']))
+        cursor.execute("""SELECT user_inf.firstname , product_inf.product_name,
+        order_date,status,payment,(product_inf.price - pay) as paid 
+        from user_inf inner join order_inf on user_inf.id = order_inf.customer_id 
+        inner join product_inf on product_inf.product_id = order_inf.product_id 
+        where order_inf.seller_id = {0};""".format(session['id']))
         data = cursor.fetchall()
     for i in data:
         print(i)
@@ -127,10 +127,14 @@ def get_bev_score(data):
     return bev
 
 def get_visit_score():
-    cursor.execute("select COUNT(*) from order_inf where customer_id = {0} GROUP BY seller_id,order_date;".format(session['id']))
-    data = cursor.fetchall()
-    data = len(data)
-    print (data)
+    data = 0
+    try:
+        cursor.execute("select COUNT(*) from order_inf where customer_id = {0} GROUP BY seller_id,order_date;".format(session['id']))
+        data = cursor.fetchall()
+        data = len(data)
+        print (data)
+    except:
+        pass
     visit = 0
     if data >=12:
         visit = 6
@@ -150,11 +154,14 @@ def get_visit_score():
 def fetch_history():
     mode = getmode()
     if mode == True:
-        cursor.execute("""SELECT user_inf.firstname,user_inf.address,order_inf.order_date 
-        FROM user_inf INNER JOIN order_inf ON order_inf.seller_id = user_inf.id 
-        WHERE order_inf.customer_id = {0} GROUP BY user_inf.firstname,order_inf.order_date 
-        ORDER BY order_inf.order_date; """.format(session['id']))
-        history = cursor.fetchall()
+        try:
+            cursor.execute("""SELECT user_inf.firstname,user_inf.address,order_inf.order_date 
+            FROM user_inf INNER JOIN order_inf ON order_inf.seller_id = user_inf.id 
+            WHERE order_inf.customer_id = {0} GROUP BY user_inf.firstname,order_inf.order_date 
+            ORDER BY order_inf.order_date; """.format(session['id']))
+            history = cursor.fetchall()
+        except:
+            history = 0
     return history
 
 def fetch_point():
@@ -167,7 +174,18 @@ def fetch_point():
         point_details = cursor.fetchall()
     return point_details
 
-    
+def fetch_stat():
+    cursor.execute("select count(customer_id) from order_inf where seller_id = {0}".format(session['id']))
+    sell= cursor.fetchall()
+    sell = list(sell[0])
+    cursor.execute(" select count(customer_id) from order_inf where seller_id = {0} group by customer_id, order_date ".format(session['id']))
+    visit = cursor.fetchall()
+    visit = len(visit)
+    sell.append(visit)
+    return sell
+   
+
+
 def give_point(collect):
     print('collect = ' ,collect)
     point = []
@@ -297,8 +315,8 @@ def barNearYou():
     # locations = {'lat': lat , 'lng':lng}
 
     #   my home
-    lat = 13.753263121876094 
-    lng = 100.74236460509789
+    # lat = 13.753263121876094 
+    # lng = 100.74236460509789
     locations = {'lat': lat , 'lng':lng}
 
     #get nearby cafe
@@ -370,7 +388,9 @@ def profile_display_seller():
     try:
         data = fetch_information()
         print(data)
-        return render_template("profile_display_seller.html",
+        sell = fetch_stat()
+        return render_template("profile_display_seller.html",visit = sell[1],
+        sell = sell[0],
         name= data[0][1],
         desc = data[0][7],
         mail = data[0][8],
@@ -472,6 +492,7 @@ def upload():
             mydb.commit()
             return redirect(request.url)
     return redirect("edit")
+
         
 
 @app.route('/profile_display_buyer_order',methods = ['get','post'])
@@ -549,7 +570,9 @@ def profile_display_seller_add_product():
         price = request.form.get('price')
         point = request.form.get('point')
         menu = request.form.get('menu1')
-        print(prod_name,bev_type,description,price,point,menu)
+        file = request.files['file']
+        print(prod_name,bev_type,description,price,point,menu,file)
+
         if menu == None:
             cursor.execute("SELECT product_name FROM product_inf WHERE seller = {} AND product_name = '{}' ".format(session['id'],prod_name))
             detail = cursor.fetchall()
@@ -559,12 +582,26 @@ def profile_display_seller_add_product():
                         return "Already have this beverage in your menu"
                     else :
                         print(detail[0])
-            cursor.execute("INSERT INTO product_inf(product_name,tea,descriptions,price,point,seller) VALUES ('{0}',{1},'{2}',{3},{4},{5})".format(prod_name,bev_type,description,price,point,session['id']))
-            mydb.commit()
+            if file:
+                filename = secure_filename(file.filename)
+                picture = filename
+                cursor.execute("INSERT INTO product_inf(product_name,tea,descriptions,price,point,seller) VALUES ('{0}',{1},'{2}',{3},{4},{5})".format(prod_name,bev_type,description,price,point,session['id']))
+                mydb.commit()
+                cursor.execute("UPDATE product_inf SET picture  = '{0}' WHERE product_name = '{1}'".format(picture,prod_name))
+                mydb.commit()
+                file.save(os.path.join(pathProduct,filename))
         else:
+            cursor.execute("SELECT picture FROM product_inf WHERE product_name = '{0}'".format(menu))
+            last_file = cursor.fetchone()
+            if last_file[0] != "default.png":
+                try:
+                    os.remove(str(os.path.join(pathProduct,last_file[0])))
+                    print ('photo deleted')
+                except:
+                    print ('photo not found')
             cursor.execute("DELETE FROM product_inf WHERE product_name = '{0}' AND seller = {1}".format(menu,session['id']))
             mydb.commit()
-            print ("delete complete")
+            print ("delete data complete")
     data = fetch_information()
     product = fetch_product()
     return render_template('profile_display_seller_add_product.html',
@@ -692,25 +729,27 @@ def decode():
     seller = (info[-1])
     info.pop()
     j = 1
+    quantity = len(info)
     print("info = " ,info)
     if discount == '1':
-        print ("discount 50 bath")
-        dis = 50
+        print ("discount 10 bath")
+        dis = 10
         redeem = 100
     elif discount == '2':
-        print ("discount = 100 bath")
-        dis = 100
+        print ("discount = 20 bath")
+        dis = 20
         redeem = 200
     elif discount == '3':
-        print ("discount = 150 bath")
-        dis = 150
+        print ("discount = 30 bath")
+        dis = 30
         redeem = 300
     elif discount == '4':
-        print ("discount = 200 bath")
-        dis = 200
+        print ("discount = 40 bath")
+        dis = 40
         redeem = 400
     else:
         print ("no discount")
+    pay = dis / quantity
     cursor.execute("SELECT points from user_inf where id = {0}".format(session['id']))
     p = cursor.fetchone()
     user_point = p[0]
@@ -718,9 +757,12 @@ def decode():
         cursor.execute("UPDATE user_inf set points = points - {0} WHERE id = {1}".format(redeem,session['id']))
         mydb.commit()
         for i in info:
-            print("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill + str(j)))
+            cursor.execute("select price from product_inf where product_id = {0}".format(i))
+            price = cursor.fetchone()
+            print (price)
+            print("insert into order_inf (seller_id,customer_id,product_id,bill,pay) VALUES({0},{1},{2},'{3}',{4})".format(seller,session['id'],i,bill + str(j),pay))
             try:
-                cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill) VALUES({0},{1},{2},'{3}')".format(seller,session['id'],i,bill+str(j)))
+                cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill,pay) VALUES({0},{1},{2},'{3}',{4})".format(seller,session['id'],i,bill+str(j),pay))
                 mydb.commit()
                 cursor.execute("UPDATE user_inf SET points = points + (select point from product_inf WHERE product_id ={0}) WHERE id = {1}".format(i,session['id']))
                 mydb.commit()
@@ -759,7 +801,11 @@ def product():
         detail = cursor.fetchall()
         print(detail)
         data = fetch_information()
-        return render_template('product.html',detail = detail,data = data)
+        return render_template('product.html',detail = detail,f = data[0][1],
+    d = data[0][3],
+    picture = data[0][9],
+    point = data[0][11],
+    age = data[1])
 
 
 
