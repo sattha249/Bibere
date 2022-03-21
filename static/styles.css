@@ -34,6 +34,7 @@ nav .navbar-brand {
 }
 body {
   background-color: #fff9f3;
+  color: #789395;
 }
 #boxing {
   padding: 10px;
@@ -256,7 +257,7 @@ table {
 
 .menu-style {
   text-decoration: none;
-  color: #000;
+  color: #444941;
 }
 
 .menu-style:hover {
@@ -551,3 +552,11 @@ textarea {
     padding: 6px 0; 
   }
 
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('https://lkp.dispendik.surabaya.go.id/assets/loading.gif') 50% 50% no-repeat rgb(249,249,249);

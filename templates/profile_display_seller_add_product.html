@@ -39,7 +39,7 @@ function show() {
 
 </script>
 
-<form action="/profile_display_seller_add_product"  name="form" method = "POST">
+<form action="/profile_display_seller_add_product"  name="form" method = "POST" enctype="multipart/form-data">
     <div class="row">
       <div class="head-myprofile">
         <h1 style="font-size: 3vw; margin-bottom: 20px">my information</h1>
@@ -88,7 +88,7 @@ function show() {
                 <h2 class="head-name" style="font-size: 48px">Add product</h2>
               </div>
 
-                <form name="menu">
+                <form name="menu" enctype="multipart/form-data">
                   <br><br>
                   <h2>Select mode</h2>
                             <button class="btn btn-primary" 
@@ -141,6 +141,7 @@ function show() {
                                        <tr>
                                         <th width="25%" height="60" style="font-size: 20px;"><strong>Price</strong></th>
                                         <th width="25%" height="60" style="font-size: 20px;"><strong>Points</strong></th>
+                                        <th width="25%" height="60" style="font-size: 20px;"><strong>Image</strong></th>
                                        </tr>
                                      </thead>
                                      <tbody>
@@ -153,6 +154,9 @@ function show() {
                                        
                                       <input type="text" id="point" name="point">
                                       </td>
+                                      <td>
+                                          <input type="file" name="file"  enctype />
+                                        </td>
                                      </tbody>
 
                                    </table>

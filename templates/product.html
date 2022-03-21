@@ -8,19 +8,158 @@ Product
 
 <form action="/edit_profile_buyer" method="get" name="form">
   <div class="row">
-    <div class="head-myprofile col-5">
-      <h1 style="font-size: 48px; margin-bottom: 20px">random product</h1>
+    <div class="head-myprofile col-lg-5">
+      <h1>Cafe Information</h1>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div style="display: inline-block; text-align: center">
+            <div class = "circle">
+              <img
+                src="/static/profile/{{picture}}"
+                class="strock rounded-circle mx-auto d-block image-profile"
+                alt="Profile Picture"
+                style="text-align: center"
+                width="150"
+                height="150"
+              />
+            </div>
+            <div>
+              <h2 style="font-size: 32px; text-align: center; margin-top: 20px">
+                {{f}}
+              </h2>
+            </div>
+            <div>
+              <h2 style="font-size: 2vw; text-align: center; margin-top: 20px">
+                {{name}}
+              </h2>
+            </div>
+            <div style="display: inline-block; text-align: left">
+              <div><h4>Bangkok</h4></div>
+              <div>
+                <h4>Status: <span class="active">Active</span></h4>
+              </div>
+            </div>
+        </div>
+      </div>
+    
+
+        <div class="col-lg-9" style="margin-top: 30px">
+          <div class="frame-line">
+            <div>
+              <h2 class="head-name">Your Drink</h2>
+            </div>
+            <div style="text-align: left">
+              <div class="mb-content ml-lg-3">
+               
+                  <div class="row">
+                  <div class="col-sm-2">
+                   
+                        <div class = "circle">
+                      <img
+                      src="/static/product/{{detail[0][7]}}"
+                      class="strock rounded-circle mx-auto d-block image-profile"
+                      alt="Drink Picture"
+                      style="text-align: left"
+                      width="150"
+                      height="150"
+                    >
+                        
+                        </div>
+                  </div>
+                
+
+                                  
+             
+                  <div class="col-sm-10">
+                    <div class="row">
+                  <div class="col-lg-2">
+                    <span class="mb-details" style="padding-left: 15px;">Name: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{detail[0][1]}}</span>
+                    </div>
+                  </div>
+                </div>
+               
+
+                <div class="row">
+                  <div class="col-lg-2">
+                    <span class="mb-details" style="padding-left: 15px;">Description: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{detail[0][3]}}</span>
+                    </div>
+                  </div>
+                </div>
+             
+
+                <div class="row">
+                  <div class="col-lg-2">
+                    <span class="mb-details" style="padding-left: 15px;">Price: </span>
+                  </div>
+                  <div class="col-lg-10 col-sm-12 mb-lg-3">
+                    <div class="tag">
+                      <span>{{detail[0][4]}} Baht</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              
+                
+              
+                
+
+                <div class="row">
+              <div class="d-md-flex flex-lg-row flex-column align-items-center">
+
+                <div class="col">
+                </div>
+              </div>
+            
+                
+              <div class="col">
+                <div class="line-stroke">
+                  <div class="beverages d-flex justify-content-center align-items-center" style="width: 240px;">
+                    <div class="icon active-score"><img src="/static/star.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/star.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/star.svg" alt="Beverages"></div>
+                    <div class="icon active-score"><img src="/static/star.svg" alt="Beverages"></div>
+                    <div class="icon"><img src="/static/star.svg" alt="Beverages"></div>
+                  </div>
+                  <div class="score">
+                    <span class="type-score">Drink Rate</span>
+                  </div>
+                </div>
+              </div>
+           
+
+              <div class="col">
+                <div class="line-stroke">
+                  <div class="beverages d-flex justify-content-center align-items-center">
+                    <span class="point" style="width: 200px; text-align: center; height: 25px;"> {{detail[0][6]}} points</span>
+                  </div>
+                  <div class="score">
+                    <span class="type-score">Cuppa Point</span>
+                  </div>
+                  <div>
+                </div>
+              </div>
+            </div>
+            </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</from>
-
-
-  
-    {% for i in suggest%}
-    
-    <a href="{{i[2]}}" target="_blank">
-    <img src="./static/product/{{i[1]}}" title="{{i[0]}}" width="300" height="300" style="vertical-align:middle;margin:50px 10px" ></a>
-    {%endfor%}
+</form>
   
   
   

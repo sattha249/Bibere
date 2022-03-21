@@ -64,6 +64,7 @@ block main %}
                       <th>Visited date</th>
                     </tr>
                     <tr>
+                      {%if history !=0%}
                       {% for i in history %}
                       <td>{{loop.index}}</td>
                       <td>{{i[0]}}</td>
@@ -71,6 +72,7 @@ block main %}
                       <td>{{i[2]}}</td>
                     </tr>
                       {% endfor %}
+                      {%endif%}
                   </table>
               </div>
             </div>
