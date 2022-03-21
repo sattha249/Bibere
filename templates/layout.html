@@ -31,8 +31,8 @@
     ></script>
     <title>CUPPA: {% block title %}{% endblock %}</title>
   </head>
-
-  <body>
+  
+  <body >
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D3E4CD">
       <div class="container-fluid">
           <img src="/static/cuppa_bw.svg" alt="" width="50" height="50" class="d-inline-block align-text-top">
@@ -74,12 +74,19 @@
         </div>
       </div>
     </nav>
+    <div style="background-image: url('/static/Logo_bg.png');background-repeat: no-repeat;background-position-x: 55%;">
+    <main class="container">
+      
+      {% block main %}
+      {% endblock %}
+      
+    </main>
+  </div>
 
-    <main class="container">{% block main %}{% endblock %}</main>
-
-    <footer class="small text-center text-muted">
+    
+    <footer class="small text-center text-muted"style="background-color: #D3E4CD;padding: 5px; ">
       Every cup is life.
     </footer>
- 
   </body>
+  
 </html>
