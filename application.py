@@ -741,6 +741,11 @@ def decode():
 
 @app.route('/matchmybeverage',methods = ['get','post'])
 def matchmybeverage():
+    if request.method == "POST":
+        cursor.execute("SELECT * FROM product_inf ORDER BY RAND() LIMIT 3")
+        product = cursor.fetchall()
+        print (product)    
+        return render_template('matchmybeverage.html',product = product)
     return render_template('matchmybeverage.html')
 
 
@@ -748,12 +753,16 @@ def matchmybeverage():
 @app.route('/product',methods = ['post'])
 def product():
     if request.method == "POST":
-        cursor.execute("SELECT * FROM suggest ORDER BY RAND() LIMIT 3")
-        suggest = cursor.fetchall()
-        print (suggest)    
-        return render_template('product.html',suggest = suggest)
+        a = request.form['action']
+        print (a)
+        cursor.execute("SELECT * FROM product_inf WHERE product_name = '{0}'".format(a))
+        detail = cursor.fetchall()
+        print(detail)
+        data = fetch_information()
+        return render_template('product.html',detail = detail,data = data)
 
 
 
 if __name__ == "__main__" :
     app.run(debug=True,host = "0.0.0.0")    
+
