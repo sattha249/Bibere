@@ -221,7 +221,7 @@ def index():
     
 
 @app.route('/login_buyer',methods = ["get","post"])
-def login():
+def login_buyer():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
