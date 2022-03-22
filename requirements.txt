@@ -31,7 +31,7 @@ mkdocs-material-extensions==1.0.3
 mkdocs-minify-plugin==0.3.0
 mysql-connector-python==8.0.28
 numpy==1.22.3
-opencv-python-headless==4.2.0.32
+opencv-python-headless==4.5.5.64
 packaging==21.3
 Pillow==9.0.1
 protobuf==3.19.4
