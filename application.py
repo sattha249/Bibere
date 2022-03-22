@@ -549,8 +549,6 @@ def profile_display_buyer_favorite():
     picture = data[0][9],
     age = data[1])
 
-
-
 @app.route('/profile_display_seller_product',methods = ['get','post'])
 def profile_display_seller_product():
     data = fetch_information()
@@ -777,10 +775,6 @@ def decode():
     
     return render_template('test_decode.html',data = "Congratulations! Go to see your points")
 
-
-
-# route ที่ยังไม่ได้ใช้
-
 @app.route('/matchmybeverage',methods = ['get','post'])
 def matchmybeverage():
     if request.method == "POST":
@@ -807,8 +801,6 @@ def product():
         f = data[0][0],
         address = data[0][2],
         picture = data[0][1],)
-
-
 
 if __name__ == "__main__" :
     app.run(debug=True,host = "0.0.0.0")    
