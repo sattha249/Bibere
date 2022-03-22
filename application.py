@@ -12,8 +12,14 @@ import cv2
 from flask_dropzone import Dropzone
 import random
 
-user_name = "root"
-passwd = "Codercamp1"
+#local
+# user_name = "root"
+# passwd = "Codercamp1"
+
+
+#heroku
+user_name = "bbd3d205e5481c"
+passwd = "abbd99cf"
 
 API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
 
@@ -36,11 +42,21 @@ recommend_tea = ['Oolong tea','Black tea','Green tea','White tea','Rose tea']
 recommend_coffee = ['Americano','Espresso','Latte','Cappuccino','Mocha']
 
 
+# mydb = mysql.connector.connect(
+#     host="localhost",
+#     user=user_name,
+#     password = passwd ,
+#     database="cuppa"
+# )
+# cursor = mydb.cursor(buffered=True)
+
+
+#heroku
 mydb = mysql.connector.connect(
-    host="localhost",
+    host="us-cdbr-east-05.cleardb.net",
     user=user_name,
     password = passwd ,
-    database="cuppa"
+    database="heroku_042e13b0752ec02"
 )
 cursor = mydb.cursor(buffered=True)
  
