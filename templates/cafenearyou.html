@@ -6,11 +6,7 @@ Cafe near you
 
 {% block main %}
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A&callback=initMap&v=weekly"
-      async
-    ></script>
+    
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script>
@@ -92,6 +88,10 @@ Cafe near you
       <input type ="submit" name = "btnsubmit"/>
     </form>
     
-    
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A&callback=initMap&v=weekly"
+      async
+    ></script>
   
 {% endblock %}

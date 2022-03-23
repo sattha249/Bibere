@@ -12,14 +12,12 @@ import cv2
 from flask_dropzone import Dropzone
 import random
 
-#local
-# user_name = "root"
-# passwd = "Codercamp1"
+
 
 
 #heroku
-user_name = "bbd3d205e5481c"
-passwd = "abbd99cf"
+# user_name = "bbd3d205e5481c"
+# passwd = "abbd99cf"
 
 API_KEY = 'AIzaSyDzsdViVPdEbOCd53uuMWqMlPI8zPmWs8A'
 
@@ -37,9 +35,6 @@ app.config['MAX_CONTENT_LENGTH'] = 16*1024*1024
 ALLOWED_EXTENSIONS = set(['png','jpg','jpeg','gif'])
 Session(app)
 dropzone = Dropzone(app)
-
-recommend_tea = ['Oolong tea','Black tea','Green tea','White tea','Rose tea']
-recommend_coffee = ['Americano','Espresso','Latte','Cappuccino','Mocha']
 
 
 # mydb = mysql.connector.connect(
@@ -330,14 +325,14 @@ def sell_register():
 @app.route('/cafenearyou',methods =['get','post'])
 def barNearYou():   
     #  get my location
-    myloc = geocoder.ip('me')
-    lat = myloc.latlng[0]
-    lng = myloc.latlng[1]
-    print(myloc.latlng)
+    # myloc = geocoder.ip('me')
+    # lat = myloc.latlng[0]
+    # lng = myloc.latlng[1]
+    # print(myloc.latlng)
 
     # siamscape
-    # lat = 13.745490
-    # lng = 100.531117
+    lat = 13.745490
+    lng = 100.531117
     # locations = {'lat': lat , 'lng':lng}
 
     #   my home
