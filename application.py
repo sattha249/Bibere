@@ -52,13 +52,23 @@ recommend_coffee = ['Americano','Espresso','Latte','Cappuccino','Mocha']
 
 
 #heroku
+# mydb = mysql.connector.connect(
+#     host="us-cdbr-east-05.cleardb.net",
+#     user=user_name,
+#     password = passwd ,
+#     database="heroku_042e13b0752ec02"
+# )
+# cursor = mydb.cursor(buffered=True)
+
+# jaws
 mydb = mysql.connector.connect(
-    host="us-cdbr-east-05.cleardb.net",
-    user=user_name,
-    password = passwd ,
-    database="heroku_042e13b0752ec02"
+    host="i0rgccmrx3at3wv3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user="uandqgs9kpf5dblxp",
+    password = "j9rw1kgggz50c452" ,
+    database="o835zbwa3c4q8985"
 )
 cursor = mydb.cursor(buffered=True)
+
  
 
 
