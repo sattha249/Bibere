@@ -737,8 +737,11 @@ def buyer_get_points():
 
 @app.route('/decode',methods = ['get','post'])
 def decode():
-    a = decoded_info.strip('][').split(', ')
-    info = [eval(x) for x in a]
+    try:
+        a = decoded_info.strip('][').split(', ')
+        info = [eval(x) for x in a]
+    except:
+        a = decoded_info.strip('][')
     discount = (info[-1])
     dis = 0
     redeem = 0
@@ -779,9 +782,9 @@ def decode():
             cursor.execute("select price from product_inf where product_id = {0}".format(i))
             price = cursor.fetchone()
             print (price)
-            print("insert into order_inf (seller_id,customer_id,product_id,bill,pay) VALUES({0},{1},{2},'{3}',{4})".format(seller,session['id'],i,bill + str(j),pay))
+            print("insert into order_inf (seller_id,customer_id,product_id,bill,pay,order_date) VALUES({0},{1},{2},'{3}',{4},current_date())".format(seller,session['id'],i,bill + str(j),pay))
             try:
-                cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill,pay) VALUES({0},{1},{2},'{3}',{4})".format(seller,session['id'],i,bill+str(j),pay))
+                cursor.execute("insert into order_inf (seller_id,customer_id,product_id,bill,pay,order_date) VALUES({0},{1},{2},'{3}',{4},current_date())".format(seller,session['id'],i,bill+str(j),pay))
                 mydb.commit()
                 cursor.execute("UPDATE user_inf SET points = points + (select point from product_inf WHERE product_id ={0}) WHERE id = {1}".format(i,session['id']))
                 mydb.commit()
