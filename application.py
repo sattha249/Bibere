@@ -63,7 +63,7 @@ recommend_coffee = ['Americano','Espresso','Latte','Cappuccino','Mocha']
 # jaws
 mydb = mysql.connector.connect(
     host="i0rgccmrx3at3wv3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    user="uandqgs9kpf5dblxp",
+    user="andqgs9kpf5dblxp",
     password = "j9rw1kgggz50c452" ,
     database="o835zbwa3c4q8985"
 )
