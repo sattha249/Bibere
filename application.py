@@ -236,6 +236,7 @@ def login(username,hash_pass,mode):
 def index():
     # session["name"] = None
     # session["id"] = None
+    print(os.environ)
     if not session.get("name"):
         return redirect("login_buyer")
     return redirect("profile")
