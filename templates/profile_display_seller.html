@@ -3,15 +3,15 @@ block main %}
 
 <form action="/edit_profile_seller" method="get" name="form">
   <div class="row">
-    <div class="head-myprofile">
+    <div class="head-myprofile col-lg-5">
       <h1 style="font-size: 3vw; margin-bottom: 20px">my information</h1>
     </div>
 
     <div class="container">
       <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3">
           <div style="display: inline-block; text-align: center">
-            <div>
+            <div class="circle">
               <img
                 src="/static/profile/{{picture}}"
                 class="strock rounded-circle mx-auto d-block image-profile"
@@ -43,10 +43,10 @@ block main %}
         </div>
       </div>
 
-        <div class="col-9" style="margin-top: 30px">
+        <div class="col-lg-9" style="margin-top: 30px">
           <div class="frame-line">
             <div>
-              <h2 class="head-name" style="font-size: 48px">{{name}}</h2>
+              <h2 class="head-name" >{{name}}</h2>
             </div>
             <div style="text-align: left">
               <div class="mb-content ml-lg-3">
@@ -90,7 +90,7 @@ block main %}
 
               </div>
 
-              <div class="d-flex">
+              <div class="d-md-flex flex-lg-row flex-column align-items-center">
 
                 <div class="line-stroke">
                   <div class="beverages d-flex justify-content-center align-items-center">
